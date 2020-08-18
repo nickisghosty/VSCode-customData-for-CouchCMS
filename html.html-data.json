@@ -3,43 +3,63 @@
     "tags": [
         {
             "name": "cms:add",
-            "description": "b'add\n===\n\n\nThe **add** tag accepts two parameters and returns as its output the value obtained after adding together the two parameters.  \n\nThe parameters may be literal strings, variables or output of other tags.\n\n\n\n ```html \n<cms:add my_count '1' />\n\n ``` \nThe snippet above adds 1 to what ever value is contained within *my_count* variable and outputs the resulting value.\n\n\nParameters\n----------\n\n\nThe tag expects two parameters as the values to be added.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [div](div.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n* [decr](decr.html)\n\n\n\n'",
-            "attributes": []
-        },
-        {
-            "name": "cms:add_querystring",
-            "description": "b'add_querystring\n================\n\n\nThe **add_querystring** tag can be used to add parameters to the query string portion of URLs (i.e. the portion that contains data to be passed to other pages).\n\n\nThis tag takes care to prefix the provided querystring by a '?' if there are no existing parameters in the URL, else it prefixes an '&'. It is difficult to do so manually if the URL we are adding the parameters to is contained within a variable, which is where this tag comes in handy.\n\n\n\n ```html \n<a href=\"<cms:add_querystring k_page_link 'param1=some_value' />\" >Some link</a>\n\n ``` \n\n ```html \n<a href=\"<cms:add_querystring k_page_link 'param1=some_value&param2=other_value' />\" >Some link</a>\n\n ``` \nParameters\n----------\n\n\n\n\n* link\n\n* querystring\n\n\n\n### link\n\n\nThe URL to append the querystring to.\n\n\n### querystring\n\n\nThe querystring to be appended to the link. It there are multiple parameters in the querystring, separate them by '&'.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
+            "description": "```html \n <cms:add my_count '1' /> \n ``` \n===\n\n\nThe **add** tag accepts two parameters and returns as its output the value obtained after adding together the two parameters.  \n\nThe parameters may be literal strings, variables or output of other tags.\n\n\n\n ```html \n<cms:add my_count '1' />\n\n ``` \nThe snippet above adds 1 to what ever value is contained within *my_count* variable and outputs the resulting value.\n\n\nParameters\n----------\n\n\nThe tag expects two parameters as the values to be added.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [div](div.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n* [decr](decr.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "link",
-                    "description": "The URL to append the querystring to.\n\n",
+                    "name": "add-value1",
+                    "description": "The parameters may be literal strings, variables or output of other tags.",
                     "values": [
                         {
-                            "name": ""
+                            "name": "var"
+                        },
+                        {
+                            "name": "int"
                         }
                     ]
                 },
                 {
-                    "name": "querystring",
-                    "description": "The querystring to be appended to the link. It there are multiple parameters in the querystring, separate them by '&'.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n",
+                    "name": "add-value2",
+                    "description": "The parameters may be literal strings, variables or output of other tags.",
                     "values": [
                         {
-                            "name": ""
+                            "name": "var"
+                        },
+                        {
+                            "name": "int"
                         }
                     ]
                 }
             ]
         },
         {
+            "name": "cms:add_querystring",
+            "description": "```html \n <cms:add_querystring k_page_link 'param1=someval&param2=otherval' /> \n ```\n================\n\n\nThe **add_querystring** tag can be used to add parameters to the query string portion of URLs (i.e. the portion that contains data to be passed to other pages).\n\n\nThis tag takes care to prefix the provided querystring by a '?' if there are no existing parameters in the URL, else it prefixes an '&'. It is difficult to do so manually if the URL we are adding the parameters to is contained within a variable, which is where this tag comes in handy.\n\n\n\n ```html \n<a href=\"<cms:add_querystring k_page_link 'param1=some_value' />\" >Some link</a>\n\n ``` \n\n ```html \n<a href=\"<cms:add_querystring k_page_link 'param1=some_value&param2=other_value' />\" >Some link</a>\n\n ``` \nParameters\n----------\n\n\n\n\n* link\n\n* querystring\n\n\n\n### link\n\n\nThe URL to append the querystring to.\n\n\n### querystring\n\n\nThe querystring to be appended to the link. It there are multiple parameters in the querystring, separate them by '&'.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
+            "attributes": [
+                {
+                    "name": "link",
+                    "description": "The URL to append the querystring to.\n\n",
+                    "values": [
+                        {
+                            "name": "k_page_link"
+                        }
+                    ]
+                },
+                {
+                    "name": "querystring",
+                    "description": "The querystring to be appended to the link. It there are multiple parameters in the querystring, separate them by '&'.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n"
+                }
+            ]
+        },
+        {
             "name": "cms:archives",
-            "description": "b'archives\n========\n\n\nPlease see [**Core Concepts - Archives**](../concepts/using-archives.html) for an in-depth discussion of this tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* order\n\n* limit\n\n* start_on\n\n* stop_before\n\n* show_future_entries\n\n* type\n\n* startcount\n\n\n\n### masterpage\n\n\nThe template to create the archives for. If skipped, the current executing page's template will be assumed.\n\n\n### order\n\n\nCan be set to either *asc* or *desc* for setting the sort order to ascending or descending.\n\n\n### limit\n\n\nSet this parameter to limit the number of archives listed.\n\n\n### start_on\n\n\nCan be set to list archives starting from this date.\n\n\n### stop_before\n\n\nCan be set not to list archives later than this date.\n\n\n### show_future_entries\n\n\nBy default, the **archives** tag will ignore pages that have their publish date set to the future. This parameter can be set to '1' to change this behaviour.\n\n\n### type\n\n\nThe type of the archives created - valid values are *yearly*, *monthly* or *daily*. If skipped, *daily* is assumed by default.\n\n\n### startcount\n\n\nAs this tag enumerates the archives, it sets a variable named *k_count* to the number of the current iteration. *k_count* begins from '0' by default. It can be set to start from any other number by setting this parameter.\n\n\nVariables\n---------\n\n\n\n\n* k_archive_date\n\n* k_next_archive_date\n\n* k_archive_link\n\n* k_archive_count\n\n* k_count\n\n\n\nPlease see [**Core Concepts - Archives**](../concepts/using-archives.html) for details of these variables.\n\n\nRelated Tags\n------------\n\n\n\n\n* [pages](pages.html)\n\n* [folders](folders.html)\n\n* [templates](templates.html)\n\n* [comments](comments.html)\n\n\n\n'",
+            "description": "```html \n <cms:archives masterpage=k_template_name order='1' start_on='startdate' stop_before='stopdate' show_future_entries='1' type='yearly|monthly|daily' startcount='0'>variables</cms:archives> \n ```\n========\n\n\nPlease see [**Core Concepts - Archives**](../concepts/using-archives.html) for an in-depth discussion of this tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* order\n\n* limit\n\n* start_on\n\n* stop_before\n\n* show_future_entries\n\n* type\n\n* startcount\n\n\n\n### masterpage\n\n\nThe template to create the archives for. If skipped, the current executing page's template will be assumed.\n\n\n### order\n\n\nCan be set to either *asc* or *desc* for setting the sort order to ascending or descending.\n\n\n### limit\n\n\nSet this parameter to limit the number of archives listed.\n\n\n### start_on\n\n\nCan be set to list archives starting from this date.\n\n\n### stop_before\n\n\nCan be set not to list archives later than this date.\n\n\n### show_future_entries\n\n\nBy default, the **archives** tag will ignore pages that have their publish date set to the future. This parameter can be set to '1' to change this behaviour.\n\n\n### type\n\n\nThe type of the archives created - valid values are *yearly*, *monthly* or *daily*. If skipped, *daily* is assumed by default.\n\n\n### startcount\n\n\nAs this tag enumerates the archives, it sets a variable named *k_count* to the number of the current iteration. *k_count* begins from '0' by default. It can be set to start from any other number by setting this parameter.\n\n\nVariables\n---------\n\n\n\n\n* k_archive_date\n\n* k_next_archive_date\n\n* k_archive_link\n\n* k_archive_count\n\n* k_count\n\n\n\nPlease see [**Core Concepts - Archives**](../concepts/using-archives.html) for details of these variables.\n\n\nRelated Tags\n------------\n\n\n\n\n* [pages](pages.html)\n\n* [folders](folders.html)\n\n* [templates](templates.html)\n\n* [comments](comments.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "masterpage",
                     "description": "The template to create the archives for. If skipped, the current executing page's template will be assumed.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "k_template_name"
                         }
                     ]
                 },
@@ -48,7 +68,10 @@
                     "description": "Can be set to either *asc* or *desc* for setting the sort order to ascending or descending.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "asc"
+                        },
+                        {
+                            "name": "desc"
                         }
                     ]
                 },
@@ -57,7 +80,7 @@
                     "description": "Set this parameter to limit the number of archives listed.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "int"
                         }
                     ]
                 },
@@ -66,7 +89,7 @@
                     "description": "Can be set to list archives starting from this date.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "Y-m-d H:i:s"
                         }
                     ]
                 },
@@ -75,7 +98,7 @@
                     "description": "Can be set not to list archives later than this date.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "Y-m-d H:i:s"
                         }
                     ]
                 },
@@ -84,7 +107,10 @@
                     "description": "By default, the **archives** tag will ignore pages that have their publish date set to the future. This parameter can be set to '1' to change this behaviour.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "1"
+                        },
+                        {
+                            "name": "0"
                         }
                     ]
                 },
@@ -93,7 +119,13 @@
                     "description": "The type of the archives created - valid values are *yearly*, *monthly* or *daily*. If skipped, *daily* is assumed by default.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "yearly"
+                        },
+                        {
+                            "name": "monthly"
+                        },
+                        {
+                            "name": "daily"
                         }
                     ]
                 },
@@ -102,7 +134,7 @@
                     "description": "As this tag enumerates the archives, it sets a variable named *k_count* to the number of the current iteration. *k_count* begins from '0' by default. It can be set to start from any other number by setting this parameter.\n\nVariables\n---------\n\n\n * k_archive_date\n * k_next_archive_date\n * k_archive_link\n * k_archive_count\n * k_count\n \nPlease see [**Core Concepts - Archives**](../concepts/using-archives.html) for details of these variables.\n\nRelated Tags\n------------\n\n\n * [pages](pages.html)\n * [folders](folders.html)\n * [templates](templates.html)\n * [comments](comments.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
                         }
                     ]
                 }
@@ -110,14 +142,14 @@
         },
         {
             "name": "cms:breadcrumbs",
-            "description": "b'breadcrumbs\n===========\n\n\nThe **breadcrumbs** tag outputs the hierarchy of folders leading upto the folder being shown (if folder_view) or the folder within which the current page resides (if page_view). This can be used too create a trail (breadcrumbs) leading upto the current page.\n\n\n\n ```html \n<cms:breadcrumbs />\n\n ``` \nPlease see [**Core Concepts - Folders**](../concepts/using-folders.html) for a discussion on this tag's usage.\n\n\nParameters\n----------\n\n\n\n\n* separator\n\n* include_template\n\n\n\n### separator\n\n\nSet the separator to show between each item in the breadcrumbs. The default separator is '*&nbsp;>&nbsp;*'.\n\n\n### include_template\n\n\nBy default, this tag only outputs the hierarchy of folders. To make it also list the template of the folders as the first item in the breadcrumbs, set this parameter to '1'.  \n\nIf this parameter is set, remember to check that the current view is either *folder-view* or *page-view* before invoking this tag, because for any other views the folder hierarchy is irrelevant and **breadcrumbs** tag rightly does not output any folder names, however the *include_template* parameter will cause the template's name to appear which might not be desirable.\n\n\n\n ```html \n<cms:if k_is_page || k_is_folder >\n <cms:breadcrumbs separator='&nbsp;>>&nbsp;' include_template='1' />\n</cms:if>\n\n ``` \nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folder](folder.html)\n\n* [folders](folders.html)\n\n* [listfolders](listfolders.html)\n\n* [dropdownfolders](dropdownfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n\n\n'",
+            "description": "```html \n <cms:breadcrumbs seperator='&nbsp;-&nbsp;' include_template='1' /> \n```\n===========\n\n\nThe **breadcrumbs** tag outputs the hierarchy of folders leading upto the folder being shown (if folder_view) or the folder within which the current page resides (if page_view). This can be used too create a trail (breadcrumbs) leading upto the current page.\n\n\n\n ```html \n<cms:breadcrumbs />\n\n ``` \nPlease see [**Core Concepts - Folders**](../concepts/using-folders.html) for a discussion on this tag's usage.\n\n\nParameters\n----------\n\n\n\n\n* separator\n\n* include_template\n\n\n\n### separator\n\n\nSet the separator to show between each item in the breadcrumbs. The default separator is '*&nbsp;>&nbsp;*'.\n\n\n### include_template\n\n\nBy default, this tag only outputs the hierarchy of folders. To make it also list the template of the folders as the first item in the breadcrumbs, set this parameter to '1'.  \n\nIf this parameter is set, remember to check that the current view is either *folder-view* or *page-view* before invoking this tag, because for any other views the folder hierarchy is irrelevant and **breadcrumbs** tag rightly does not output any folder names, however the *include_template* parameter will cause the template's name to appear which might not be desirable.\n\n\n\n ```html \n<cms:if k_is_page || k_is_folder >\n <cms:breadcrumbs separator='&nbsp;>>&nbsp;' include_template='1' />\n</cms:if>\n\n ``` \nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folder](folder.html)\n\n* [folders](folders.html)\n\n* [listfolders](listfolders.html)\n\n* [dropdownfolders](dropdownfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "separator",
                     "description": "Set the separator to show between each item in the breadcrumbs. The default separator is '*&nbsp;>&nbsp;*'.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "&nbsp;>&nbsp;"
                         }
                     ]
                 },
@@ -126,7 +158,10 @@
                     "description": "By default, this tag only outputs the hierarchy of folders. To make it also list the template of the folders as the first item in the breadcrumbs, set this parameter to '1'.  \n If this parameter is set, remember to check that the current view is either *folder-view* or *page-view* before invoking this tag, because for any other views the folder hierarchy is irrelevant and **breadcrumbs** tag rightly does not output any folder names, however the *include_template* parameter will cause the template's name to appear which might not be desirable.\n\n\n ```html \n<cms:if k_is_page || k_is_folder > <cms:breadcrumbs separator='&nbsp;>>&nbsp;' include_template='1' /> </cms:if> \n ``` \nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [folder](folder.html)\n * [folders](folders.html)\n * [listfolders](listfolders.html)\n * [dropdownfolders](dropdownfolders.html)\n * [parentfolders](parentfolders.html)\n * [is_ancestor](is_ancestor.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 }
@@ -134,14 +169,14 @@
         },
         {
             "name": "cms:calendar",
-            "description": "b'calendar\n========\n\n\nThe **calendar** tag can be used to create a monthly calendar. It can be associated with a template to make it display cloned pages of the template as entries of the calendar.\n\n\nThe calendar tag works together with the **weeks**, **days** and **entries** tags to fulfill its functionality.  \n\nPlease see [**Core Concepts - Events Calendar**](../concepts/events-calendar.html) for a working example of this tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* date\n\n* week_starts\n\n\n\nApart from these parameters, this tag also accepts all the arguments of the [**pages**](pages.html) tag. This can be used to further refine the types of pages that are shown as entries of the calendar.\n\n\n### masterpage\n\n\nSetting this parameter to the name of a clonable template will cause the **entries** tag to fetch pages belonging to this template as entries of the day they are published on.\n\n\n### date\n\n\nThis parameter sets the month that is displayed by the calendar. If skipped, the current date is shown.\n\n\n### week_starts\n\n\nThis parameter sets the first day of the weeks as shown by the calendar.  \n\nIt is a numeric value ranging from 0 (Sunday) to 6 (Saturday). If skipped, the default is 0 (Sunday).\n\n\nVariables\n---------\n\n\n\n\n* k_count_weeks\n\n* k_calendar_date\n\n* k_calendar_year\n\n* k_calendar_month\n\n* k_next_calendar_date\n\n* k_next_calendar_year\n\n* k_next_calendar_month\n\n* k_prev_calendar_date\n\n* k_prev_calendar_year\n\n* k_prev_calendar_month\n\n\n\nRelated Tags\n------------\n\n\n\n\n* [weeks](weeks.html)\n\n* [days](days.html)\n\n* [entries](entries.html)\n\n\n\n'",
+            "description": "```html \n <cms:calendar date='2010-09-01' masterpage='events.php'>\r\n    <table class=\"calendar_small\">\r\n        <tr>\r\n            <th colspan=\"7\"><cms:date k_calendar_date format='F Y' /></th>\r\n        </tr>\r\n        <tr>\r\n            <cms:repeat count='7'>\r\n            <td class=\"months_heading\"><cms:zebra 'Su' 'M' 'T' 'W' 'Th' 'F' 'S'/></td>\r\n            </cms:repeat>\r\n        </tr>\r\n\r\n        <cms:weeks>\r\n            <tr>\r\n            <cms:days >\r\n                <cms:if k_timeline_position='present'>\r\n                    <cms:set tdclass='today' />\r\n                <cms:else />\r\n                    <cms:set tdclass='' />\r\n                </cms:if>\r\n\r\n                <cms:if k_position='current_month' >\r\n                    <cms:if k_count_entries >\r\n                        <td class='entries <cms:show tdclass />' >\r\n                            <a href=\"<cms:link masterpage='events.php' year=k_year month=k_month day=k_day />\"><cms:show k_day /></a>\r\n                        </td>\r\n                    <cms:else />\r\n                        <td class='<cms:show tdclass />' ><cms:show k_day /></td>\r\n                    </cms:if>\r\n                <cms:else />\r\n                    <td class='other_month'><cms:show k_day /></td>\r\n                </cms:if>\r\n            </cms:days>\r\n            </tr>\r\n        </cms:weeks>\r\n    </table>\r\n</cms:calendar>\n```\n========\n\n\nThe **calendar** tag can be used to create a monthly calendar. It can be associated with a template to make it display cloned pages of the template as entries of the calendar.\n\n\nThe calendar tag works together with the **weeks**, **days** and **entries** tags to fulfill its functionality.  \n\nPlease see [**Core Concepts - Events Calendar**](../concepts/events-calendar.html) for a working example of this tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* date\n\n* week_starts\n\n\n\nApart from these parameters, this tag also accepts all the arguments of the [**pages**](pages.html) tag. This can be used to further refine the types of pages that are shown as entries of the calendar.\n\n\n### masterpage\n\n\nSetting this parameter to the name of a clonable template will cause the **entries** tag to fetch pages belonging to this template as entries of the day they are published on.\n\n\n### date\n\n\nThis parameter sets the month that is displayed by the calendar. If skipped, the current date is shown.\n\n\n### week_starts\n\n\nThis parameter sets the first day of the weeks as shown by the calendar.  \n\nIt is a numeric value ranging from 0 (Sunday) to 6 (Saturday). If skipped, the default is 0 (Sunday).\n\n\nVariables\n---------\n\n\n\n\n* k_count_weeks\n\n* k_calendar_date\n\n* k_calendar_year\n\n* k_calendar_month\n\n* k_next_calendar_date\n\n* k_next_calendar_year\n\n* k_next_calendar_month\n\n* k_prev_calendar_date\n\n* k_prev_calendar_year\n\n* k_prev_calendar_month\n\n\n\nRelated Tags\n------------\n\n\n\n\n* [weeks](weeks.html)\n\n* [days](days.html)\n\n* [entries](entries.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "masterpage",
                     "description": "Setting this parameter to the name of a clonable template will cause the **entries** tag to fetch pages belonging to this template as entries of the day they are published on.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "k_template_name"
                         }
                     ]
                 },
@@ -150,7 +185,7 @@
                     "description": "This parameter sets the month that is displayed by the calendar. If skipped, the current date is shown.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "Y-m-d H:i:s"
                         }
                     ]
                 },
@@ -159,7 +194,32 @@
                     "description": "This parameter sets the first day of the weeks as shown by the calendar.  \n It is a numeric value ranging from 0 (Sunday) to 6 (Saturday). If skipped, the default is 0 (Sunday).\n\nVariables\n---------\n\n\n * k_count_weeks\n * k_calendar_date\n * k_calendar_year\n * k_calendar_month\n * k_next_calendar_date\n * k_next_calendar_year\n * k_next_calendar_month\n * k_prev_calendar_date\n * k_prev_calendar_year\n * k_prev_calendar_month\n \nRelated Tags\n------------\n\n\n * [weeks](weeks.html)\n * [days](days.html)\n * [entries](entries.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0",
+                            "description": "Sunday"
+                        },
+                        {
+                            "name": "1",
+                            "description": "Monday"
+                        },
+                        {
+                            "name": "2",
+                            "description": "Tuesday"
+                        },
+                        {
+                            "name": "3",
+                            "description": "Wednesday"
+                        },
+                        {
+                            "name": "4",
+                            "description": "Thursday"
+                        },
+                        {
+                            "name": "5",
+                            "description": "Friday"
+                        },
+                        {
+                            "name": "6",
+                            "description": "Saturday"
                         }
                     ]
                 }
@@ -167,14 +227,14 @@
         },
         {
             "name": "cms:capture",
-            "description": "b'capture\n=======\n\n\nThe **capture** tag can be used to store the output of its enclosed contents within any variable.  \n\nThe enclosed contents can be regular HTML code as well as the Couch tags.\n\n\n\n ```html \n<cms:capture into='my_variable' scope='global'>\n ...everything executed here will get stored in variable 'my_variable' at the requested scope...\n</cms:capture>\n\n ``` \nThis tag is very helpful when you want to execute a portion of the code but wish to display the resulting output based on some other condition that is unknown at the point of execution of this code e.g. present in the page somewhere after the block of code in question.\n\n\nThis situation can be tackled by storing the output of the block of code in a variable for the time being. When we reach the required condition and if it evaluates to be true, we can display the output by showing the variable. However, if the condition fails, we can simply ignore the variable.\n\n\nYou'll find an interesting example of this tag's use in [**Sample Portfolio Site - Contact Form**](../tutorials/portfolio-site/contact-form.html)\n\n\nParameters\n----------\n\n\n\n\n* into\n\n* scope\n\n\n\n### into\n\n\nName of the variable to store the output in.\n\n\n### scope\n\n\nScope of the aforesaid variable. Can be either *global* or *parent*.  \n\nIf set to *global*, the variable will be available anywhere throughout the page. If set to *parent*, the variable will only be available only within the scope of the parent tag (if any) that is nesting the **capture** tag.\n\n\nVariables\n---------\n\n\nSets only the variable specified by the *into* parameter within the specified scope. Sets no variables of its own that can be used within its opening and closing tags.\n\n\n'",
+            "description": "```html \n <cms:capture into='my_variable' scope='global'>\r\n        ...everything executed here will get stored in variable 'my_variable' at the requested scope...\r\n      </cms:capture> \n```\n=======\n\n\nThe **capture** tag can be used to store the output of its enclosed contents within any variable.  \n\nThe enclosed contents can be regular HTML code as well as the Couch tags.\n\n\n\n ```html \n<cms:capture into='my_variable' scope='global'>\n ...everything executed here will get stored in variable 'my_variable' at the requested scope...\n</cms:capture>\n\n ``` \nThis tag is very helpful when you want to execute a portion of the code but wish to display the resulting output based on some other condition that is unknown at the point of execution of this code e.g. present in the page somewhere after the block of code in question.\n\n\nThis situation can be tackled by storing the output of the block of code in a variable for the time being. When we reach the required condition and if it evaluates to be true, we can display the output by showing the variable. However, if the condition fails, we can simply ignore the variable.\n\n\nYou'll find an interesting example of this tag's use in [**Sample Portfolio Site - Contact Form**](../tutorials/portfolio-site/contact-form.html)\n\n\nParameters\n----------\n\n\n\n\n* into\n\n* scope\n\n\n\n### into\n\n\nName of the variable to store the output in.\n\n\n### scope\n\n\nScope of the aforesaid variable. Can be either *global* or *parent*.  \n\nIf set to *global*, the variable will be available anywhere throughout the page. If set to *parent*, the variable will only be available only within the scope of the parent tag (if any) that is nesting the **capture** tag.\n\n\nVariables\n---------\n\n\nSets only the variable specified by the *into* parameter within the specified scope. Sets no variables of its own that can be used within its opening and closing tags.\n\n\n'",
             "attributes": [
                 {
                     "name": "into",
                     "description": "Name of the variable to store the output in.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "var"
                         }
                     ]
                 },
@@ -183,7 +243,10 @@
                     "description": "Scope of the aforesaid variable. Can be either *global* or *parent*.  \n If set to *global*, the variable will be available anywhere throughout the page. If set to *parent*, the variable will only be available only within the scope of the parent tag (if any) that is nesting the **capture** tag.\n\nVariables\n---------\n\nSets only the variable specified by the *into* parameter within the specified scope. Sets no variables of its own that can be used within its opening and closing tags.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "global"
+                        },
+                        {
+                            "name": "parent"
                         }
                     ]
                 }
@@ -191,14 +254,14 @@
         },
         {
             "name": "cms:cloak_email",
-            "description": "b'cloak_email\n============\n\n\nThe **cloak_email** tag can be used to hide email addresses from spambots (email harvesters).  \n\nThis tag creates a JavaScript encrypted mailto link that remains inaccessible to spambots.\n\n\n\n ```html \n<cms:cloak_email 'johndoe@gmail.com' />\n\n ``` \nThe code above will produce the following HTML but only if accessed using JavaScript -\n\n\n\n ```html \n<a href=\"mailto:johndoe@gmail.com\">johndoe@gmail.com</a>\n\n ``` \nWhen accessed with JavaScript disabled, a message prompting the visitor to enable JavaScript is shown instead.\n\n\nParameters\n----------\n\n\n\n\n* email\n\n* title\n\n* msg\n\n\n\n### email\n\n\nThe email address to cloak.\n\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' />\n\n ``` \n### title\n\n\nThe visible text of the mailto link. If skipped, the *email* parameter is used for the title too.\n\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' />\n\n ``` \n### msg\n\n\nMessage to display if this email is accessed with JavaScript disabled. If skipped, the default text shown is -  \n\n'*(Please enable JavaScript to view this email address)*'\n\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' msg='No JavaScript ?!!' />\n\n ``` \nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [cloak_url](cloak_url.html)\n\n\n\n'",
+            "description": "```html \n <cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' /> \n```\n============\n\n\nThe **cloak_email** tag can be used to hide email addresses from spambots (email harvesters).  \n\nThis tag creates a JavaScript encrypted mailto link that remains inaccessible to spambots.\n\n\n\n ```html \n<cms:cloak_email 'johndoe@gmail.com' />\n\n ``` \nThe code above will produce the following HTML but only if accessed using JavaScript -\n\n\n\n ```html \n<a href=\"mailto:johndoe@gmail.com\">johndoe@gmail.com</a>\n\n ``` \nWhen accessed with JavaScript disabled, a message prompting the visitor to enable JavaScript is shown instead.\n\n\nParameters\n----------\n\n\n\n\n* email\n\n* title\n\n* msg\n\n\n\n### email\n\n\nThe email address to cloak.\n\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' />\n\n ``` \n### title\n\n\nThe visible text of the mailto link. If skipped, the *email* parameter is used for the title too.\n\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' />\n\n ``` \n### msg\n\n\nMessage to display if this email is accessed with JavaScript disabled. If skipped, the default text shown is -  \n\n'*(Please enable JavaScript to view this email address)*'\n\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' msg='No JavaScript ?!!' />\n\n ``` \nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [cloak_url](cloak_url.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "email",
                     "description": "The email address to cloak.\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' /> \n ``` \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "emailAddress"
                         }
                     ]
                 },
@@ -207,7 +270,7 @@
                     "description": "The visible text of the mailto link. If skipped, the *email* parameter is used for the title too.\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' /> \n ``` \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "Contact Me!"
                         }
                     ]
                 },
@@ -216,7 +279,7 @@
                     "description": "Message to display if this email is accessed with JavaScript disabled. If skipped, the default text shown is -  \n '*(Please enable JavaScript to view this email address)*'\n\n\n ```html \n<cms:cloak_email email='johndoe@gmail.com' title='Contact Me!' msg='No JavaScript ?!!' /> \n ``` \nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [cloak_url](cloak_url.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "(Please enable JavaScript to view this email address)"
                         }
                     ]
                 }
@@ -224,23 +287,18 @@
         },
         {
             "name": "cms:cloak_url",
-            "description": "b'cloak_url\n==========\n\n\nThe **cloak_url** tag, as the name suggests, can be used to cloak links so that it does not become apparent from just looking at the links as to where they actually lead to.\n\n\nPlease see [**Core Concepts - Cloaked Links**](../concepts/cloaked-links.html) for a detailed discussion of this tag.\n\n\nParameters\n----------\n\n\n\n\n* link\n\n* expiry\n\n* access_level\n\n* prompt_login\n\n* redirect\n\n* force_download\n\n\n\n### link\n\n\nThe link (URL) to cloak.\n\n\n### expiry\n\n\nThis parameter can be used to set a time (in seconds) after which the link produced wll no longer be valid.\n\n\n### access_level\n\n\nIf an access level is set by this parameter, only authenticated users with the right level of privileges will be able to access the link.\n\n\n### prompt_login\n\n\nThis parameter works in tandem with the *access_level* parameter above. With this parameter set to '1', if a link that has an access level set on it is accessed by someone who is not privileged enough, a login box is shown to hime thus promting him to login for accessing the link.  \n\nBy default, this parameter is '0' and unauthorized users are simply served a blank page.\n\n\n### redirect\n\n\nIf this parameter is set to '1', the user is redirected to the *link* provided (by issuing a HTTP 302 redirect).\n\n\n### force_download\n\n\nBy default, this tag evaluates the type of the file being linked to and sends back proper Content-Type to the browser. This causes the browser to display certain files (e.g. image files like gif, png etc.) directly while displaying a messagebox prompting the user to download certain types of files (e.g. executables, zip files etc.).  \n\nIf this parameter is set to '1', Couch will cause the browser to always display the download box regardless of the type of file being served.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [cloak_email](cloak_email.html)\n\n\n\n'",
+            "description": "```html \n <a href=\"<cms:cloak_url\r\n        link=\"http://yoursite.com/couch/uploads/file/secure/test.jpg\" force_download='1' access_level='4' prompt_login='1' />\">Test Link</a> \n ```\n==========\n\n\nThe **cloak_url** tag, as the name suggests, can be used to cloak links so that it does not become apparent from just looking at the links as to where they actually lead to.\n\n\nPlease see [**Core Concepts - Cloaked Links**](../concepts/cloaked-links.html) for a detailed discussion of this tag.\n\n\nParameters\n----------\n\n\n\n\n* link\n\n* expiry\n\n* access_level\n\n* prompt_login\n\n* redirect\n\n* force_download\n\n\n\n### link\n\n\nThe link (URL) to cloak.\n\n\n### expiry\n\n\nThis parameter can be used to set a time (in seconds) after which the link produced wll no longer be valid.\n\n\n### access_level\n\n\nIf an access level is set by this parameter, only authenticated users with the right level of privileges will be able to access the link.\n\n\n### prompt_login\n\n\nThis parameter works in tandem with the *access_level* parameter above. With this parameter set to '1', if a link that has an access level set on it is accessed by someone who is not privileged enough, a login box is shown to hime thus promting him to login for accessing the link.  \n\nBy default, this parameter is '0' and unauthorized users are simply served a blank page.\n\n\n### redirect\n\n\nIf this parameter is set to '1', the user is redirected to the *link* provided (by issuing a HTTP 302 redirect).\n\n\n### force_download\n\n\nBy default, this tag evaluates the type of the file being linked to and sends back proper Content-Type to the browser. This causes the browser to display certain files (e.g. image files like gif, png etc.) directly while displaying a messagebox prompting the user to download certain types of files (e.g. executables, zip files etc.).  \n\nIf this parameter is set to '1', Couch will cause the browser to always display the download box regardless of the type of file being served.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [cloak_email](cloak_email.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "link",
-                    "description": "The link (URL) to cloak.\n\n",
-                    "values": [
-                        {
-                            "name": ""
-                        }
-                    ]
+                    "description": "The link (URL) to cloak.\n\n"
                 },
                 {
                     "name": "expiry",
                     "description": "This parameter can be used to set a time (in seconds) after which the link produced wll no longer be valid.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "seconds"
                         }
                     ]
                 },
@@ -249,7 +307,24 @@
                     "description": "If an access level is set by this parameter, only authenticated users with the right level of privileges will be able to access the link.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0",
+                            "description": "Everybody"
+                        },
+                        {
+                            "name": "2",
+                            "description": "Authenticated Users"
+                        },
+                        {
+                            "name": "4",
+                            "description": "Authenticated User (Special)"
+                        },
+                        {
+                            "name": "7",
+                            "description": "Administrators"
+                        },
+                        {
+                            "name": "10",
+                            "description": "Super Admin"
                         }
                     ]
                 },
@@ -258,7 +333,10 @@
                     "description": "This parameter works in tandem with the *access_level* parameter above. With this parameter set to '1', if a link that has an access level set on it is accessed by someone who is not privileged enough, a login box is shown to hime thus promting him to login for accessing the link.  \n By default, this parameter is '0' and unauthorized users are simply served a blank page.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 },
@@ -267,7 +345,10 @@
                     "description": "If this parameter is set to '1', the user is redirected to the *link* provided (by issuing a HTTP 302 redirect).\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 },
@@ -276,7 +357,10 @@
                     "description": "By default, this tag evaluates the type of the file being linked to and sends back proper Content-Type to the browser. This causes the browser to display certain files (e.g. image files like gif, png etc.) directly while displaying a messagebox prompting the user to download certain types of files (e.g. executables, zip files etc.).  \n If this parameter is set to '1', Couch will cause the browser to always display the download box regardless of the type of file being served.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [cloak_email](cloak_email.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 }
@@ -284,14 +368,14 @@
         },
         {
             "name": "cms:comments",
-            "description": "b'comments\n========\n\n\nPlease see [**Core Concepts - Comments**](../concepts/using-comments.html) for a full discussion of the Comments tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* page_id\n\n* page_name\n\n* limit\n\n* paginate\n\n* offset\n\n* order\n\n\n\nNormally *comments* tag will fetch all the available approved comments.  \n\nIt can be constrained into fetching comments from only certain pages by setting the *masterpage*, *page_id* and *page_name* parameters.\n\n\n### masterpage\n\n\n\n ```html \n<cms:comments masterpage='blog.php'></cms:comments>\n\n ``` \nFetch comments of only the pages that have been cloned out of blog.php.\n\n\n\n ```html \n<cms:comments masterpage='blog.php, testimonial.php'></cms:comments>\n\n ``` \nFetch comments of only the pages that have been cloned out of blog.php or testimonial.php.\n\n\n\n ```html \n<cms:comments masterpage='NOT blog.php, testimonial.php'></cms:comments>\n\n ``` \nFetch comments of all the pages except those that have been cloned out of blog.php or testimonial.php.\n\n\n### page_id\n\n\n\n ```html \n<cms:comments page_id='13'></cms:comments>\n\n ``` \nFetch comments of only the page with the id of '13'.\n\n\n\n ```html \n<cms:comments page_id='13, 17'></cms:comments>\n\n ``` \nFetch comments of only the pages that have an id of '13' or '17'.\n\n\n\n ```html \n<cms:comments page_id='NOT 13, 17'></cms:comments>\n\n ``` \nFetch comments of all the pages except the pages that have an id of '13' or '17'.\n\n\n### page_name\n\n\n\n ```html \n<cms:comments page_name='my_first_entry'></cms:comments>\n\n ``` \nFetch comments of only the page named 'my_first_entry'.\n\n\n\n ```html \n<cms:comments page_name='my_first_entry, my_another_entry'></cms:comments>\n\n ``` \nFetch comments of only the pages named 'my_first_entry' or 'my_another_entry'.\n\n\n\n ```html \n<cms:comments page_name='NOT my_first_entry, my_another_entry'></cms:comments>\n\n ``` \nFetch comments of all the pages except the pages named 'my_first_entry' or 'my_another_entry'.\n\n\n### limit\n\n\n\n ```html \n<cms:comments limit='5'></cms:comments>\n\n ``` \nFetch five approved comments. (Since 'order' is not specified, the default value of 'desc' will be used and the latest 5 comments will be fetched.\n\n\n### paginate\n\n\n\n ```html \n<cms:comments limit='5' paginate='1'></cms:comments>\n\n ``` \nFetch ALL approved comments but show only 5 at one time. To move to the next 5 or the previous 5 comments, pagination code has to be used (see [**paginator**](paginator.html)).\n\n\n### offset\n\n\n\n ```html \n<cms:comments limit='5' offset='2'></cms:comments>\n\n ``` \nFetch five approved comments after skipping the first two.\n\n\n### order\n\n\nComments are always ordered by their dates. The order in which they are displayed can be made either ascending or descending by setting this parameter to 'asc' or 'desc' respectively. If omitted, 'desc' (latest first) is assumed.\n\n\n\n ```html \n<cms:comments order='asc'></cms:comments>\n\n ``` \nFetch all approved comments and order them in ascending order (oldest first) of their dates.\n\n\nVariables\n---------\n\n\n\n\n* k_comment_id\n\n* k_comment\n\n* k_comment_author_id\n\n* k_comment_author\n\n* k_comment_author_email\n\n* k_comment_author_website\n\n* k_comment_date\n\n* k_comment_link\n\n* k_comment_page_id\n\n* k_comment_page_title\n\n* k_comment_page_name\n\n* k_comment_template_name\n\n\n\nIn addition to these variables, the pagination related variables that describe the current status of the loop are also set. Please see [**paginator**](paginator.html) for details.\n\n\nRelated Tags\n------------\n\n\n\n\n* [process_comment](process_comment.html)\n\n* [pages](pages.html)\n\n* [folders](folders.html)\n\n* [archives](archives.html)\n\n* [templates](templates.html)\n\n\n\n'",
+            "description": "```html \n <cms:comments masterpage='blog.php'></cms:comments> \n ```\n========\n\n\nPlease see [**Core Concepts - Comments**](../concepts/using-comments.html) for a full discussion of the Comments tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* page_id\n\n* page_name\n\n* limit\n\n* paginate\n\n* offset\n\n* order\n\n\n\nNormally *comments* tag will fetch all the available approved comments.  \n\nIt can be constrained into fetching comments from only certain pages by setting the *masterpage*, *page_id* and *page_name* parameters.\n\n\n### masterpage\n\n\n\n ```html \n<cms:comments masterpage='blog.php'></cms:comments>\n\n ``` \nFetch comments of only the pages that have been cloned out of blog.php.\n\n\n\n ```html \n<cms:comments masterpage='blog.php, testimonial.php'></cms:comments>\n\n ``` \nFetch comments of only the pages that have been cloned out of blog.php or testimonial.php.\n\n\n\n ```html \n<cms:comments masterpage='NOT blog.php, testimonial.php'></cms:comments>\n\n ``` \nFetch comments of all the pages except those that have been cloned out of blog.php or testimonial.php.\n\n\n### page_id\n\n\n\n ```html \n<cms:comments page_id='13'></cms:comments>\n\n ``` \nFetch comments of only the page with the id of '13'.\n\n\n\n ```html \n<cms:comments page_id='13, 17'></cms:comments>\n\n ``` \nFetch comments of only the pages that have an id of '13' or '17'.\n\n\n\n ```html \n<cms:comments page_id='NOT 13, 17'></cms:comments>\n\n ``` \nFetch comments of all the pages except the pages that have an id of '13' or '17'.\n\n\n### page_name\n\n\n\n ```html \n<cms:comments page_name='my_first_entry'></cms:comments>\n\n ``` \nFetch comments of only the page named 'my_first_entry'.\n\n\n\n ```html \n<cms:comments page_name='my_first_entry, my_another_entry'></cms:comments>\n\n ``` \nFetch comments of only the pages named 'my_first_entry' or 'my_another_entry'.\n\n\n\n ```html \n<cms:comments page_name='NOT my_first_entry, my_another_entry'></cms:comments>\n\n ``` \nFetch comments of all the pages except the pages named 'my_first_entry' or 'my_another_entry'.\n\n\n### limit\n\n\n\n ```html \n<cms:comments limit='5'></cms:comments>\n\n ``` \nFetch five approved comments. (Since 'order' is not specified, the default value of 'desc' will be used and the latest 5 comments will be fetched.\n\n\n### paginate\n\n\n\n ```html \n<cms:comments limit='5' paginate='1'></cms:comments>\n\n ``` \nFetch ALL approved comments but show only 5 at one time. To move to the next 5 or the previous 5 comments, pagination code has to be used (see [**paginator**](paginator.html)).\n\n\n### offset\n\n\n\n ```html \n<cms:comments limit='5' offset='2'></cms:comments>\n\n ``` \nFetch five approved comments after skipping the first two.\n\n\n### order\n\n\nComments are always ordered by their dates. The order in which they are displayed can be made either ascending or descending by setting this parameter to 'asc' or 'desc' respectively. If omitted, 'desc' (latest first) is assumed.\n\n\n\n ```html \n<cms:comments order='asc'></cms:comments>\n\n ``` \nFetch all approved comments and order them in ascending order (oldest first) of their dates.\n\n\nVariables\n---------\n\n\n\n\n* k_comment_id\n\n* k_comment\n\n* k_comment_author_id\n\n* k_comment_author\n\n* k_comment_author_email\n\n* k_comment_author_website\n\n* k_comment_date\n\n* k_comment_link\n\n* k_comment_page_id\n\n* k_comment_page_title\n\n* k_comment_page_name\n\n* k_comment_template_name\n\n\n\nIn addition to these variables, the pagination related variables that describe the current status of the loop are also set. Please see [**paginator**](paginator.html) for details.\n\n\nRelated Tags\n------------\n\n\n\n\n* [process_comment](process_comment.html)\n\n* [pages](pages.html)\n\n* [folders](folders.html)\n\n* [archives](archives.html)\n\n* [templates](templates.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "masterpage",
                     "description": "\n ```html \n<cms:comments masterpage='blog.php'></cms:comments> \n ``` \nFetch comments of only the pages that have been cloned out of blog.php.\n\n\n ```html \n<cms:comments masterpage='blog.php, testimonial.php'></cms:comments> \n ``` \nFetch comments of only the pages that have been cloned out of blog.php or testimonial.php.\n\n\n ```html \n<cms:comments masterpage='NOT blog.php, testimonial.php'></cms:comments> \n ``` \nFetch comments of all the pages except those that have been cloned out of blog.php or testimonial.php.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "k_template_name"
                         }
                     ]
                 },
@@ -300,7 +384,7 @@
                     "description": "\n ```html \n<cms:comments page_id='13'></cms:comments> \n ``` \nFetch comments of only the page with the id of '13'.\n\n\n ```html \n<cms:comments page_id='13, 17'></cms:comments> \n ``` \nFetch comments of only the pages that have an id of '13' or '17'.\n\n\n ```html \n<cms:comments page_id='NOT 13, 17'></cms:comments> \n ``` \nFetch comments of all the pages except the pages that have an id of '13' or '17'.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "k_page_id"
                         }
                     ]
                 },
@@ -309,7 +393,7 @@
                     "description": "\n ```html \n<cms:comments page_name='my_first_entry'></cms:comments> \n ``` \nFetch comments of only the page named 'my_first_entry'.\n\n\n ```html \n<cms:comments page_name='my_first_entry, my_another_entry'></cms:comments> \n ``` \nFetch comments of only the pages named 'my_first_entry' or 'my_another_entry'.\n\n\n ```html \n<cms:comments page_name='NOT my_first_entry, my_another_entry'></cms:comments> \n ``` \nFetch comments of all the pages except the pages named 'my_first_entry' or 'my_another_entry'.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "string"
                         }
                     ]
                 },
@@ -318,7 +402,7 @@
                     "description": "\n ```html \n<cms:comments limit='5'></cms:comments> \n ``` \nFetch five approved comments. (Since 'order' is not specified, the default value of 'desc' will be used and the latest 5 comments will be fetched.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "int"
                         }
                     ]
                 },
@@ -327,7 +411,10 @@
                     "description": "\n ```html \n<cms:comments limit='5' paginate='1'></cms:comments> \n ``` \nFetch ALL approved comments but show only 5 at one time. To move to the next 5 or the previous 5 comments, pagination code has to be used (see [**paginator**](paginator.html)).\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 },
@@ -336,7 +423,7 @@
                     "description": "\n ```html \n<cms:comments limit='5' offset='2'></cms:comments> \n ``` \nFetch five approved comments after skipping the first two.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "int"
                         }
                     ]
                 },
@@ -345,7 +432,10 @@
                     "description": "Comments are always ordered by their dates. The order in which they are displayed can be made either ascending or descending by setting this parameter to 'asc' or 'desc' respectively. If omitted, 'desc' (latest first) is assumed.\n\n\n ```html \n<cms:comments order='asc'></cms:comments> \n ``` \nFetch all approved comments and order them in ascending order (oldest first) of their dates.\n\nVariables\n---------\n\n\n * k_comment_id\n * k_comment\n * k_comment_author_id\n * k_comment_author\n * k_comment_author_email\n * k_comment_author_website\n * k_comment_date\n * k_comment_link\n * k_comment_page_id\n * k_comment_page_title\n * k_comment_page_name\n * k_comment_template_name\n \nIn addition to these variables, the pagination related variables that describe the current status of the loop are also set. Please see [**paginator**](paginator.html) for details.\n\nRelated Tags\n------------\n\n\n * [process_comment](process_comment.html)\n * [pages](pages.html)\n * [folders](folders.html)\n * [archives](archives.html)\n * [templates](templates.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "asc"
+                        },
+                        {
+                            "name": "desc"
                         }
                     ]
                 }
@@ -353,19 +443,33 @@
         },
         {
             "name": "cms:concat",
-            "description": "b'concat\n======\n\n\nThe **Concat** tag is a utility tag that can be used to concatenate several values together into a single variable.\n\n\nFor example, suppose we have two variables 'first_name' and 'last_name'.\n\n\n\n ```html \n<cms:set first_name = 'John' />\n<cms:set last_name = 'Doe' />\n\n ``` \nTo set a variable, 'welcome_message' to 'Hello John Doe! We welcome you!', using both the variables, we can do either this -\n\n\n\n ```html \n<cms:set welcome_message=\"hello <cms:show first_name/> <cms:show last_name/>! We welcome you!\" />\n\n ``` \nor use **concat** as follows -\n\n\n\n ```html \n<cms:set welcome_message=\"<cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' />\" />\n\n ``` \nHere we supply **concat** with all parts of the string as unnamed parameters separated by spaces (i.e. 'Hello ', first_name, ' ', last_name, and '! We welcome you!' with space between each as separator) and **concat** simply returns back the concatenated string.\n\n\n\n If many values are supplied to **concat**, the code sometimes becomes a little difficult to comprehend (as might be the case in the snippet above) because the only demarcation between the parameters is the space.  \n\n  \n\n In such cases, we can try naming the parameters (any arbitrary names can be used). Thus the above snippet could be written as -  \n\n  \n\n\n ```html \n<cms:set welcome_message=\"<cms:concat p1='Hello ' p2=first_name p3=' ' p4=last_name p5='! We welcome you!' />\" />\n ``` \n\n Hopefully that should make the snippet more legible.\n\n\n\n\n One benefit of **concat** over the first method is that it avoids using '<cms:show />' with all variables used within the string.  \n\n  \n\n Another is that we can use '\\n' and '\\t' for inserting newline and tab characters in the string. For example -  \n\n  \n\n\n ```html \n<cms:set msg = \"<cms:concat 'item_name: ' pp_item_name '\\n'\n 'item_number: ' pp_item_number '\\n'\n 'quantity: ' pp_quantity />\" />\n ``` \n\n In the snippet above, 'msg' variable is being set in response to a successful PayPal transaction and will then be emailed.\n\n\n\nParameters\n----------\n\n\nConcat takes any number of unnamed parameters (either literal strings or variables) and returns back a single string containing the concatenated values.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' /> \n ```\n======\n\n\nThe **Concat** tag is a utility tag that can be used to concatenate several values together into a single variable.\n\n\nFor example, suppose we have two variables 'first_name' and 'last_name'.\n\n\n\n ```html \n<cms:set first_name = 'John' />\n<cms:set last_name = 'Doe' />\n\n ``` \nTo set a variable, 'welcome_message' to 'Hello John Doe! We welcome you!', using both the variables, we can do either this -\n\n\n\n ```html \n<cms:set welcome_message=\"hello <cms:show first_name/> <cms:show last_name/>! We welcome you!\" />\n\n ``` \nor use **concat** as follows -\n\n\n\n ```html \n<cms:set welcome_message=\"<cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' />\" />\n\n ``` \nHere we supply **concat** with all parts of the string as unnamed parameters separated by spaces (i.e. 'Hello ', first_name, ' ', last_name, and '! We welcome you!' with space between each as separator) and **concat** simply returns back the concatenated string.\n\n\n\n If many values are supplied to **concat**, the code sometimes becomes a little difficult to comprehend (as might be the case in the snippet above) because the only demarcation between the parameters is the space.  \n\n  \n\n In such cases, we can try naming the parameters (any arbitrary names can be used). Thus the above snippet could be written as -  \n\n  \n\n\n ```html \n<cms:set welcome_message=\"<cms:concat p1='Hello ' p2=first_name p3=' ' p4=last_name p5='! We welcome you!' />\" />\n ``` \n\n Hopefully that should make the snippet more legible.\n\n\n\n\n One benefit of **concat** over the first method is that it avoids using '<cms:show />' with all variables used within the string.  \n\n  \n\n Another is that we can use '\\n' and '\\t' for inserting newline and tab characters in the string. For example -  \n\n  \n\n\n ```html \n<cms:set msg = \"<cms:concat 'item_name: ' pp_item_name '\\n'\n 'item_number: ' pp_item_number '\\n'\n 'quantity: ' pp_quantity />\" />\n ``` \n\n In the snippet above, 'msg' variable is being set in response to a successful PayPal transaction and will then be emailed.\n\n\n\nParameters\n----------\n\n\nConcat takes any number of unnamed parameters (either literal strings or variables) and returns back a single string containing the concatenated values.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\n'"
         },
         {
             "name": "cms:content_type",
-            "description": "b'content_type\n=============\n\n\nThe **content_type** tag can be used to make the web server send back the contents with the desired Content-Type in the HTTP header.  \n\nBy default every web page is send back as '*text/html*'.\n\n\nAs an example, the RSS feed requires it content type to be set as '*text/xml*' for the browsers to properly recognize the feed. The following snippet does the job -\n\n\n\n ```html \n<cms:content_type 'text/xml' />\n\n ``` \nPlease see [**Core Concepts - RSS Feeds**](../concepts/rss-feeds.html) for an example of the usage of this tag.\n\n\nParameters\n----------\n\n\n\n\n* value\n\n\n\n### value\n\n\nThe desired content type. Some example values are '*text/xml*', '*text/plain*', '*text/css*', '*image/gif*', '*application/pdf*' and '*application/zip*'.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
+            "description": "```html \n <cms:content_type 'text/xml' /> \n ```\n=============\n\n\nThe **content_type** tag can be used to make the web server send back the contents with the desired Content-Type in the HTTP header.  \n\nBy default every web page is send back as '*text/html*'.\n\n\nAs an example, the RSS feed requires it content type to be set as '*text/xml*' for the browsers to properly recognize the feed. The following snippet does the job -\n\n\n\n ```html \n<cms:content_type 'text/xml' />\n\n ``` \nPlease see [**Core Concepts - RSS Feeds**](../concepts/rss-feeds.html) for an example of the usage of this tag.\n\n\nParameters\n----------\n\n\n\n\n* value\n\n\n\n### value\n\n\nThe desired content type. Some example values are '*text/xml*', '*text/plain*', '*text/css*', '*image/gif*', '*application/pdf*' and '*application/zip*'.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
             "attributes": [
                 {
                     "name": "value",
                     "description": "The desired content type. Some example values are '*text/xml*', '*text/plain*', '*text/css*', '*image/gif*', '*application/pdf*' and '*application/zip*'.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "text/html"
+                        },
+                        {
+                            "name": "text/plain"
+                        },
+                        {
+                            "name": "text/css"
+                        },
+                        {
+                            "name": "image/gif"
+                        },
+                        {
+                            "name": "application/pdf"
+                        },
+                        {
+                            "name": "application/zip"
                         }
                     ]
                 }
@@ -373,14 +477,14 @@
         },
         {
             "name": "cms:date",
-            "description": "b'date\n====\n\n\nThe **date** tag outputs a string according to the given *format* parameter using the given *date* parameter. If no *date* provided, the current time is used.\n\n\n\n ```html \n<cms:date />\n\n ``` \n\n ```html \n<cms:date k_page_date />\n\n ``` \n\n ```html \n<cms:date k_page_date format='jS M, Y' />\n\n ``` \nParameters\n----------\n\n\n\n\n* date\n\n* format\n\n* gmt\n\n* locale\n\n* charset\n\n\n\n### date\n\n\nThe date to be formated.  \n\nThis parameter is expected to be in '*Y-m-d H:i:s*' format (e.g. 2010-05-30 21:35:54). All date related variables set by Couch tags, e.g. *k_page_date* etc., are in this format.\n\n\n### format\n\n\nThe **date** tag supports two different types of format characters - locale-aware and non locale-aware.  \n\nWith locale-aware characters, you can specify that the date is to formatted according to, for example, *french* locale or *italian* locale by setting the *locale* parameter.  \n\nThe locale-aware characters all have a % sign prefixed to them.\n\n\nThe locale-aware and the non locale-aware characters cannot be intermixed.\n\n\n#### Non Locale-aware format characters\n\n\n  \n\n\n\n\n\n\nFormat character\nDescription\nExample returned values\n\n\n\n\n***Day***\n---\n---\n\n\n*d*\nDay of the month, 2 digits with leading zeros\n*01* to *31*\n\n\n*D*\nA textual representation of a day, three letters\n*Mon* through *Sun*\n\n\n*j*\nDay of the month without leading zeros\n*1* to *31*\n\n\n*l* (lowercase&nbsp;'L')\nA full textual representation of the day of the week\n*Sunday* through *Saturday*\n\n\n*S*\nEnglish ordinal suffix for the day of the month, 2 characters\n*st*, *nd*, *rd* or *th*. Works well with *j*\n\n\n*w*\nNumeric representation of the day of the week\n*0* (for Sunday) through *6* (for Saturday)\n\n\n*z*\nThe day of the year (starting from 0)\n*0* through *365*\n\n\n***Week***\n---\n---\n\n\n*W*\nISO-8601 week number of year, weeks starting on Monday\nExample: *42* (the 42nd week in the year)\n\n\n***Month***\n---\n---\n\n\n*F*\nA full textual representation of a month, such as January or March\n*January* through *December*\n\n\n*m*\nNumeric representation of a month, with leading zeros\n*01* through *12*\n\n\n*M*\nA short textual representation of a month, three letters\n*Jan* through *Dec*\n\n\n*n*\nNumeric representation of a month, without leading zeros\n*1* through *12*\n\n\n*t*\nNumber of days in the given month\n*28* through *31*\n\n\n***Year***\n---\n---\n\n\n*L*\nWhether it's a leap year\n*1* if it is a leap year, *0* otherwise.\n\n\n*Y*\nA full numeric representation of a year, 4 digits\nExamples: *1999* or *2003*\n\n\n*y*\nA two digit representation of a year\nExamples: *99* or *03*\n\n\n***Time***\n---\n---\n\n\n*a*\nLowercase Ante meridiem and Post meridiem\n*am* or *pm*\n\n\n*A*\nUppercase Ante meridiem and Post meridiem\n*AM* or *PM*\n\n\n*B*\nSwatch Internet time\n*000* through *999*\n\n\n*g*\n12-hour format of an hour without leading zeros\n*1* through *12*\n\n\n*G*\n24-hour format of an hour without leading zeros\n*0* through *23*\n\n\n*h*\n12-hour format of an hour with leading zeros\n*01* through *12*\n\n\n*H*\n24-hour format of an hour with leading zeros\n*00* through *23*\n\n\n*i*\nMinutes with leading zeros\n*00* to *59*\n\n\n*s*\nSeconds, with leading zeros\n*00* through *59*\n\n\n***Timezone***\n---\n---\n\n\n*I* (capital&nbsp;'i')\nWhether or not the date is in daylight saving time\n*1* if Daylight Saving Time, *0* otherwise.\n\n\n*O*\nDifference to Greenwich time (GMT) in hours\nExample: *+0200*\n\n\n*T*\nTimezone abbreviation\nExamples: *EST*, *MDT*\n\n\n*Z*\nTimezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.\n*-43200* through *50400*\n\n\n***Full&nbsp;Date/Time***\n---\n---\n\n\n*r*\n[RFC 2822](http://www.faqs.org/rfcs/rfc2822) formatted date\nExample: *Thu, 21 Dec 2000 16:01:07 +0200*\n\n\n*U*\nSeconds since the Unix Epoch (January 1 1970 00:00:00 GMT)\n\n\n\n  \n\n\n\n#### Locale-aware format characters\n\n\n  \n\n\n\n\n\n\nFormat Character\nDescription\nExample returned values\n\n\n\n\n***Day***\n---\n---\n\n\n*%a*\nAn abbreviated textual representation of the day\n*Sun* through *Sat*\n\n\n*%A*\nA full textual representation of the day\n*Sunday* through *Saturday*\n\n\n*%d*\nTwo-digit day of the month (with leading zeros)\n*01* to *31*\n\n\n*%e*\nDay of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information.\n*1* to *31*\n\n\n*%j*\nDay of the year, 3 digits with leading zeros\n*001* to *366*\n\n\n*%u*\nISO-8601 numeric representation of the day of the week\n*1* (for Monday) though *7* (for Sunday)\n\n\n*%w*\nNumeric representation of the day of the week\n*0* (for Sunday) through *6* (for Saturday)\n\n\n***Week***\n---\n---\n\n\n*%U*\nWeek number of the given year, starting with the first Sunday as the first week\n*13* (for the 13th full week of the year)\n\n\n*%V*\nISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week\n*01* through *53* (where 53 accounts for an overlapping week)\n\n\n*%W*\nA numeric representation of the week of the year, starting with the first Monday as the first week\n*46* (for the 46th week of the year beginning with a Monday)\n\n\n***Month***\n---\n---\n\n\n*%b*\nAbbreviated month name, based on the locale\n*Jan* through *Dec*\n\n\n*%B*\nFull month name, based on the locale\n*January* through *December*\n\n\n*%h*\nAbbreviated month name, based on the locale (an alias of %b)\n*Jan* through *Dec*\n\n\n*%m*\nTwo digit representation of the month\n*01* (for January) through *12* (for December)\n\n\n***Year***\n---\n---\n\n\n*%C*\nTwo digit representation of the century (year divided by 100, truncated to an integer)\n*19* for the 20th Century\n\n\n*%g*\nTwo digit representation of the year going by ISO-8601:1988 standards (see %V)\nExample: *09* for the week of January 6, 2009\n\n\n*%G*\nThe full four-digit version of %g\nExample: *2008* for the week of January 3, 2009\n\n\n*%y*\nTwo digit representation of the year\nExample: *09* for 2009, *79* for 1979\n\n\n*%Y*\nFour digit representation for the year\nExample: *2038*\n\n\n***Time***\n---\n---\n\n\n*%H*\nTwo digit representation of the hour in 24-hour format\n*00* through *23*\n\n\n*%I*\nTwo digit representation of the hour in 12-hour format\n*01* through *12*\n\n\n*%l* (lower-case&nbsp;'L')\nHour in 12-hour format, with a space preceeding single digits\n*1* through *12*\n\n\n*%M*\nTwo digit representation of the minute\n*00* through *59*\n\n\n*%p*\nUPPER-CASE 'AM' or 'PM' based on the given time\nExample: *AM* for 00:31, *PM* for 22:23\n\n\n*%P*\nlower-case 'am' or 'pm' based on the given time\nExample: *am* for 00:31, *pm* for 22:23\n\n\n*%r*\nSame as \"%I:%M:%S %p\"\nExample: *09:34:17 PM* for 21:34:17\n\n\n*%R*\nSame as \"%H:%M\"\nExample: *00:35* for 12:35 AM, *16:44* for 4:44 PM\n\n\n*%S*\nTwo digit representation of the second\n*00* through *59*\n\n\n*%T*\nSame as \"%H:%M:%S\"\nExample: *21:34:17* for 09:34:17 PM\n\n\n*%X*\nPreferred time representation based on locale, without the date\nExample: *03:59:16* or *15:59:16*\n\n\n*%z*\nEither the time zone offset from UTC or the abbreviation (depends on operating system)\nExample: *-0500* or *EST* for Eastern Time\n\n\n*%Z*\nThe time zone offset/abbreviation option NOT given by %z (depends on operating system)\nExample: *-0500* or *EST* for Eastern Time\n\n\n***Time&nbsp;and&nbsp;Date&nbsp;Stamps***\n---\n---\n\n\n*%c*\nPreferred date and time stamp based on local\nExample: *Tue Feb 5 00:45:10 2009* for February 4, 2009 at 12:45:10 AM\n\n\n*%D*\nSame as \"%m/%d/%y\"\nExample: *02/05/09* for February 5, 2009\n\n\n*%F*\nSame as \"%Y-%m-%d\" (commonly used in database datestamps)\nExample: *2009-02-05* for February 5, 2009\n\n\n*%s*\nUnix Epoch Time timestamp\nExample: *305815200* for September 10, 1979 08:40:00 AM\n\n\n*%x*\nPreferred date representation based on locale, without the time\nExample: *02/05/09* for February 5, 2009\n\n\n***Miscellaneous***\n---\n---\n\n\n*%n*\nA newline character (\"\\n\")\n---\n\n\n*%t*\nA Tab character (\"\\t\")\n---\n\n\n*%%*\nA literal percentage character (\"%\")\n---\n\n\n\n  \n\n\n\n### gmt\n\n\nBy setting this parameter to '1', you can get the GMT equivalent of the date provided.\n\n\n### locale\n\n\nIf you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' />\n\n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' />\n\n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n\n### charset\n\n\nSome locales do not provide their output in UTF8 character set. This causes strange ?? characters to appear in the output.  \n\nThe **date** tag can help converting the output to UTF8 if you can provide it with information about the charset used by the locale.\n\n\nFor example -\n\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='greek' charset='ISO-8859-7' />\n\n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='russian' charset='ISO-8859-5' />\n\n ``` \nThe following is a rough list of the charset used by different languages -\n\n\n**ISO-8859-1 - Latin 1**  \n\nWestern Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\n\n\n**ISO-8859-2 - Latin 2**  \n\nLatin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene.\n\n\n**ISO-8859-3 - Latin 3**  \n\nEsperanto, Galician, Maltese, and Turkish.\n\n\n**ISO-8859-4 - Latin 4**  \n\nScandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6.\n\n\n**ISO-8859-5 - Cyrillic**  \n\nBulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian.\n\n\n**ISO-8859-6 - Arabic**  \n\nNon-accented Arabic.\n\n\n**ISO-8859-7 - Modern Greek**  \n\nGreek.\n\n\n**ISO-8859-8 - Hebrew**  \n\nNon-accented Hebrew.\n\n\n**ISO-8859-9 - Latin 5**  \n\nSame as 8859-1 except for Turkish instead of Icelandic\n\n\n**ISO-8859-10 - Latin 6**  \n\nLatin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [number_format](number_format.html)\n\n\n\n'",
+            "description": "```html \n <cms:date k_page_date format='jS M, Y' /> \n ```\n====\n\n\nThe **date** tag outputs a string according to the given *format* parameter using the given *date* parameter. If no *date* provided, the current time is used.\n\n\n\n ```html \n<cms:date />\n\n ``` \n\n ```html \n<cms:date k_page_date />\n\n ``` \n\n ```html \n<cms:date k_page_date format='jS M, Y' />\n\n ``` \nParameters\n----------\n\n\n\n\n* date\n\n* format\n\n* gmt\n\n* locale\n\n* charset\n\n\n\n### date\n\n\nThe date to be formated.  \n\nThis parameter is expected to be in '*Y-m-d H:i:s*' format (e.g. 2010-05-30 21:35:54). All date related variables set by Couch tags, e.g. *k_page_date* etc., are in this format.\n\n\n### format\n\n\nThe **date** tag supports two different types of format characters - locale-aware and non locale-aware.  \n\nWith locale-aware characters, you can specify that the date is to formatted according to, for example, *french* locale or *italian* locale by setting the *locale* parameter.  \n\nThe locale-aware characters all have a % sign prefixed to them.\n\n\nThe locale-aware and the non locale-aware characters cannot be intermixed.\n\n\n#### Non Locale-aware format characters\n\n\n  \n\n\n\n\n\n\nFormat character\nDescription\nExample returned values\n\n\n\n\n***Day***\n---\n---\n\n\n*d*\nDay of the month, 2 digits with leading zeros\n*01* to *31*\n\n\n*D*\nA textual representation of a day, three letters\n*Mon* through *Sun*\n\n\n*j*\nDay of the month without leading zeros\n*1* to *31*\n\n\n*l* (lowercase&nbsp;'L')\nA full textual representation of the day of the week\n*Sunday* through *Saturday*\n\n\n*S*\nEnglish ordinal suffix for the day of the month, 2 characters\n*st*, *nd*, *rd* or *th*. Works well with *j*\n\n\n*w*\nNumeric representation of the day of the week\n*0* (for Sunday) through *6* (for Saturday)\n\n\n*z*\nThe day of the year (starting from 0)\n*0* through *365*\n\n\n***Week***\n---\n---\n\n\n*W*\nISO-8601 week number of year, weeks starting on Monday\nExample: *42* (the 42nd week in the year)\n\n\n***Month***\n---\n---\n\n\n*F*\nA full textual representation of a month, such as January or March\n*January* through *December*\n\n\n*m*\nNumeric representation of a month, with leading zeros\n*01* through *12*\n\n\n*M*\nA short textual representation of a month, three letters\n*Jan* through *Dec*\n\n\n*n*\nNumeric representation of a month, without leading zeros\n*1* through *12*\n\n\n*t*\nNumber of days in the given month\n*28* through *31*\n\n\n***Year***\n---\n---\n\n\n*L*\nWhether it's a leap year\n*1* if it is a leap year, *0* otherwise.\n\n\n*Y*\nA full numeric representation of a year, 4 digits\nExamples: *1999* or *2003*\n\n\n*y*\nA two digit representation of a year\nExamples: *99* or *03*\n\n\n***Time***\n---\n---\n\n\n*a*\nLowercase Ante meridiem and Post meridiem\n*am* or *pm*\n\n\n*A*\nUppercase Ante meridiem and Post meridiem\n*AM* or *PM*\n\n\n*B*\nSwatch Internet time\n*000* through *999*\n\n\n*g*\n12-hour format of an hour without leading zeros\n*1* through *12*\n\n\n*G*\n24-hour format of an hour without leading zeros\n*0* through *23*\n\n\n*h*\n12-hour format of an hour with leading zeros\n*01* through *12*\n\n\n*H*\n24-hour format of an hour with leading zeros\n*00* through *23*\n\n\n*i*\nMinutes with leading zeros\n*00* to *59*\n\n\n*s*\nSeconds, with leading zeros\n*00* through *59*\n\n\n***Timezone***\n---\n---\n\n\n*I* (capital&nbsp;'i')\nWhether or not the date is in daylight saving time\n*1* if Daylight Saving Time, *0* otherwise.\n\n\n*O*\nDifference to Greenwich time (GMT) in hours\nExample: *+0200*\n\n\n*T*\nTimezone abbreviation\nExamples: *EST*, *MDT*\n\n\n*Z*\nTimezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.\n*-43200* through *50400*\n\n\n***Full&nbsp;Date/Time***\n---\n---\n\n\n*r*\n[RFC 2822](http://www.faqs.org/rfcs/rfc2822) formatted date\nExample: *Thu, 21 Dec 2000 16:01:07 +0200*\n\n\n*U*\nSeconds since the Unix Epoch (January 1 1970 00:00:00 GMT)\n\n\n\n  \n\n\n\n#### Locale-aware format characters\n\n\n  \n\n\n\n\n\n\nFormat Character\nDescription\nExample returned values\n\n\n\n\n***Day***\n---\n---\n\n\n*%a*\nAn abbreviated textual representation of the day\n*Sun* through *Sat*\n\n\n*%A*\nA full textual representation of the day\n*Sunday* through *Saturday*\n\n\n*%d*\nTwo-digit day of the month (with leading zeros)\n*01* to *31*\n\n\n*%e*\nDay of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information.\n*1* to *31*\n\n\n*%j*\nDay of the year, 3 digits with leading zeros\n*001* to *366*\n\n\n*%u*\nISO-8601 numeric representation of the day of the week\n*1* (for Monday) though *7* (for Sunday)\n\n\n*%w*\nNumeric representation of the day of the week\n*0* (for Sunday) through *6* (for Saturday)\n\n\n***Week***\n---\n---\n\n\n*%U*\nWeek number of the given year, starting with the first Sunday as the first week\n*13* (for the 13th full week of the year)\n\n\n*%V*\nISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week\n*01* through *53* (where 53 accounts for an overlapping week)\n\n\n*%W*\nA numeric representation of the week of the year, starting with the first Monday as the first week\n*46* (for the 46th week of the year beginning with a Monday)\n\n\n***Month***\n---\n---\n\n\n*%b*\nAbbreviated month name, based on the locale\n*Jan* through *Dec*\n\n\n*%B*\nFull month name, based on the locale\n*January* through *December*\n\n\n*%h*\nAbbreviated month name, based on the locale (an alias of %b)\n*Jan* through *Dec*\n\n\n*%m*\nTwo digit representation of the month\n*01* (for January) through *12* (for December)\n\n\n***Year***\n---\n---\n\n\n*%C*\nTwo digit representation of the century (year divided by 100, truncated to an integer)\n*19* for the 20th Century\n\n\n*%g*\nTwo digit representation of the year going by ISO-8601:1988 standards (see %V)\nExample: *09* for the week of January 6, 2009\n\n\n*%G*\nThe full four-digit version of %g\nExample: *2008* for the week of January 3, 2009\n\n\n*%y*\nTwo digit representation of the year\nExample: *09* for 2009, *79* for 1979\n\n\n*%Y*\nFour digit representation for the year\nExample: *2038*\n\n\n***Time***\n---\n---\n\n\n*%H*\nTwo digit representation of the hour in 24-hour format\n*00* through *23*\n\n\n*%I*\nTwo digit representation of the hour in 12-hour format\n*01* through *12*\n\n\n*%l* (lower-case&nbsp;'L')\nHour in 12-hour format, with a space preceeding single digits\n*1* through *12*\n\n\n*%M*\nTwo digit representation of the minute\n*00* through *59*\n\n\n*%p*\nUPPER-CASE 'AM' or 'PM' based on the given time\nExample: *AM* for 00:31, *PM* for 22:23\n\n\n*%P*\nlower-case 'am' or 'pm' based on the given time\nExample: *am* for 00:31, *pm* for 22:23\n\n\n*%r*\nSame as \"%I:%M:%S %p\"\nExample: *09:34:17 PM* for 21:34:17\n\n\n*%R*\nSame as \"%H:%M\"\nExample: *00:35* for 12:35 AM, *16:44* for 4:44 PM\n\n\n*%S*\nTwo digit representation of the second\n*00* through *59*\n\n\n*%T*\nSame as \"%H:%M:%S\"\nExample: *21:34:17* for 09:34:17 PM\n\n\n*%X*\nPreferred time representation based on locale, without the date\nExample: *03:59:16* or *15:59:16*\n\n\n*%z*\nEither the time zone offset from UTC or the abbreviation (depends on operating system)\nExample: *-0500* or *EST* for Eastern Time\n\n\n*%Z*\nThe time zone offset/abbreviation option NOT given by %z (depends on operating system)\nExample: *-0500* or *EST* for Eastern Time\n\n\n***Time&nbsp;and&nbsp;Date&nbsp;Stamps***\n---\n---\n\n\n*%c*\nPreferred date and time stamp based on local\nExample: *Tue Feb 5 00:45:10 2009* for February 4, 2009 at 12:45:10 AM\n\n\n*%D*\nSame as \"%m/%d/%y\"\nExample: *02/05/09* for February 5, 2009\n\n\n*%F*\nSame as \"%Y-%m-%d\" (commonly used in database datestamps)\nExample: *2009-02-05* for February 5, 2009\n\n\n*%s*\nUnix Epoch Time timestamp\nExample: *305815200* for September 10, 1979 08:40:00 AM\n\n\n*%x*\nPreferred date representation based on locale, without the time\nExample: *02/05/09* for February 5, 2009\n\n\n***Miscellaneous***\n---\n---\n\n\n*%n*\nA newline character (\"\\n\")\n---\n\n\n*%t*\nA Tab character (\"\\t\")\n---\n\n\n*%%*\nA literal percentage character (\"%\")\n---\n\n\n\n  \n\n\n\n### gmt\n\n\nBy setting this parameter to '1', you can get the GMT equivalent of the date provided.\n\n\n### locale\n\n\nIf you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' />\n\n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' />\n\n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n\n### charset\n\n\nSome locales do not provide their output in UTF8 character set. This causes strange ?? characters to appear in the output.  \n\nThe **date** tag can help converting the output to UTF8 if you can provide it with information about the charset used by the locale.\n\n\nFor example -\n\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='greek' charset='ISO-8859-7' />\n\n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='russian' charset='ISO-8859-5' />\n\n ``` \nThe following is a rough list of the charset used by different languages -\n\n\n**ISO-8859-1 - Latin 1**  \n\nWestern Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\n\n\n**ISO-8859-2 - Latin 2**  \n\nLatin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene.\n\n\n**ISO-8859-3 - Latin 3**  \n\nEsperanto, Galician, Maltese, and Turkish.\n\n\n**ISO-8859-4 - Latin 4**  \n\nScandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6.\n\n\n**ISO-8859-5 - Cyrillic**  \n\nBulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian.\n\n\n**ISO-8859-6 - Arabic**  \n\nNon-accented Arabic.\n\n\n**ISO-8859-7 - Modern Greek**  \n\nGreek.\n\n\n**ISO-8859-8 - Hebrew**  \n\nNon-accented Hebrew.\n\n\n**ISO-8859-9 - Latin 5**  \n\nSame as 8859-1 except for Turkish instead of Icelandic\n\n\n**ISO-8859-10 - Latin 6**  \n\nLatin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [number_format](number_format.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "date",
                     "description": "The date to be formated.  \n This parameter is expected to be in '*Y-m-d H:i:s*' format (e.g. 2010-05-30 21:35:54). All date related variables set by Couch tags, e.g. *k_page_date* etc., are in this format.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "Y-m-d H:i:s"
                         }
                     ]
                 },
@@ -389,7 +493,12 @@
                     "description": "The **date** tag supports two different types of format characters - locale-aware and non locale-aware.  \n With locale-aware characters, you can specify that the date is to formatted according to, for example, *french* locale or *italian* locale by setting the *locale* parameter.  \n The locale-aware characters all have a % sign prefixed to them.\n\nThe locale-aware and the non locale-aware characters cannot be intermixed.\n\n#### Non Locale-aware format characters\n\n  \n\n\n   Format character Description Example returned values     ***Day*** --- ---   *d* Day of the month, 2 digits with leading zeros *01* to *31*   *D* A textual representation of a day, three letters *Mon* through *Sun*   *j* Day of the month without leading zeros *1* to *31*   *l* (lowercase 'L') A full textual representation of the day of the week *Sunday* through *Saturday*   *S* English ordinal suffix for the day of the month, 2 characters *st*, *nd*, *rd* or *th*. Works well with *j*   *w* Numeric representation of the day of the week *0* (for Sunday) through *6* (for Saturday)   *z* The day of the year (starting from 0) *0* through *365*   ***Week*** --- ---   *W* ISO-8601 week number of year, weeks starting on Monday Example: *42* (the 42nd week in the year)   ***Month*** --- ---   *F* A full textual representation of a month, such as January or March *January* through *December*   *m* Numeric representation of a month, with leading zeros *01* through *12*   *M* A short textual representation of a month, three letters *Jan* through *Dec*   *n* Numeric representation of a month, without leading zeros *1* through *12*   *t* Number of days in the given month *28* through *31*   ***Year*** --- ---   *L* Whether it's a leap year *1* if it is a leap year, *0* otherwise.   *Y* A full numeric representation of a year, 4 digits Examples: *1999* or *2003*   *y* A two digit representation of a year Examples: *99* or *03*   ***Time*** --- ---   *a* Lowercase Ante meridiem and Post meridiem *am* or *pm*   *A* Uppercase Ante meridiem and Post meridiem *AM* or *PM*   *B* Swatch Internet time *000* through *999*   *g* 12-hour format of an hour without leading zeros *1* through *12*   *G* 24-hour format of an hour without leading zeros *0* through *23*   *h* 12-hour format of an hour with leading zeros *01* through *12*   *H* 24-hour format of an hour with leading zeros *00* through *23*   *i* Minutes with leading zeros *00* to *59*   *s* Seconds, with leading zeros *00* through *59*   ***Timezone*** --- ---   *I* (capital 'i') Whether or not the date is in daylight saving time *1* if Daylight Saving Time, *0* otherwise.   *O* Difference to Greenwich time (GMT) in hours Example: *+0200*   *T* Timezone abbreviation Examples: *EST*, *MDT*\u2026   *Z* Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. *-43200* through *50400*   ***Full Date/Time*** --- ---   *r* [\u00BB RFC 2822](http://www.faqs.org/rfcs/rfc2822) formatted date Example: *Thu, 21 Dec 2000 16:01:07 +0200*   *U* Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)     \n\n\n#### Locale-aware format characters\n\n  \n\n\n   Format Character Description Example returned values     ***Day*** --- ---   *%a* An abbreviated textual representation of the day *Sun* through *Sat*   *%A* A full textual representation of the day *Sunday* through *Saturday*   *%d* Two-digit day of the month (with leading zeros) *01* to *31*   *%e* Day of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information. *1* to *31*   *%j* Day of the year, 3 digits with leading zeros *001* to *366*   *%u* ISO-8601 numeric representation of the day of the week *1* (for Monday) though *7* (for Sunday)   *%w* Numeric representation of the day of the week *0* (for Sunday) through *6* (for Saturday)   ***Week*** --- ---   *%U* Week number of the given year, starting with the first Sunday as the first week *13* (for the 13th full week of the year)   *%V* ISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week *01* through *53* (where 53 accounts for an overlapping week)   *%W* A numeric representation of the week of the year, starting with the first Monday as the first week *46* (for the 46th week of the year beginning with a Monday)   ***Month*** --- ---   *%b* Abbreviated month name, based on the locale *Jan* through *Dec*   *%B* Full month name, based on the locale *January* through *December*   *%h* Abbreviated month name, based on the locale (an alias of %b) *Jan* through *Dec*   *%m* Two digit representation of the month *01* (for January) through *12* (for December)   ***Year*** --- ---   *%C* Two digit representation of the century (year divided by 100, truncated to an integer) *19* for the 20th Century   *%g* Two digit representation of the year going by ISO-8601:1988 standards (see %V) Example: *09* for the week of January 6, 2009   *%G* The full four-digit version of %g Example: *2008* for the week of January 3, 2009   *%y* Two digit representation of the year Example: *09* for 2009, *79* for 1979   *%Y* Four digit representation for the year Example: *2038*   ***Time*** --- ---   *%H* Two digit representation of the hour in 24-hour format *00* through *23*   *%I* Two digit representation of the hour in 12-hour format *01* through *12*   *%l* (lower-case 'L') Hour in 12-hour format, with a space preceeding single digits *1* through *12*   *%M* Two digit representation of the minute *00* through *59*   *%p* UPPER-CASE 'AM' or 'PM' based on the given time Example: *AM* for 00:31, *PM* for 22:23   *%P* lower-case 'am' or 'pm' based on the given time Example: *am* for 00:31, *pm* for 22:23   *%r* Same as \"%I:%M:%S %p\" Example: *09:34:17 PM* for 21:34:17   *%R* Same as \"%H:%M\" Example: *00:35* for 12:35 AM, *16:44* for 4:44 PM   *%S* Two digit representation of the second *00* through *59*   *%T* Same as \"%H:%M:%S\" Example: *21:34:17* for 09:34:17 PM   *%X* Preferred time representation based on locale, without the date Example: *03:59:16* or *15:59:16*   *%z* Either the time zone offset from UTC or the abbreviation (depends on operating system) Example: *-0500* or *EST* for Eastern Time   *%Z* The time zone offset/abbreviation option NOT given by %z (depends on operating system) Example: *-0500* or *EST* for Eastern Time   ***Time and Date Stamps*** --- ---   *%c* Preferred date and time stamp based on local Example: *Tue Feb 5 00:45:10 2009* for February 4, 2009 at 12:45:10 AM   *%D* Same as \"%m/%d/%y\" Example: *02/05/09* for February 5, 2009   *%F* Same as \"%Y-%m-%d\" (commonly used in database datestamps) Example: *2009-02-05* for February 5, 2009   *%s* Unix Epoch Time timestamp Example: *305815200* for September 10, 1979 08:40:00 AM   *%x* Preferred date representation based on locale, without the time Example: *02/05/09* for February 5, 2009   ***Miscellaneous*** --- ---   *%n* A newline character (\"\n\") ---   *%t* A Tab character (\"\t\") ---   *%%* A literal percentage character (\"%\") ---     \n\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "Non Locale-aware",
+                            "description": "Format character \t Description \t Example returned values\r\n        Day \t--- \t---\r\n          d \tDay of the month, 2 digits with leading zeros \t01 to 31\r\n          D \tA textual representation of a day, three letters \tMon through Sun\r\n          j \tDay of the month without leading zeros \t1 to 31\r\n          l (lowercase 'L') \tA full textual representation of the day of the week \tSunday through Saturday\r\n          S \tEnglish ordinal suffix for the day of the month, 2 characters \tst, nd, rd or th. Works well with j\r\n          w \tNumeric representation of the day of the week \t0 (for Sunday) through 6 (for Saturday)\r\n          z \tThe day of the year (starting from 0) \t0 through 365\r\n        Week \t--- \t---\r\n          W \tISO-8601 week number of year, weeks starting on Monday \tExample: 42 (the 42nd week in the year)\r\n        Month \t--- \t---\r\n          F \tA full textual representation of a month, such as January or March \tJanuary through December\r\n          m \tNumeric representation of a month, with leading zeros \t01 through 12\r\n          M \tA short textual representation of a month, three letters \tJan through Dec\r\n          n \tNumeric representation of a month, without leading zeros \t1 through 12\r\n          t \tNumber of days in the given month \t28 through 31\r\n        Year \t--- \t---\r\n          L \tWhether it's a leap year \t1 if it is a leap year, 0 otherwise.\r\n          Y \tA full numeric representation of a year, 4 digits \tExamples: 1999 or 2003\r\n          y \tA two digit representation of a year \tExamples: 99 or 03\r\n        Time \t--- \t---\r\n          a \tLowercase Ante meridiem and Post meridiem \tam or pm\r\n          A \tUppercase Ante meridiem and Post meridiem \tAM or PM\r\n          B \tSwatch Internet time \t000 through 999\r\n          g \t12-hour format of an hour without leading zeros \t1 through 12\r\n          G \t24-hour format of an hour without leading zeros \t0 through 23\r\n          h \t12-hour format of an hour with leading zeros \t01 through 12\r\n          H \t24-hour format of an hour with leading zeros \t00 through 23\r\n          i \tMinutes with leading zeros \t00 to 59\r\n          s \tSeconds, with leading zeros \t00 through 59\r\n        Timezone \t--- \t---\r\n          I (capital 'i') \tWhether or not the date is in daylight saving time \t1 if Daylight Saving Time, 0 otherwise.\r\n          O \tDifference to Greenwich time (GMT) in hours \tExample: +0200\r\n          T \tTimezone abbreviation \tExamples: EST, MDT…\r\n          Z \tTimezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. \t-43200 through 50400\r\n        Full Date/Time \t--- \t---\r\n          r \t» RFC 2822 formatted date \tExample: Thu, 21 Dec 2000 16:01:07 +0200\r\n          U \tSeconds since the Unix Epoch (January 1 1970 00:00:00 GMT)\r\n"
+                        },
+                        {
+                            "name": "Locale-aware",
+                            "description": "Format Character \tDescription \tExample returned values\r\n        Day \t--- \t---\r\n          %a \tAn abbreviated textual representation of the day \tSun through Sat\r\n          %A \tA full textual representation of the day \tSunday through Saturday\r\n          %d \tTwo-digit day of the month (with leading zeros) \t01 to 31\r\n          %e \tDay of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information. \t1 to 31\r\n          %j \tDay of the year, 3 digits with leading zeros \t001 to 366\r\n          %u \tISO-8601 numeric representation of the day of the week \t1 (for Monday) though 7 (for Sunday)\r\n          %w \tNumeric representation of the day of the week \t0 (for Sunday) through 6 (for Saturday)\r\n        Week \t--- \t---\r\n          %U \tWeek number of the given year, starting with the first Sunday as the first week \t13 (for the 13th full week of the year)\r\n          %V \tISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week \t01 through 53 (where 53 accounts for an overlapping week)\r\n          %W \tA numeric representation of the week of the year, starting with the first Monday as the first week \t46 (for the 46th week of the year beginning with a Monday)\r\n        Month \t--- \t---\r\n          %b \tAbbreviated month name, based on the locale \tJan through Dec\r\n          %B \tFull month name, based on the locale \tJanuary through December\r\n          %h \tAbbreviated month name, based on the locale (an alias of %b) \tJan through Dec\r\n          %m \tTwo digit representation of the month \t01 (for January) through 12 (for December)\r\n        Year \t--- \t---\r\n          %C \tTwo digit representation of the century (year divided by 100, truncated to an integer) \t19 for the 20th Century\r\n          %g \tTwo digit representation of the year going by ISO-8601:1988 standards (see %V) \tExample: 09 for the week of January 6, 2009\r\n          %G \tThe full four-digit version of %g \tExample: 2008 for the week of January 3, 2009\r\n          %y \tTwo digit representation of the year \tExample: 09 for 2009, 79 for 1979\r\n          %Y \tFour digit representation for the year \tExample: 2038\r\n        Time \t--- \t---\r\n          %H \tTwo digit representation of the hour in 24-hour format \t00 through 23\r\n          %I \tTwo digit representation of the hour in 12-hour format \t01 through 12\r\n          %l (lower-case 'L') \tHour in 12-hour format, with a space preceeding single digits \t1 through 12\r\n          %M \tTwo digit representation of the minute \t00 through 59\r\n          %p \tUPPER-CASE 'AM' or 'PM' based on the given time \tExample: AM for 00:31, PM for 22:23\r\n          %P \tlower-case 'am' or 'pm' based on the given time \tExample: am for 00:31, pm for 22:23\r\n          %r \tSame as \"%I:%M:%S %p\" \tExample: 09:34:17 PM for 21:34:17\r\n          %R \tSame as \"%H:%M\" \tExample: 00:35 for 12:35 AM, 16:44 for 4:44 PM\r\n          %S \tTwo digit representation of the second \t00 through 59\r\n          %T \tSame as \"%H:%M:%S\" \tExample: 21:34:17 for 09:34:17 PM\r\n          %X \tPreferred time representation based on locale, without the date \tExample: 03:59:16 or 15:59:16\r\n          %z \tEither the time zone offset from UTC or the abbreviation (depends on operating system) \tExample: -0500 or EST for Eastern Time\r\n          %Z \tThe time zone offset/abbreviation option NOT given by %z (depends on operating system) \tExample: -0500 or EST for Eastern Time\r\n        Time and Date Stamps \t--- \t---\r\n          %c \tPreferred date and time stamp based on local \tExample: Tue Feb 5 00:45:10 2009 for February 4, 2009 at 12:45:10 AM\r\n          %D \tSame as \"%m/%d/%y\" \tExample: 02/05/09 for February 5, 2009\r\n          %F \tSame as \"%Y-%m-%d\" (commonly used in database datestamps) \tExample: 2009-02-05 for February 5, 2009\r\n          %s \tUnix Epoch Time timestamp \tExample: 305815200 for September 10, 1979 08:40:00 AM\r\n          %x \tPreferred date representation based on locale, without the time \tExample: 02/05/09 for February 5, 2009\r\n        Miscellaneous \t--- \t---\r\n          %n \tA newline character (\"\\n\") \t---\r\n          %t \tA Tab character (\"\\t\") \t---\r\n          %% \tA literal percentage character (\"%\") \t---\r\n"
                         }
                     ]
                 },
@@ -398,25 +507,60 @@
                     "description": "By setting this parameter to '1', you can get the GMT equivalent of the date provided.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 },
                 {
                     "name": "locale",
-                    "description": "If you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' /> \n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' /> \n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n",
-                    "values": [
-                        {
-                            "name": ""
-                        }
-                    ]
+                    "description": "If you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' /> \n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' /> \n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n"
                 },
                 {
                     "name": "charset",
                     "description": "Some locales do not provide their output in UTF8 character set. This causes strange ?? characters to appear in the output.  \n The **date** tag can help converting the output to UTF8 if you can provide it with information about the charset used by the locale.\n\nFor example -\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='greek' charset='ISO-8859-7' /> \n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='russian' charset='ISO-8859-5' /> \n ``` \nThe following is a rough list of the charset used by different languages -\n\n**ISO-8859-1 - Latin 1**  \n Western Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\n\n**ISO-8859-2 - Latin 2**  \n Latin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene.\n\n**ISO-8859-3 - Latin 3**  \n Esperanto, Galician, Maltese, and Turkish.\n\n**ISO-8859-4 - Latin 4**  \n Scandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6.\n\n**ISO-8859-5 - Cyrillic**  \n Bulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian.\n\n**ISO-8859-6 - Arabic**  \n Non-accented Arabic.\n\n**ISO-8859-7 - Modern Greek**  \n Greek.\n\n**ISO-8859-8 - Hebrew**  \n Non-accented Hebrew.\n\n**ISO-8859-9 - Latin 5**  \n Same as 8859-1 except for Turkish instead of Icelandic\n\n**ISO-8859-10 - Latin 6**  \n Latin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [number_format](number_format.html)\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "ISO-8859-1",
+                            "description": "- Latin 1\r\n        Western Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\r\n"
+                        },
+                        {
+                            "name": "ISO-8859-2",
+                            "description": " Latin 2\r\n        Latin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene."
+                        },
+                        {
+                            "name": "ISO-8859-3",
+                            "description": " Latin 3\r\n        Esperanto, Galician, Maltese, and Turkish."
+                        },
+                        {
+                            "name": "ISO-8859-4",
+                            "description": " Latin 4\r\n        Scandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6."
+                        },
+                        {
+                            "name": "ISO-8859-5",
+                            "description": "Cyrillic\r\n        Bulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian."
+                        },
+                        {
+                            "name": "ISO-8859-6",
+                            "description": "Arabic\r\n        Non-accented Arabic."
+                        },
+                        {
+                            "name": "ISO-8859-7",
+                            "description": "Modern Greek\r\n        Greek."
+                        },
+                        {
+                            "name": "ISO-8859-8",
+                            "description": "Hebrew\r\n        Non-accented Hebrew."
+                        },
+                        {
+                            "name": "ISO-8859-9",
+                            "description": "Latin 5\r\n        Same as 8859-1 except for Turkish instead of Icelandic"
+                        },
+                        {
+                            "name": "ISO-8859-10",
+                            "description": "Latin 6\r\n        Latin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area."
                         }
                     ]
                 }
@@ -424,14 +568,17 @@
         },
         {
             "name": "cms:days",
-            "description": "b'days\n====\n\n\nThe **days** tag works only within the **weeks** tag and enumerates all the seven days of each week.\n\n\nPlease see [**Core Concepts - Events Calendar**](../concepts/events-calendar.html) for a working example of this tag.\n\n\nParameters\n----------\n\n\n\n\n* pad_with_zeroes\n\n\n\n### pad_with_zeroes\n\n\nIf set to '1' will pad all single digit days in variable *k_day* with a leading zero.\n\n\nVariables\n---------\n\n\n\n\n* k_date\n\n* k_day\n\n* k_month\n\n* k_year\n\n* k_day_of_week\n\n* k_position\n\n* k_count_entries\n\n* k_timeline_position\n\n\n\n### k_date\n\n\nDate of the day. e.g. 2010-10-31\n\n\n### k_day\n\n\nNumber representing the day - ranges from 1 to 31\n\n\n### k_month\n\n\nNumber representing the month - ranges from 1 - 12\n\n\n### k_year\n\n\nThe year. e.g. 2010\n\n\n### k_day_of_week\n\n\nNumber representing the week - ranges from 0 (Sun) to 6 (Sat)\n\n\n### k_position\n\n\nA calendar grid can contain days that belong to the month being shown as well as the previous and the next month. Depending on which month a day belongs to, its position is denoted by this parameter as one of these three values -\n\n\n\n\n* previous_month\n\n* current_month\n\n* next_month\n\n\n\n### k_count_entries\n\n\nThe count of pages published on this day.\n\n\n### k_timeline_position\n\n\nDenotes the position of the day in timelime (relative to today). Can be one of these three values -\n\n\n\n\n* past\n\n* present\n\n* future\n\n\n\nRelated Tags\n------------\n\n\n\n\n* [calendar](calendar.html)\n\n* [weeks](weeks.html)\n\n* [entries](entries.html)\n\n\n\n'",
+            "description": "```html \n <cms:days ><td ><cms:show k_day /></td></cms:days> \n```\n====\n\n\nThe **days** tag works only within the **weeks** tag and enumerates all the seven days of each week.\n\n\nPlease see [**Core Concepts - Events Calendar**](../concepts/events-calendar.html) for a working example of this tag.\n\n\nParameters\n----------\n\n\n\n\n* pad_with_zeroes\n\n\n\n### pad_with_zeroes\n\n\nIf set to '1' will pad all single digit days in variable *k_day* with a leading zero.\n\n\nVariables\n---------\n\n\n\n\n* k_date\n\n* k_day\n\n* k_month\n\n* k_year\n\n* k_day_of_week\n\n* k_position\n\n* k_count_entries\n\n* k_timeline_position\n\n\n\n### k_date\n\n\nDate of the day. e.g. 2010-10-31\n\n\n### k_day\n\n\nNumber representing the day - ranges from 1 to 31\n\n\n### k_month\n\n\nNumber representing the month - ranges from 1 - 12\n\n\n### k_year\n\n\nThe year. e.g. 2010\n\n\n### k_day_of_week\n\n\nNumber representing the week - ranges from 0 (Sun) to 6 (Sat)\n\n\n### k_position\n\n\nA calendar grid can contain days that belong to the month being shown as well as the previous and the next month. Depending on which month a day belongs to, its position is denoted by this parameter as one of these three values -\n\n\n\n\n* previous_month\n\n* current_month\n\n* next_month\n\n\n\n### k_count_entries\n\n\nThe count of pages published on this day.\n\n\n### k_timeline_position\n\n\nDenotes the position of the day in timelime (relative to today). Can be one of these three values -\n\n\n\n\n* past\n\n* present\n\n* future\n\n\n\nRelated Tags\n------------\n\n\n\n\n* [calendar](calendar.html)\n\n* [weeks](weeks.html)\n\n* [entries](entries.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "pad_with_zeroes",
                     "description": "If set to '1' will pad all single digit days in variable *k_day* with a leading zero.\n\nVariables\n---------\n\n\n * k_date\n * k_day\n * k_month\n * k_year\n * k_day_of_week\n * k_position\n * k_count_entries\n * k_timeline_position\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
                         }
                     ]
                 }
@@ -439,44 +586,205 @@
         },
         {
             "name": "cms:decr",
-            "description": "b'decr\n====\n\n\nThe **decr** tag accepts as its first parameter a variable and decreases the value contained within the variable by the value contained within the second optional parameter. If the second parameter is not provided, a value of 1 is assumed.\n\n\n\n ```html \n<cms:set my_value='11' />\n<cms:show my_value />\n\n ``` \nIn the snippet above, value of variable my_value is output as 11.\n\n\n\n ```html \n<cms:decr my_value '2' />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 9.\n\n\n\n ```html \n<cms:decr my_value />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 8.\n\n\nParameters\n----------\n\n\nExpects a maximum of two parameters.\n\n\nThe first parameter has to be a variable. The second parameter is optional and its value is used to decrease the value of the variable passed as the first parameter. A default value of 1 is assumed if the second parameter is not specified.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [div](div.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:decr my_value '2' /> \n ```\n====\n\n\nThe **decr** tag accepts as its first parameter a variable and decreases the value contained within the variable by the value contained within the second optional parameter. If the second parameter is not provided, a value of 1 is assumed.\n\n\n\n ```html \n<cms:set my_value='11' />\n<cms:show my_value />\n\n ``` \nIn the snippet above, value of variable my_value is output as 11.\n\n\n\n ```html \n<cms:decr my_value '2' />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 9.\n\n\n\n ```html \n<cms:decr my_value />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 8.\n\n\nParameters\n----------\n\n\nExpects a maximum of two parameters.\n\n\nThe first parameter has to be a variable. The second parameter is optional and its value is used to decrease the value of the variable passed as the first parameter. A default value of 1 is assumed if the second parameter is not specified.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [div](div.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n\n\n'",
+            "attributes": [
+                {
+                    "name": "decr-value1",
+                    "description": "The parameters may be literal strings, variables or output of other tags.",
+                    "values": [
+                        {
+                            "name": "var"
+                        },
+                        {
+                            "name": "int"
+                        }
+                    ]
+                },
+                {
+                    "name": "decr-value2",
+                    "description": "The parameters may be literal strings, variables or output of other tags.",
+                    "values": [
+                        {
+                            "name": "var"
+                        },
+                        {
+                            "name": "int"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "cms:delete_cookie",
-            "description": "b'delete_cookie\n==============\n\n\nThe **delete_cookie** tag can be used to delete any cookie created using the **set_cookie** tag.\n\n\n\n ```html \n<cms:delete_cookie 'my_test_cookie' />\n\n ``` \nThe snippet above will delete the cookie named 'my_test_cookie'.\n\n\nParameters\n----------\n\n\nThis tag accepts no parameters.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [set_cookie](set_cookie.html)\n\n* [get_cookie](get_cookie.html)\n\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:delete_cookie 'my_test_cookie' /> \n ```\n==============\n\n\nThe **delete_cookie** tag can be used to delete any cookie created using the **set_cookie** tag.\n\n\n\n ```html \n<cms:delete_cookie 'my_test_cookie' />\n\n ``` \nThe snippet above will delete the cookie named 'my_test_cookie'.\n\n\nParameters\n----------\n\n\nThis tag accepts no parameters.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [set_cookie](set_cookie.html)\n\n* [get_cookie](get_cookie.html)\n\n\n\n'",
+            "attributes": [
+                {
+                    "name": "cookieName"
+                }
+            ]
         },
         {
             "name": "cms:div",
-            "description": "b'div\n===\n\n\nThe **div** tag accepts two parameters and returns as its output the value obtained after dividing the first parameter by the second parameter.  \n\nThe parameters may be literal strings, variables or output of other tags.\n\n\n\n ```html \n<cms:div my_count '5' />\n\n ``` \nThe snippet divides by 5 whatever value is contained within *my_count* variable and outputs the resulting value.\n\n\nParameters\n----------\n\n\nThe tag expects two parameters as the operands for division.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n* [decr](decr.html)\n\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:div my_count '5' /> \n ```\n===\n\n\nThe **div** tag accepts two parameters and returns as its output the value obtained after dividing the first parameter by the second parameter.  \n\nThe parameters may be literal strings, variables or output of other tags.\n\n\n\n ```html \n<cms:div my_count '5' />\n\n ``` \nThe snippet divides by 5 whatever value is contained within *my_count* variable and outputs the resulting value.\n\n\nParameters\n----------\n\n\nThe tag expects two parameters as the operands for division.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n* [decr](decr.html)\n\n\n\n'",
+            "attributes": [
+                {
+                    "name": "div-value1",
+                    "description": "The parameters may be literal strings, variables or output of other tags.",
+                    "values": [
+                        {
+                            "name": "var"
+                        },
+                        {
+                            "name": "int"
+                        }
+                    ]
+                },
+                {
+                    "name": "div-value2",
+                    "description": "The parameters may be literal strings, variables or output of other tags.",
+                    "values": [
+                        {
+                            "name": "var"
+                        },
+                        {
+                            "name": "int"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "cms:dropdownfolders",
-            "description": "b'dropdownfolders\n===============\n\n\nThe **dropdownfolders** tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template.\n\n\n\n ```html \n<cms:dropdownfolders masterpage='news.php' />\n\n ``` \nParameters\n----------\n\n\nSupports the same parameter as the **folders** tag. In addition, takes one more parameter - *show_count*.\n\n\n\n\n* masterpage\n\n* root\n\n* childof\n\n* hierarchical\n\n* depth\n\n* orderby\n\n* order\n\n* exclude\n\n* extended_info\n\n* show_count\n\n\n\nPlease see the [**folders**](folders.html) documentation for an explanation of these parameters.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folder](folder.html)\n\n* [folders](folders.html)\n\n* [listfolders](listfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n* [breadcrumbs](breadcrumbs.html)\n\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:dropdownfolders masterpage='news.php' /> \n ```\n===============\n\n\nThe **dropdownfolders** tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template.\n\n\n\n ```html \n<cms:dropdownfolders masterpage='news.php' />\n\n ``` \nParameters\n----------\n\n\nSupports the same parameter as the **folders** tag. In addition, takes one more parameter - *show_count*.\n\n\n\n\n* masterpage\n\n* root\n\n* childof\n\n* hierarchical\n\n* depth\n\n* orderby\n\n* order\n\n* exclude\n\n* extended_info\n\n* show_count\n\n\n\nPlease see the [**folders**](folders.html) documentation for an explanation of these parameters.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folder](folder.html)\n\n* [folders](folders.html)\n\n* [listfolders](listfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n* [breadcrumbs](breadcrumbs.html)\n\n\n\n'",
+            "attributes": [
+                {
+                    "name": "masterpage",
+                    "description": "This parameter can be used to specify the template the folders of which are to be enumerated. If skipped, the template this tag is being used from is used.",
+                    "values": [
+                        {
+                            "name": "k_template_name"
+                        }
+                    ]
+                },
+                {
+                    "name": "root",
+                    "description": "Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. The folder specified as the root is returned along with all its children.",
+                    "values": [
+                        {
+                            "name": "folder"
+                        }
+                    ]
+                },
+                {
+                    "name": "childof",
+                    "description": "Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. Only the children of the specified folder are returned.",
+                    "values": [
+                        {
+                            "name": "folder"
+                        }
+                    ]
+                },
+                {
+                    "name": "hierarchical",
+                    "description": "By setting this parameter the folders tag can be made to enumerate the folders in their hierarchical order. If skipped, the folders are enumerated in the alphabetical order of their names.",
+                    "values": [
+                        {
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
+                        }
+                    ]
+                },
+                {
+                    "name": "depth",
+                    "description": "This parameter can be set to specify the maximum level in hierarchy (i.e. depth) that will be reached during enumeration. This can be used, for example, to list only the top folders in the tree by setting the depth to 1. A depth of 0 means unlimited depth.",
+                    "values": [
+                        {
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
+                        },
+                        {
+                            "name": "int"
+                        }
+                    ]
+                },
+                {
+                    "name": "orderby",
+                    "description": "This parameter can be set to order the enumerated folders according to the following- name, title, id, count or weight. If skipped, name is used as default.",
+                    "values": [
+                        {
+                            "name": "name"
+                        },
+                        {
+                            "name": "title"
+                        },
+                        {
+                            "name": "id"
+                        },
+                        {
+                            "name": "count"
+                        },
+                        {
+                            "name": "weight"
+                        }
+                    ]
+                },
+                {
+                    "name": "order",
+                    "description": "Can be set to specify whether the enumerated folders are ordered in the ascending order or in descending order. Valid values are asc and desc. Default is asc.",
+                    "values": [
+                        {
+                            "name": "asc"
+                        },
+                        {
+                            "name": "desc"
+                        }
+                    ]
+                },
+                {
+                    "name": "exclude",
+                    "description": " Folders can be excluded from being enumerated by specifying them with this parameter. If an excluded folder has children, they are excluded too. If multiple folders are to be excluded, separate them with comma.",
+                    "values": [
+                        {
+                            "name": "folderName"
+                        }
+                    ]
+                },
+                {
+                    "name": "show_count",
+                    "description": "Show count of pages within folder.",
+                    "values": [
+                        {
+                            "name": "0"
+                        },
+                        {
+                            "name": "1"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "name": "cms:dump",
-            "description": "b'dump\n====\n\n\nThe **dump** tag is used to output all variables (system or otherwise) that are present in the immediate context of the location it is invoked from.\n\n\nAs an example, the following snippet is using the **pages** tag nested within the **folders** tag to create a list of all folders and a list of pages that are present within each folder -\n\n\n\n ```html \n<cms:folders masterpage='news.php' hierarchical='1'>\n <H3><cms:show k_folder_title /></H3>\n <cms:if k_folder_pagecount >\n <UL>\n <cms:pages masterpage=\"news.php\" folder=k_folder_name include_subfolders='0'>\n <LI><a href=\"<cms:show k_page_link />\"><cms:show k_page_title /></a></LI>\n </cms:pages>\n </UL>\n </cms:if>\n</cms:folders>\n\n ``` \nIf we place three dump tags at the following locations -\n\n\n\n ```html \n<cms:dump />\n<cms:folders masterpage='news.php' hierarchical='1'>\n <H3><cms:show k_folder_title /></H3>\n <cms:dump />\n <cms:if k_folder_pagecount >\n <UL>\n <cms:pages masterpage=\"news.php\" folder=k_folder_name include_subfolders='0'>\n <cms:dump />\n <LI><a href=\"<cms:show k_page_link />\"><cms:show k_page_title /></a></LI>\n </cms:pages>\n </UL>\n </cms:if>\n</cms:folders>\n\n ``` \n- the first **dump** tag will output global variables (said to be in the *root context*) set for the executing page by Couch, the second **dump** tag will output variables set for each iteration by the **folders** tag while the third tag will output variables that are set by the **pages** tag.\n\n\nCompare this with the **dump_all** tag that will output variables belonging to all the contexts that are a part of the hierarchy leading to the current location. Thus for the same example using **dump_all**. instead of **dump**, the first tag would have output global variables belonging to the root context, the second tag would have output variables of the root context followed by the variables set for the current iteration by the **folders** tag and finally the third tag would have output the global variables, the variables set by folders followed by the variables set for the iteration by the **pages** tag.\n\n\nSince, unless specified otherwise, when we use a variable anywhere (e.g. with **show** tag), Couch looks up through the tags hierarchy starting from the tag within the context of which the variable was used, **dump_all** is a very useful tag to visually confirm if the variable is actually set and available anywhere in the hierarachy.\n\n\nThe **dump** tag is very useful to quickly see which variables (along with their current values) are set by a particular tag.\n\n\nParameters\n----------\n\n\nTakes no parameters\n\n\nVariables\n---------\n\n\nIs a self-closing tag and sets no variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [dump_all](dump_all.html)\n\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:dump /> \n ```\n====\n\n\nThe **dump** tag is used to output all variables (system or otherwise) that are present in the immediate context of the location it is invoked from.\n\n\nAs an example, the following snippet is using the **pages** tag nested within the **folders** tag to create a list of all folders and a list of pages that are present within each folder -\n\n\n\n ```html \n<cms:folders masterpage='news.php' hierarchical='1'>\n <H3><cms:show k_folder_title /></H3>\n <cms:if k_folder_pagecount >\n <UL>\n <cms:pages masterpage=\"news.php\" folder=k_folder_name include_subfolders='0'>\n <LI><a href=\"<cms:show k_page_link />\"><cms:show k_page_title /></a></LI>\n </cms:pages>\n </UL>\n </cms:if>\n</cms:folders>\n\n ``` \nIf we place three dump tags at the following locations -\n\n\n\n ```html \n<cms:dump />\n<cms:folders masterpage='news.php' hierarchical='1'>\n <H3><cms:show k_folder_title /></H3>\n <cms:dump />\n <cms:if k_folder_pagecount >\n <UL>\n <cms:pages masterpage=\"news.php\" folder=k_folder_name include_subfolders='0'>\n <cms:dump />\n <LI><a href=\"<cms:show k_page_link />\"><cms:show k_page_title /></a></LI>\n </cms:pages>\n </UL>\n </cms:if>\n</cms:folders>\n\n ``` \n- the first **dump** tag will output global variables (said to be in the *root context*) set for the executing page by Couch, the second **dump** tag will output variables set for each iteration by the **folders** tag while the third tag will output variables that are set by the **pages** tag.\n\n\nCompare this with the **dump_all** tag that will output variables belonging to all the contexts that are a part of the hierarchy leading to the current location. Thus for the same example using **dump_all**. instead of **dump**, the first tag would have output global variables belonging to the root context, the second tag would have output variables of the root context followed by the variables set for the current iteration by the **folders** tag and finally the third tag would have output the global variables, the variables set by folders followed by the variables set for the iteration by the **pages** tag.\n\n\nSince, unless specified otherwise, when we use a variable anywhere (e.g. with **show** tag), Couch looks up through the tags hierarchy starting from the tag within the context of which the variable was used, **dump_all** is a very useful tag to visually confirm if the variable is actually set and available anywhere in the hierarachy.\n\n\nThe **dump** tag is very useful to quickly see which variables (along with their current values) are set by a particular tag.\n\n\nParameters\n----------\n\n\nTakes no parameters\n\n\nVariables\n---------\n\n\nIs a self-closing tag and sets no variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [dump_all](dump_all.html)\n\n\n\n'"
         },
         {
             "name": "cms:dump_all",
-            "description": "b'dump_all\n=========\n\n\nPlease see [**dump**](dump.html) tag for a discussion of this tag.\n\n\nParameters\n----------\n\n\nTakes no parameters.\n\n\nVariables\n---------\n\n\nIs a self-closing tag and sets no variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [dump](dump.html)\n\n\n\n'",
-            "attributes": []
+            "description": "```html \n <cms:dump_all /> \n ```\n=========\n\n\nPlease see [**dump**](dump.html) tag for a discussion of this tag.\n\n\nParameters\n----------\n\n\nTakes no parameters.\n\n\nVariables\n---------\n\n\nIs a self-closing tag and sets no variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [dump](dump.html)\n\n\n\n'"
         },
         {
             "name": "cms:each",
-            "description": "b'each\n====\n\n\nThe **Each** tag, given a string containing values separated by a known separator, splits it up along the separator and returns each value.  \n\nFor example, assume we have a variable 'msg' -\n\n\n\n ```html \n<cms:set msg='hello|world|how|do|you|do' />\n\n ``` \nPassing variable 'msg' as parameter to **each** like this -\n\n\n\n ```html \n<cms:each msg sep='|' >\n <cms:show item /><br>\n</cms:each>\n\n ``` \nwill make available each of the '|' separated words as variable named 'item' (which is then being displayed using **show** tag).\n\n\n\n ```html \nhello\nworld\nhow\ndo\nyou\ndo\n\n ``` \nThe above example could have been written without specifying 'sep', because the default separator is '|'.\n\n\nOne real world scenario for using **each** is while handling submission of forms containing multiple checkboxes. If more than one checkbox is selected, the checkbox variable contains a '|' separated string with values for each selected checkbox.\n\n\nParameters\n----------\n\n\n\n\n* var\n\n* as\n\n* sep\n\n\n\n### var\n\n\nThe string to split. If passed as the first parameter, the name 'var' can be omitted and only the value passed. e.g.\n\n\n\n ```html \n<cms:each var=msg >..</cms:each>\n\n ``` \n\n ```html \n<cms:each msg >..</cms:each>\n\n ``` \nboth of the above are same.\n\n\n### as\n\n\nName of the variable as which each of the values obtained after splitting the string will be made available.  \n\nBy default, the variable is named 'item'.  \n\nIf you wish to use some other name, it can be specified thus -\n\n\n\n ```html \n<cms:each msg as='my_var' >\n <cms:show my_var/><br>\n</cms:each>\n\n ``` \n### sep\n\n\nThe separator along which the provided string is split.  \n\nBy default, the pipe character '|' is assumed as the separator.  \n\nIf any other character is being used in the string, it can be specified this way -\n\n\n\n ```html \n<cms:each msg sep='@' >..</cms:each>\n\n ``` \nVariables\n---------\n\n\n\n\n* item\n\n\n\n### item\n\n\nThis is the default variable that contains the value obtained.  \n\nIf any other variable is specified using the **as** parameter, as explained in parameters, then this variable will not be set.  \n\nThe specified variable will be set instead.\n\n\nRelated Tags\n------------\n\n\n\n\n* [repeat](repeat.html)\n\n* [zebra](zebra.html)\n\n\n\n'",
+            "description": "```html \n <cms:each msg sep='|' ><cms:show item /><br></cms:each> \n ```\n====\n\n\nThe **Each** tag, given a string containing values separated by a known separator, splits it up along the separator and returns each value.  \n\nFor example, assume we have a variable 'msg' -\n\n\n\n ```html \n<cms:set msg='hello|world|how|do|you|do' />\n\n ``` \nPassing variable 'msg' as parameter to **each** like this -\n\n\n\n ```html \n<cms:each msg sep='|' >\n <cms:show item /><br>\n</cms:each>\n\n ``` \nwill make available each of the '|' separated words as variable named 'item' (which is then being displayed using **show** tag).\n\n\n\n ```html \nhello\nworld\nhow\ndo\nyou\ndo\n\n ``` \nThe above example could have been written without specifying 'sep', because the default separator is '|'.\n\n\nOne real world scenario for using **each** is while handling submission of forms containing multiple checkboxes. If more than one checkbox is selected, the checkbox variable contains a '|' separated string with values for each selected checkbox.\n\n\nParameters\n----------\n\n\n\n\n* var\n\n* as\n\n* sep\n\n\n\n### var\n\n\nThe string to split. If passed as the first parameter, the name 'var' can be omitted and only the value passed. e.g.\n\n\n\n ```html \n<cms:each var=msg >..</cms:each>\n\n ``` \n\n ```html \n<cms:each msg >..</cms:each>\n\n ``` \nboth of the above are same.\n\n\n### as\n\n\nName of the variable as which each of the values obtained after splitting the string will be made available.  \n\nBy default, the variable is named 'item'.  \n\nIf you wish to use some other name, it can be specified thus -\n\n\n\n ```html \n<cms:each msg as='my_var' >\n <cms:show my_var/><br>\n</cms:each>\n\n ``` \n### sep\n\n\nThe separator along which the provided string is split.  \n\nBy default, the pipe character '|' is assumed as the separator.  \n\nIf any other character is being used in the string, it can be specified this way -\n\n\n\n ```html \n<cms:each msg sep='@' >..</cms:each>\n\n ``` \nVariables\n---------\n\n\n\n\n* item\n\n\n\n### item\n\n\nThis is the default variable that contains the value obtained.  \n\nIf any other variable is specified using the **as** parameter, as explained in parameters, then this variable will not be set.  \n\nThe specified variable will be set instead.\n\n\nRelated Tags\n------------\n\n\n\n\n* [repeat](repeat.html)\n\n* [zebra](zebra.html)\n\n\n\n'",
             "attributes": [
                 {
                     "name": "var",
                     "description": "The string to split. If passed as the first parameter, the name 'var' can be omitted and only the value passed. e.g.\n\n\n ```html \n<cms:each var=msg >..</cms:each> \n ``` \n\n ```html \n<cms:each msg >..</cms:each> \n ``` \nboth of the above are same.\n\n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "string"
                         }
                     ]
                 },
@@ -485,7 +793,7 @@
                     "description": "Name of the variable as which each of the values obtained after splitting the string will be made available.  \n By default, the variable is named 'item'.  \n If you wish to use some other name, it can be specified thus -\n\n\n ```html \n<cms:each msg as='my_var' > <cms:show my_var/><br> </cms:each> \n ``` \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "var"
                         }
                     ]
                 },
@@ -494,7 +802,10 @@
                     "description": "The separator along which the provided string is split.  \n By default, the pipe character '|' is assumed as the separator.  \n If any other character is being used in the string, it can be specified this way -\n\n\n ```html \n<cms:each msg sep='@' >..</cms:each> \n ``` \nVariables\n---------\n\n\n * item\n \n",
                     "values": [
                         {
-                            "name": ""
+                            "name": "|"
+                        },
+                        {
+                            "name": "char"
                         }
                     ]
                 }
@@ -1746,7 +2057,7 @@
                 },
                 {
                     "name": "custom_field",
-                    "description":"The editable regions defined for a template can be used to fetch cloned pages that contain certain values within those editable regions (custom fields) -\n\n    <cms:pages masterpage='blog.php' custom_field='my_blog_author=jeffrey'></cms:pages>\n    \n\nThis example would fetch all cloned pages of blog.php where the editable region 'my\\_blog\\_author' contained the word 'jeffrey' anywhere within it.\n\nTo fetch those pages where the editable region 'my\\_blog\\_author' exactly matches the term 'jeffrey', use '==' instead of '='. Thus -\n\n    <cms:pages masterpage='blog.php' custom_field='my_blog_author==jeffrey'></cms:pages>\n    \n\n    <cms:pages masterpage='blog.php' custom_field='my_blog_author==jeffrey, arthur'></cms:pages>\n    \n\nThis example would fetch all cloned pages of blog.php where the editable region 'my\\_blog\\_author' exactly matches either the term 'jeffrey' or 'arthur'.\n\nSince a comma ',' is being used to separate two values, if any of the values contains a comma within itself you'll have to 'escape' the comma by prepending it with a backward slash - 'my\\_blog\\_text=veni, vidi, veci' - contains any of the terms veni, vidi or veci 'my\\_blog\\_text=veni\\\\, vidi\\\\, veci' - contains the phrase 'veni, vidi, veci'.\n\nSimilarly if any of the values contains a single quote ''' or double quote '\"', it can be escaped likewise.",
+                    "description": "The editable regions defined for a template can be used to fetch cloned pages that contain certain values within those editable regions (custom fields) -\n\n    <cms:pages masterpage='blog.php' custom_field='my_blog_author=jeffrey'></cms:pages>\n    \n\nThis example would fetch all cloned pages of blog.php where the editable region 'my\\_blog\\_author' contained the word 'jeffrey' anywhere within it.\n\nTo fetch those pages where the editable region 'my\\_blog\\_author' exactly matches the term 'jeffrey', use '==' instead of '='. Thus -\n\n    <cms:pages masterpage='blog.php' custom_field='my_blog_author==jeffrey'></cms:pages>\n    \n\n    <cms:pages masterpage='blog.php' custom_field='my_blog_author==jeffrey, arthur'></cms:pages>\n    \n\nThis example would fetch all cloned pages of blog.php where the editable region 'my\\_blog\\_author' exactly matches either the term 'jeffrey' or 'arthur'.\n\nSince a comma ',' is being used to separate two values, if any of the values contains a comma within itself you'll have to 'escape' the comma by prepending it with a backward slash - 'my\\_blog\\_text=veni, vidi, veci' - contains any of the terms veni, vidi or veci 'my\\_blog\\_text=veni\\\\, vidi\\\\, veci' - contains the phrase 'veni, vidi, veci'.\n\nSimilarly if any of the values contains a single quote ''' or double quote '\"', it can be escaped likewise.",
                     "values": [
                         {
                             "name": ""
