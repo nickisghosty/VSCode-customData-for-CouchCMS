@@ -12,7 +12,7 @@ There are a few methods of using this code.
 
 2. You can clone this repo and then either open the directory you cloned this with VSCode or change directory in your command line to where you cloned this and type "code ." to open the repo in VSCode. Once there head to the debug section and click run extension.
 
-3. (Recommended) Open VSCode and search for and install the extension "CouchCMS Intellisense". This method is the easiest and most permanent. Meaning you only have to do this a single time and it'll be good any time you open up VSCode unlike as with the other methods(1 and 2) where any new project/workspace you'll need to repeat process.
+3. (Recommended) Open VSCode and search for and install the extension "couchcms customdata". This method is the easiest and most permanent. Meaning you only have to do this a single time and it'll be good any time you open up VSCode unlike as with the other methods(1 and 2) where any new project/workspace you'll need to repeat process.
 
 ## TROUBLESHOOTING
 
