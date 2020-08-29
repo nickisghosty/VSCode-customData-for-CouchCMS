@@ -1,0 +1,17 @@
+{
+	"name": "couchcms-customdata-html",
+	"description": "Custom Data extension for CouchCMS custom html support in VS Code",
+	"version": "0.0.1",
+	"publisher": "nickisghosty",
+	"repository": "https://github.com/nickisghosty/VSCode-customData-for-CouchCMS",
+	"engines": {
+		"vscode": "^1.38.0"
+	},
+	"contributes": {
+		"html": {
+			"customData": [
+				"./html.html-data.json"
+			]
+		}
+	}
+}

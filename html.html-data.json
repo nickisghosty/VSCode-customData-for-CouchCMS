@@ -34,7 +34,7 @@
                 {
                     "name": "${querystring:'${1:param1}=${2:someval}${3:&${4:param2}=${5:otherval}}}' ",
                     "description": "The querystring to be appended to the link. It there are multiple parameters in the querystring, separate them by '&'. \n Eg.\n > <cms:add_querystring k_page_link **'param1=someval&param2=otherval'** />",
-                "valueSet": "v"
+                    "valueSet": "v"
                 }
             ]
         },
@@ -237,35 +237,33 @@
         },
         {
             "name": "cms:concat",
-            "description": "```html \n <cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' /> \n ```\n======\n\n\nThe **Concat** tag is a utility tag that can be used to concatenate several values together into a single variable.\n\n\nFor example, suppose we have two variables 'first_name' and 'last_name'.\n\n\n\n ```html \n<cms:set first_name = 'John' />\n<cms:set last_name = 'Doe' />\n\n ``` \nTo set a variable, 'welcome_message' to 'Hello John Doe! We welcome you!', using both the variables, we can do either this -\n\n\n\n ```html \n<cms:set welcome_message=\"hello <cms:show first_name/> <cms:show last_name/>! We welcome you!\" />\n\n ``` \nor use **concat** as follows -\n\n\n\n ```html \n<cms:set welcome_message=\"<cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' />\" />\n\n ``` \nHere we supply **concat** with all parts of the string as unnamed parameters separated by spaces (i.e. 'Hello ', first_name, ' ', last_name, and '! We welcome you!' with space between each as separator) and **concat** simply returns back the concatenated string.\n\n\n\n If many values are supplied to **concat**, the code sometimes becomes a little difficult to comprehend (as might be the case in the snippet above) because the only demarcation between the parameters is the space.  \n\n  \n\n In such cases, we can try naming the parameters (any arbitrary names can be used). Thus the above snippet could be written as -  \n\n  \n\n\n ```html \n<cms:set welcome_message=\"<cms:concat p1='Hello ' p2=first_name p3=' ' p4=last_name p5='! We welcome you!' />\" />\n ``` \n\n Hopefully that should make the snippet more legible.\n\n\n\n\n One benefit of **concat** over the first method is that it avoids using '<cms:show />' with all variables used within the string.  \n\n  \n\n Another is that we can use '\\n' and '\\t' for inserting newline and tab characters in the string. For example -  \n\n  \n\n\n ```html \n<cms:set msg = \"<cms:concat 'item_name: ' pp_item_name '\\n'\n 'item_number: ' pp_item_number '\\n'\n 'quantity: ' pp_quantity />\" />\n ``` \n\n In the snippet above, 'msg' variable is being set in response to a successful PayPal transaction and will then be emailed.\n\n\n\nParameters\n----------\n\n\nConcat takes any number of unnamed parameters (either literal strings or variables) and returns back a single string containing the concatenated values.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\n'"
+            "description": "```html \n <cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' /> \n ```\n======\n\n\nThe **Concat** tag is a utility tag that can be used to concatenate several values together into a single variable.\n\n\nFor example, suppose we have two variables 'first_name' and 'last_name'.\n\n\n\n ```html \n<cms:set first_name = 'John' />\n<cms:set last_name = 'Doe' />\n\n ``` \nTo set a variable, 'welcome_message' to 'Hello John Doe! We welcome you!', using both the variables, we can do either this -\n\n\n\n ```html \n<cms:set welcome_message=\"hello <cms:show first_name/> <cms:show last_name/>! We welcome you!\" />\n\n ``` \nor use **concat** as follows -\n\n\n\n ```html \n<cms:set welcome_message=\"<cms:concat 'Hello ' first_name ' ' last_name '! We welcome you!' />\" />\n\n ``` \nHere we supply **concat** with all parts of the string as unnamed parameters separated by spaces (i.e. 'Hello ', first_name, ' ', last_name, and '! We welcome you!' with space between each as separator) and **concat** simply returns back the concatenated string.\n\n\n\n If many values are supplied to **concat**, the code sometimes becomes a little difficult to comprehend (as might be the case in the snippet above) because the only demarcation between the parameters is the space.  \n\n  \n\n In such cases, we can try naming the parameters (any arbitrary names can be used). Thus the above snippet could be written as -  \n\n  \n\n\n ```html \n<cms:set welcome_message=\"<cms:concat p1='Hello ' p2=first_name p3=' ' p4=last_name p5='! We welcome you!' />\" />\n ``` \n\n Hopefully that should make the snippet more legible.\n\n\n\n\n One benefit of **concat** over the first method is that it avoids using '<cms:show />' with all variables used within the string.  \n\n  \n\n Another is that we can use '\\n' and '\\t' for inserting newline and tab characters in the string. For example -  \n\n  \n\n\n ```html \n<cms:set msg = \"<cms:concat 'item_name: ' pp_item_name '\\n'\n 'item_number: ' pp_item_number '\\n'\n 'quantity: ' pp_quantity />\" />\n ``` \n\n In the snippet above, 'msg' variable is being set in response to a successful PayPal transaction and will then be emailed.\n\n\n\nParameters\n----------\n\n\nConcat takes any number of unnamed parameters (either literal strings or variables) and returns back a single string containing the concatenated values.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\n'",
+            "attributes": [
+                {
+                    "name": "${string:'$1'} ",
+                    "description": "String surrounded by single quotes \n Eg. \n > <cms:concat ##'Hello '##",
+                    "valueSet": "v"
+                },
+                {
+                    "name": "${variable:$1} ",
+                    "description": "Either a user set variable or a system variable. \n Eg \n > <cms:concat 'Hello ' ##first_name## \n or \n > <cms:concat 'You are in the ' ##k_folder_name## ' folder.'",
+                    "valueSet": "v"
+                },
+                {
+                    "name": "${output:\"$1\"} ",
+                    "description": "Output of another tag surrounded by double quotes.\n Eg.\n > <cms:concat 'Hello ' \"##<cms:show first_name />\"##",
+                    "valueSet": "v"
+                }
+            ]
         },
         {
             "name": "cms:content_type",
             "description": "```html \n <cms:content_type 'text/xml' /> \n ```\n=============\n\n\nThe **content_type** tag can be used to make the web server send back the contents with the desired Content-Type in the HTTP header.  \n\nBy default every web page is send back as '*text/html*'.\n\n\nAs an example, the RSS feed requires it content type to be set as '*text/xml*' for the browsers to properly recognize the feed. The following snippet does the job -\n\n\n\n ```html \n<cms:content_type 'text/xml' />\n\n ``` \nPlease see [**Core Concepts - RSS Feeds**](../concepts/rss-feeds.html) for an example of the usage of this tag.\n\n\nParameters\n----------\n\n\n\n\n* value\n\n\n\n### value\n\n\nThe desired content type. Some example values are '*text/xml*', '*text/plain*', '*text/css*', '*image/gif*', '*application/pdf*' and '*application/zip*'.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
             "attributes": [
                 {
-                    "name": "value",
-                    "description": "The desired content type. Some example values are '*text/xml*', '*text/plain*', '*text/css*', '*image/gif*', '*application/pdf*' and '*application/zip*'.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n",
-                    "values": [
-                        {
-                            "name": "text/html"
-                        },
-                        {
-                            "name": "text/plain"
-                        },
-                        {
-                            "name": "text/css"
-                        },
-                        {
-                            "name": "image/gif"
-                        },
-                        {
-                            "name": "application/pdf"
-                        },
-                        {
-                            "name": "application/zip"
-                        }
-                    ]
+                    "name": "'${1|text/xml,text/plain,text/css,image/gif,application/pdf,application/zip|}' ",
+                    "description": "The desired content type. Some example values are '*text/xml*', '*text/plain*', '*text/css*', '*image/gif*', '*application/pdf*' and '*application/zip*'.",
+                    "valueSet": "v"
                 }
             ]
         },
@@ -274,89 +272,34 @@
             "description": "```html \n <cms:date k_page_date format='jS M, Y' /> \n ```\n====\n\n\nThe **date** tag outputs a string according to the given *format* parameter using the given *date* parameter. If no *date* provided, the current time is used.\n\n\n\n ```html \n<cms:date />\n\n ``` \n\n ```html \n<cms:date k_page_date />\n\n ``` \n\n ```html \n<cms:date k_page_date format='jS M, Y' />\n\n ``` \nParameters\n----------\n\n\n\n\n* date\n\n* format\n\n* gmt\n\n* locale\n\n* charset\n\n\n\n### date\n\n\nThe date to be formated.  \n\nThis parameter is expected to be in '*Y-m-d H:i:s*' format (e.g. 2010-05-30 21:35:54). All date related variables set by Couch tags, e.g. *k_page_date* etc., are in this format.\n\n\n### format\n\n\nThe **date** tag supports two different types of format characters - locale-aware and non locale-aware.  \n\nWith locale-aware characters, you can specify that the date is to formatted according to, for example, *french* locale or *italian* locale by setting the *locale* parameter.  \n\nThe locale-aware characters all have a % sign prefixed to them.\n\n\nThe locale-aware and the non locale-aware characters cannot be intermixed.\n\n\n#### Non Locale-aware format characters\n\n\n  \n\n\n\n\n\n\nFormat character\nDescription\nExample returned values\n\n\n\n\n***Day***\n---\n---\n\n\n*d*\nDay of the month, 2 digits with leading zeros\n*01* to *31*\n\n\n*D*\nA textual representation of a day, three letters\n*Mon* through *Sun*\n\n\n*j*\nDay of the month without leading zeros\n*1* to *31*\n\n\n*l* (lowercase&nbsp;'L')\nA full textual representation of the day of the week\n*Sunday* through *Saturday*\n\n\n*S*\nEnglish ordinal suffix for the day of the month, 2 characters\n*st*, *nd*, *rd* or *th*. Works well with *j*\n\n\n*w*\nNumeric representation of the day of the week\n*0* (for Sunday) through *6* (for Saturday)\n\n\n*z*\nThe day of the year (starting from 0)\n*0* through *365*\n\n\n***Week***\n---\n---\n\n\n*W*\nISO-8601 week number of year, weeks starting on Monday\nExample: *42* (the 42nd week in the year)\n\n\n***Month***\n---\n---\n\n\n*F*\nA full textual representation of a month, such as January or March\n*January* through *December*\n\n\n*m*\nNumeric representation of a month, with leading zeros\n*01* through *12*\n\n\n*M*\nA short textual representation of a month, three letters\n*Jan* through *Dec*\n\n\n*n*\nNumeric representation of a month, without leading zeros\n*1* through *12*\n\n\n*t*\nNumber of days in the given month\n*28* through *31*\n\n\n***Year***\n---\n---\n\n\n*L*\nWhether it's a leap year\n*1* if it is a leap year, *0* otherwise.\n\n\n*Y*\nA full numeric representation of a year, 4 digits\nExamples: *1999* or *2003*\n\n\n*y*\nA two digit representation of a year\nExamples: *99* or *03*\n\n\n***Time***\n---\n---\n\n\n*a*\nLowercase Ante meridiem and Post meridiem\n*am* or *pm*\n\n\n*A*\nUppercase Ante meridiem and Post meridiem\n*AM* or *PM*\n\n\n*B*\nSwatch Internet time\n*000* through *999*\n\n\n*g*\n12-hour format of an hour without leading zeros\n*1* through *12*\n\n\n*G*\n24-hour format of an hour without leading zeros\n*0* through *23*\n\n\n*h*\n12-hour format of an hour with leading zeros\n*01* through *12*\n\n\n*H*\n24-hour format of an hour with leading zeros\n*00* through *23*\n\n\n*i*\nMinutes with leading zeros\n*00* to *59*\n\n\n*s*\nSeconds, with leading zeros\n*00* through *59*\n\n\n***Timezone***\n---\n---\n\n\n*I* (capital&nbsp;'i')\nWhether or not the date is in daylight saving time\n*1* if Daylight Saving Time, *0* otherwise.\n\n\n*O*\nDifference to Greenwich time (GMT) in hours\nExample: *+0200*\n\n\n*T*\nTimezone abbreviation\nExamples: *EST*, *MDT*\n\n\n*Z*\nTimezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.\n*-43200* through *50400*\n\n\n***Full&nbsp;Date/Time***\n---\n---\n\n\n*r*\n[RFC 2822](http://www.faqs.org/rfcs/rfc2822) formatted date\nExample: *Thu, 21 Dec 2000 16:01:07 +0200*\n\n\n*U*\nSeconds since the Unix Epoch (January 1 1970 00:00:00 GMT)\n\n\n\n  \n\n\n\n#### Locale-aware format characters\n\n\n  \n\n\n\n\n\n\nFormat Character\nDescription\nExample returned values\n\n\n\n\n***Day***\n---\n---\n\n\n*%a*\nAn abbreviated textual representation of the day\n*Sun* through *Sat*\n\n\n*%A*\nA full textual representation of the day\n*Sunday* through *Saturday*\n\n\n*%d*\nTwo-digit day of the month (with leading zeros)\n*01* to *31*\n\n\n*%e*\nDay of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information.\n*1* to *31*\n\n\n*%j*\nDay of the year, 3 digits with leading zeros\n*001* to *366*\n\n\n*%u*\nISO-8601 numeric representation of the day of the week\n*1* (for Monday) though *7* (for Sunday)\n\n\n*%w*\nNumeric representation of the day of the week\n*0* (for Sunday) through *6* (for Saturday)\n\n\n***Week***\n---\n---\n\n\n*%U*\nWeek number of the given year, starting with the first Sunday as the first week\n*13* (for the 13th full week of the year)\n\n\n*%V*\nISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week\n*01* through *53* (where 53 accounts for an overlapping week)\n\n\n*%W*\nA numeric representation of the week of the year, starting with the first Monday as the first week\n*46* (for the 46th week of the year beginning with a Monday)\n\n\n***Month***\n---\n---\n\n\n*%b*\nAbbreviated month name, based on the locale\n*Jan* through *Dec*\n\n\n*%B*\nFull month name, based on the locale\n*January* through *December*\n\n\n*%h*\nAbbreviated month name, based on the locale (an alias of %b)\n*Jan* through *Dec*\n\n\n*%m*\nTwo digit representation of the month\n*01* (for January) through *12* (for December)\n\n\n***Year***\n---\n---\n\n\n*%C*\nTwo digit representation of the century (year divided by 100, truncated to an integer)\n*19* for the 20th Century\n\n\n*%g*\nTwo digit representation of the year going by ISO-8601:1988 standards (see %V)\nExample: *09* for the week of January 6, 2009\n\n\n*%G*\nThe full four-digit version of %g\nExample: *2008* for the week of January 3, 2009\n\n\n*%y*\nTwo digit representation of the year\nExample: *09* for 2009, *79* for 1979\n\n\n*%Y*\nFour digit representation for the year\nExample: *2038*\n\n\n***Time***\n---\n---\n\n\n*%H*\nTwo digit representation of the hour in 24-hour format\n*00* through *23*\n\n\n*%I*\nTwo digit representation of the hour in 12-hour format\n*01* through *12*\n\n\n*%l* (lower-case&nbsp;'L')\nHour in 12-hour format, with a space preceeding single digits\n*1* through *12*\n\n\n*%M*\nTwo digit representation of the minute\n*00* through *59*\n\n\n*%p*\nUPPER-CASE 'AM' or 'PM' based on the given time\nExample: *AM* for 00:31, *PM* for 22:23\n\n\n*%P*\nlower-case 'am' or 'pm' based on the given time\nExample: *am* for 00:31, *pm* for 22:23\n\n\n*%r*\nSame as \"%I:%M:%S %p\"\nExample: *09:34:17 PM* for 21:34:17\n\n\n*%R*\nSame as \"%H:%M\"\nExample: *00:35* for 12:35 AM, *16:44* for 4:44 PM\n\n\n*%S*\nTwo digit representation of the second\n*00* through *59*\n\n\n*%T*\nSame as \"%H:%M:%S\"\nExample: *21:34:17* for 09:34:17 PM\n\n\n*%X*\nPreferred time representation based on locale, without the date\nExample: *03:59:16* or *15:59:16*\n\n\n*%z*\nEither the time zone offset from UTC or the abbreviation (depends on operating system)\nExample: *-0500* or *EST* for Eastern Time\n\n\n*%Z*\nThe time zone offset/abbreviation option NOT given by %z (depends on operating system)\nExample: *-0500* or *EST* for Eastern Time\n\n\n***Time&nbsp;and&nbsp;Date&nbsp;Stamps***\n---\n---\n\n\n*%c*\nPreferred date and time stamp based on local\nExample: *Tue Feb 5 00:45:10 2009* for February 4, 2009 at 12:45:10 AM\n\n\n*%D*\nSame as \"%m/%d/%y\"\nExample: *02/05/09* for February 5, 2009\n\n\n*%F*\nSame as \"%Y-%m-%d\" (commonly used in database datestamps)\nExample: *2009-02-05* for February 5, 2009\n\n\n*%s*\nUnix Epoch Time timestamp\nExample: *305815200* for September 10, 1979 08:40:00 AM\n\n\n*%x*\nPreferred date representation based on locale, without the time\nExample: *02/05/09* for February 5, 2009\n\n\n***Miscellaneous***\n---\n---\n\n\n*%n*\nA newline character (\"\\n\")\n---\n\n\n*%t*\nA Tab character (\"\\t\")\n---\n\n\n*%%*\nA literal percentage character (\"%\")\n---\n\n\n\n  \n\n\n\n### gmt\n\n\nBy setting this parameter to '1', you can get the GMT equivalent of the date provided.\n\n\n### locale\n\n\nIf you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' />\n\n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' />\n\n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n\n### charset\n\n\nSome locales do not provide their output in UTF8 character set. This causes strange ?? characters to appear in the output.  \n\nThe **date** tag can help converting the output to UTF8 if you can provide it with information about the charset used by the locale.\n\n\nFor example -\n\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='greek' charset='ISO-8859-7' />\n\n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='russian' charset='ISO-8859-5' />\n\n ``` \nThe following is a rough list of the charset used by different languages -\n\n\n**ISO-8859-1 - Latin 1**  \n\nWestern Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\n\n\n**ISO-8859-2 - Latin 2**  \n\nLatin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene.\n\n\n**ISO-8859-3 - Latin 3**  \n\nEsperanto, Galician, Maltese, and Turkish.\n\n\n**ISO-8859-4 - Latin 4**  \n\nScandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6.\n\n\n**ISO-8859-5 - Cyrillic**  \n\nBulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian.\n\n\n**ISO-8859-6 - Arabic**  \n\nNon-accented Arabic.\n\n\n**ISO-8859-7 - Modern Greek**  \n\nGreek.\n\n\n**ISO-8859-8 - Hebrew**  \n\nNon-accented Hebrew.\n\n\n**ISO-8859-9 - Latin 5**  \n\nSame as 8859-1 except for Turkish instead of Icelandic\n\n\n**ISO-8859-10 - Latin 6**  \n\nLatin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [number_format](number_format.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "date",
+                    "name": "${pageDate:k_page_date}",
                     "description": "The date to be formated.  \n This parameter is expected to be in '*Y-m-d H:i:s*' format (e.g. 2010-05-30 21:35:54). All date related variables set by Couch tags, e.g. *k_page_date* etc., are in this format.\n\n",
-                    "values": [
-                        {
-                            "name": "Y-m-d H:i:s"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "format",
-                    "description": "The **date** tag supports two different types of format characters - locale-aware and non locale-aware.  \n With locale-aware characters, you can specify that the date is to formatted according to, for example, *french* locale or *italian* locale by setting the *locale* parameter.  \n The locale-aware characters all have a % sign prefixed to them.\n\nThe locale-aware and the non locale-aware characters cannot be intermixed.\n\n#### Non Locale-aware format characters\n\n  \n\n\n   Format character Description Example returned values     ***Day*** --- ---   *d* Day of the month, 2 digits with leading zeros *01* to *31*   *D* A textual representation of a day, three letters *Mon* through *Sun*   *j* Day of the month without leading zeros *1* to *31*   *l* (lowercase 'L') A full textual representation of the day of the week *Sunday* through *Saturday*   *S* English ordinal suffix for the day of the month, 2 characters *st*, *nd*, *rd* or *th*. Works well with *j*   *w* Numeric representation of the day of the week *0* (for Sunday) through *6* (for Saturday)   *z* The day of the year (starting from 0) *0* through *365*   ***Week*** --- ---   *W* ISO-8601 week number of year, weeks starting on Monday Example: *42* (the 42nd week in the year)   ***Month*** --- ---   *F* A full textual representation of a month, such as January or March *January* through *December*   *m* Numeric representation of a month, with leading zeros *01* through *12*   *M* A short textual representation of a month, three letters *Jan* through *Dec*   *n* Numeric representation of a month, without leading zeros *1* through *12*   *t* Number of days in the given month *28* through *31*   ***Year*** --- ---   *L* Whether it's a leap year *1* if it is a leap year, *0* otherwise.   *Y* A full numeric representation of a year, 4 digits Examples: *1999* or *2003*   *y* A two digit representation of a year Examples: *99* or *03*   ***Time*** --- ---   *a* Lowercase Ante meridiem and Post meridiem *am* or *pm*   *A* Uppercase Ante meridiem and Post meridiem *AM* or *PM*   *B* Swatch Internet time *000* through *999*   *g* 12-hour format of an hour without leading zeros *1* through *12*   *G* 24-hour format of an hour without leading zeros *0* through *23*   *h* 12-hour format of an hour with leading zeros *01* through *12*   *H* 24-hour format of an hour with leading zeros *00* through *23*   *i* Minutes with leading zeros *00* to *59*   *s* Seconds, with leading zeros *00* through *59*   ***Timezone*** --- ---   *I* (capital 'i') Whether or not the date is in daylight saving time *1* if Daylight Saving Time, *0* otherwise.   *O* Difference to Greenwich time (GMT) in hours Example: *+0200*   *T* Timezone abbreviation Examples: *EST*, *MDT*\u2026   *Z* Timezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. *-43200* through *50400*   ***Full Date/Time*** --- ---   *r* [\u00BB RFC 2822](http://www.faqs.org/rfcs/rfc2822) formatted date Example: *Thu, 21 Dec 2000 16:01:07 +0200*   *U* Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)     \n\n\n#### Locale-aware format characters\n\n  \n\n\n   Format Character Description Example returned values     ***Day*** --- ---   *%a* An abbreviated textual representation of the day *Sun* through *Sat*   *%A* A full textual representation of the day *Sunday* through *Saturday*   *%d* Two-digit day of the month (with leading zeros) *01* to *31*   *%e* Day of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information. *1* to *31*   *%j* Day of the year, 3 digits with leading zeros *001* to *366*   *%u* ISO-8601 numeric representation of the day of the week *1* (for Monday) though *7* (for Sunday)   *%w* Numeric representation of the day of the week *0* (for Sunday) through *6* (for Saturday)   ***Week*** --- ---   *%U* Week number of the given year, starting with the first Sunday as the first week *13* (for the 13th full week of the year)   *%V* ISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week *01* through *53* (where 53 accounts for an overlapping week)   *%W* A numeric representation of the week of the year, starting with the first Monday as the first week *46* (for the 46th week of the year beginning with a Monday)   ***Month*** --- ---   *%b* Abbreviated month name, based on the locale *Jan* through *Dec*   *%B* Full month name, based on the locale *January* through *December*   *%h* Abbreviated month name, based on the locale (an alias of %b) *Jan* through *Dec*   *%m* Two digit representation of the month *01* (for January) through *12* (for December)   ***Year*** --- ---   *%C* Two digit representation of the century (year divided by 100, truncated to an integer) *19* for the 20th Century   *%g* Two digit representation of the year going by ISO-8601:1988 standards (see %V) Example: *09* for the week of January 6, 2009   *%G* The full four-digit version of %g Example: *2008* for the week of January 3, 2009   *%y* Two digit representation of the year Example: *09* for 2009, *79* for 1979   *%Y* Four digit representation for the year Example: *2038*   ***Time*** --- ---   *%H* Two digit representation of the hour in 24-hour format *00* through *23*   *%I* Two digit representation of the hour in 12-hour format *01* through *12*   *%l* (lower-case 'L') Hour in 12-hour format, with a space preceeding single digits *1* through *12*   *%M* Two digit representation of the minute *00* through *59*   *%p* UPPER-CASE 'AM' or 'PM' based on the given time Example: *AM* for 00:31, *PM* for 22:23   *%P* lower-case 'am' or 'pm' based on the given time Example: *am* for 00:31, *pm* for 22:23   *%r* Same as \"%I:%M:%S %p\" Example: *09:34:17 PM* for 21:34:17   *%R* Same as \"%H:%M\" Example: *00:35* for 12:35 AM, *16:44* for 4:44 PM   *%S* Two digit representation of the second *00* through *59*   *%T* Same as \"%H:%M:%S\" Example: *21:34:17* for 09:34:17 PM   *%X* Preferred time representation based on locale, without the date Example: *03:59:16* or *15:59:16*   *%z* Either the time zone offset from UTC or the abbreviation (depends on operating system) Example: *-0500* or *EST* for Eastern Time   *%Z* The time zone offset/abbreviation option NOT given by %z (depends on operating system) Example: *-0500* or *EST* for Eastern Time   ***Time and Date Stamps*** --- ---   *%c* Preferred date and time stamp based on local Example: *Tue Feb 5 00:45:10 2009* for February 4, 2009 at 12:45:10 AM   *%D* Same as \"%m/%d/%y\" Example: *02/05/09* for February 5, 2009   *%F* Same as \"%Y-%m-%d\" (commonly used in database datestamps) Example: *2009-02-05* for February 5, 2009   *%s* Unix Epoch Time timestamp Example: *305815200* for September 10, 1979 08:40:00 AM   *%x* Preferred date representation based on locale, without the time Example: *02/05/09* for February 5, 2009   ***Miscellaneous*** --- ---   *%n* A newline character (\"\n\") ---   *%t* A Tab character (\"\t\") ---   *%%* A literal percentage character (\"%\") ---     \n\n\n",
-                    "values": [
-                        {
-                            "name": "Non Locale-aware",
-                            "description": "Format character \t Description \t Example returned values\r\n        Day \t--- \t---\r\n          d \tDay of the month, 2 digits with leading zeros \t01 to 31\r\n          D \tA textual representation of a day, three letters \tMon through Sun\r\n          j \tDay of the month without leading zeros \t1 to 31\r\n          l (lowercase 'L') \tA full textual representation of the day of the week \tSunday through Saturday\r\n          S \tEnglish ordinal suffix for the day of the month, 2 characters \tst, nd, rd or th. Works well with j\r\n          w \tNumeric representation of the day of the week \t0 (for Sunday) through 6 (for Saturday)\r\n          z \tThe day of the year (starting from 0) \t0 through 365\r\n        Week \t--- \t---\r\n          W \tISO-8601 week number of year, weeks starting on Monday \tExample: 42 (the 42nd week in the year)\r\n        Month \t--- \t---\r\n          F \tA full textual representation of a month, such as January or March \tJanuary through December\r\n          m \tNumeric representation of a month, with leading zeros \t01 through 12\r\n          M \tA short textual representation of a month, three letters \tJan through Dec\r\n          n \tNumeric representation of a month, without leading zeros \t1 through 12\r\n          t \tNumber of days in the given month \t28 through 31\r\n        Year \t--- \t---\r\n          L \tWhether it's a leap year \t1 if it is a leap year, 0 otherwise.\r\n          Y \tA full numeric representation of a year, 4 digits \tExamples: 1999 or 2003\r\n          y \tA two digit representation of a year \tExamples: 99 or 03\r\n        Time \t--- \t---\r\n          a \tLowercase Ante meridiem and Post meridiem \tam or pm\r\n          A \tUppercase Ante meridiem and Post meridiem \tAM or PM\r\n          B \tSwatch Internet time \t000 through 999\r\n          g \t12-hour format of an hour without leading zeros \t1 through 12\r\n          G \t24-hour format of an hour without leading zeros \t0 through 23\r\n          h \t12-hour format of an hour with leading zeros \t01 through 12\r\n          H \t24-hour format of an hour with leading zeros \t00 through 23\r\n          i \tMinutes with leading zeros \t00 to 59\r\n          s \tSeconds, with leading zeros \t00 through 59\r\n        Timezone \t--- \t---\r\n          I (capital 'i') \tWhether or not the date is in daylight saving time \t1 if Daylight Saving Time, 0 otherwise.\r\n          O \tDifference to Greenwich time (GMT) in hours \tExample: +0200\r\n          T \tTimezone abbreviation \tExamples: EST, MDT…\r\n          Z \tTimezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive. \t-43200 through 50400\r\n        Full Date/Time \t--- \t---\r\n          r \t» RFC 2822 formatted date \tExample: Thu, 21 Dec 2000 16:01:07 +0200\r\n          U \tSeconds since the Unix Epoch (January 1 1970 00:00:00 GMT)\r\n"
-                        },
-                        {
-                            "name": "Locale-aware",
-                            "description": "Format Character \tDescription \tExample returned values\r\n        Day \t--- \t---\r\n          %a \tAn abbreviated textual representation of the day \tSun through Sat\r\n          %A \tA full textual representation of the day \tSunday through Saturday\r\n          %d \tTwo-digit day of the month (with leading zeros) \t01 to 31\r\n          %e \tDay of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information. \t1 to 31\r\n          %j \tDay of the year, 3 digits with leading zeros \t001 to 366\r\n          %u \tISO-8601 numeric representation of the day of the week \t1 (for Monday) though 7 (for Sunday)\r\n          %w \tNumeric representation of the day of the week \t0 (for Sunday) through 6 (for Saturday)\r\n        Week \t--- \t---\r\n          %U \tWeek number of the given year, starting with the first Sunday as the first week \t13 (for the 13th full week of the year)\r\n          %V \tISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week \t01 through 53 (where 53 accounts for an overlapping week)\r\n          %W \tA numeric representation of the week of the year, starting with the first Monday as the first week \t46 (for the 46th week of the year beginning with a Monday)\r\n        Month \t--- \t---\r\n          %b \tAbbreviated month name, based on the locale \tJan through Dec\r\n          %B \tFull month name, based on the locale \tJanuary through December\r\n          %h \tAbbreviated month name, based on the locale (an alias of %b) \tJan through Dec\r\n          %m \tTwo digit representation of the month \t01 (for January) through 12 (for December)\r\n        Year \t--- \t---\r\n          %C \tTwo digit representation of the century (year divided by 100, truncated to an integer) \t19 for the 20th Century\r\n          %g \tTwo digit representation of the year going by ISO-8601:1988 standards (see %V) \tExample: 09 for the week of January 6, 2009\r\n          %G \tThe full four-digit version of %g \tExample: 2008 for the week of January 3, 2009\r\n          %y \tTwo digit representation of the year \tExample: 09 for 2009, 79 for 1979\r\n          %Y \tFour digit representation for the year \tExample: 2038\r\n        Time \t--- \t---\r\n          %H \tTwo digit representation of the hour in 24-hour format \t00 through 23\r\n          %I \tTwo digit representation of the hour in 12-hour format \t01 through 12\r\n          %l (lower-case 'L') \tHour in 12-hour format, with a space preceeding single digits \t1 through 12\r\n          %M \tTwo digit representation of the minute \t00 through 59\r\n          %p \tUPPER-CASE 'AM' or 'PM' based on the given time \tExample: AM for 00:31, PM for 22:23\r\n          %P \tlower-case 'am' or 'pm' based on the given time \tExample: am for 00:31, pm for 22:23\r\n          %r \tSame as \"%I:%M:%S %p\" \tExample: 09:34:17 PM for 21:34:17\r\n          %R \tSame as \"%H:%M\" \tExample: 00:35 for 12:35 AM, 16:44 for 4:44 PM\r\n          %S \tTwo digit representation of the second \t00 through 59\r\n          %T \tSame as \"%H:%M:%S\" \tExample: 21:34:17 for 09:34:17 PM\r\n          %X \tPreferred time representation based on locale, without the date \tExample: 03:59:16 or 15:59:16\r\n          %z \tEither the time zone offset from UTC or the abbreviation (depends on operating system) \tExample: -0500 or EST for Eastern Time\r\n          %Z \tThe time zone offset/abbreviation option NOT given by %z (depends on operating system) \tExample: -0500 or EST for Eastern Time\r\n        Time and Date Stamps \t--- \t---\r\n          %c \tPreferred date and time stamp based on local \tExample: Tue Feb 5 00:45:10 2009 for February 4, 2009 at 12:45:10 AM\r\n          %D \tSame as \"%m/%d/%y\" \tExample: 02/05/09 for February 5, 2009\r\n          %F \tSame as \"%Y-%m-%d\" (commonly used in database datestamps) \tExample: 2009-02-05 for February 5, 2009\r\n          %s \tUnix Epoch Time timestamp \tExample: 305815200 for September 10, 1979 08:40:00 AM\r\n          %x \tPreferred date representation based on locale, without the time \tExample: 02/05/09 for February 5, 2009\r\n        Miscellaneous \t--- \t---\r\n          %n \tA newline character (\"\\n\") \t---\r\n          %t \tA Tab character (\"\\t\") \t---\r\n          %% \tA literal percentage character (\"%\") \t---\r\n"
-                        }
-                    ]
+                    "name": "${2:'${Y:${3:20${4:20}}}-${m:${5:${6:01}}}-${d:${7:${8:30}}} ${H:${9:${10:21}}}:${m:${11:${12:35}}}:${s:${13:${14:54}}}}'",
+                    "description": "The date to be formated.  (Chose either the k_page_date or manually enter the date. Not both.\n This parameter is expected to be in '*Y-m-d H:i:s*' format (e.g. 2010-05-30 21:35:54). All date related variables set by Couch tags, e.g. *k_page_date* etc., are in this format.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "gmt",
+                    "name": "${format:format}='$1'",
+                    "description": "\n### format\n\nThe **date** tag supports two different types of format characters - locale-aware and non locale-aware.  \nWith locale-aware characters, you can specify that the date is to formatted according to, for example, _french_ locale or _italian_ locale by setting the _locale_ parameter.  \nThe locale-aware characters all have a % sign prefixed to them.\n\nThe locale-aware and the non locale-aware characters cannot be intermixed.\n\n#### Non Locale-aware format characters\n\nFormat character\n\nDescription\n\nExample returned values\n\n_**Day**_\n\n\\---\n\n\\---\n\n_d_\n\nDay of the month, 2 digits with leading zeros\n\n_01_ to _31_\n\n_D_\n\nA textual representation of a day, three letters\n\n_Mon_ through _Sun_\n\n_j_\n\nDay of the month without leading zeros\n\n_1_ to _31_\n\n_l_ (lowercase 'L')\n\nA full textual representation of the day of the week\n\n_Sunday_ through _Saturday_\n\n_S_\n\nEnglish ordinal suffix for the day of the month, 2 characters\n\n_st_, _nd_, _rd_ or _th_. Works well with _j_\n\n_w_\n\nNumeric representation of the day of the week\n\n_0_ (for Sunday) through _6_ (for Saturday)\n\n_z_\n\nThe day of the year (starting from 0)\n\n_0_ through _365_\n\n_**Week**_\n\n\\---\n\n\\---\n\n_W_\n\nISO-8601 week number of year, weeks starting on Monday\n\nExample: _42_ (the 42nd week in the year)\n\n_**Month**_\n\n\\---\n\n\\---\n\n_F_\n\nA full textual representation of a month, such as January or March\n\n_January_ through _December_\n\n_m_\n\nNumeric representation of a month, with leading zeros\n\n_01_ through _12_\n\n_M_\n\nA short textual representation of a month, three letters\n\n_Jan_ through _Dec_\n\n_n_\n\nNumeric representation of a month, without leading zeros\n\n_1_ through _12_\n\n_t_\n\nNumber of days in the given month\n\n_28_ through _31_\n\n_**Year**_\n\n\\---\n\n\\---\n\n_L_\n\nWhether it's a leap year\n\n_1_ if it is a leap year, _0_ otherwise.\n\n_Y_\n\nA full numeric representation of a year, 4 digits\n\nExamples: _1999_ or _2003_\n\n_y_\n\nA two digit representation of a year\n\nExamples: _99_ or _03_\n\n_**Time**_\n\n\\---\n\n\\---\n\n_a_\n\nLowercase Ante meridiem and Post meridiem\n\n_am_ or _pm_\n\n_A_\n\nUppercase Ante meridiem and Post meridiem\n\n_AM_ or _PM_\n\n_B_\n\nSwatch Internet time\n\n_000_ through _999_\n\n_g_\n\n12-hour format of an hour without leading zeros\n\n_1_ through _12_\n\n_G_\n\n24-hour format of an hour without leading zeros\n\n_0_ through _23_\n\n_h_\n\n12-hour format of an hour with leading zeros\n\n_01_ through _12_\n\n_H_\n\n24-hour format of an hour with leading zeros\n\n_00_ through _23_\n\n_i_\n\nMinutes with leading zeros\n\n_00_ to _59_\n\n_s_\n\nSeconds, with leading zeros\n\n_00_ through _59_\n\n_**Timezone**_\n\n\\---\n\n\\---\n\n_I_ (capital 'i')\n\nWhether or not the date is in daylight saving time\n\n_1_ if Daylight Saving Time, _0_ otherwise.\n\n_O_\n\nDifference to Greenwich time (GMT) in hours\n\nExample: _+0200_\n\n_T_\n\nTimezone abbreviation\n\nExamples: _EST_, _MDT_…\n\n_Z_\n\nTimezone offset in seconds. The offset for timezones west of UTC is always negative, and for those east of UTC is always positive.\n\n_\\-43200_ through _50400_\n\n_**Full Date/Time**_\n\n\\---\n\n\\---\n\n_r_\n\n[» RFC 2822](http://www.faqs.org/rfcs/rfc2822) formatted date\n\nExample: _Thu, 21 Dec 2000 16:01:07 +0200_\n\n_U_\n\nSeconds since the Unix Epoch (January 1 1970 00:00:00 GMT)\n\n#### Locale-aware format characters\n\nFormat Character\n\nDescription\n\nExample returned values\n\n_**Day**_\n\n\\---\n\n\\---\n\n_%a_\n\nAn abbreviated textual representation of the day\n\n_Sun_ through _Sat_\n\n_%A_\n\nA full textual representation of the day\n\n_Sunday_ through _Saturday_\n\n_%d_\n\nTwo-digit day of the month (with leading zeros)\n\n_01_ to _31_\n\n_%e_\n\nDay of the month, with a space preceding single digits. Not implemented as described on Windows. See below for more information.\n\n_1_ to _31_\n\n_%j_\n\nDay of the year, 3 digits with leading zeros\n\n_001_ to _366_\n\n_%u_\n\nISO-8601 numeric representation of the day of the week\n\n_1_ (for Monday) though _7_ (for Sunday)\n\n_%w_\n\nNumeric representation of the day of the week\n\n_0_ (for Sunday) through _6_ (for Saturday)\n\n_**Week**_\n\n\\---\n\n\\---\n\n_%U_\n\nWeek number of the given year, starting with the first Sunday as the first week\n\n_13_ (for the 13th full week of the year)\n\n_%V_\n\nISO-8601:1988 week number of the given year, starting with the first week of the year with at least 4 weekdays, with Monday being the start of the week\n\n_01_ through _53_ (where 53 accounts for an overlapping week)\n\n_%W_\n\nA numeric representation of the week of the year, starting with the first Monday as the first week\n\n_46_ (for the 46th week of the year beginning with a Monday)\n\n_**Month**_\n\n\\---\n\n\\---\n\n_%b_\n\nAbbreviated month name, based on the locale\n\n_Jan_ through _Dec_\n\n_%B_\n\nFull month name, based on the locale\n\n_January_ through _December_\n\n_%h_\n\nAbbreviated month name, based on the locale (an alias of %b)\n\n_Jan_ through _Dec_\n\n_%m_\n\nTwo digit representation of the month\n\n_01_ (for January) through _12_ (for December)\n\n_**Year**_\n\n\\---\n\n\\---\n\n_%C_\n\nTwo digit representation of the century (year divided by 100, truncated to an integer)\n\n_19_ for the 20th Century\n\n_%g_\n\nTwo digit representation of the year going by ISO-8601:1988 standards (see %V)\n\nExample: _09_ for the week of January 6, 2009\n\n_%G_\n\nThe full four-digit version of %g\n\nExample: _2008_ for the week of January 3, 2009\n\n_%y_\n\nTwo digit representation of the year\n\nExample: _09_ for 2009, _79_ for 1979\n\n_%Y_\n\nFour digit representation for the year\n\nExample: _2038_\n\n_**Time**_\n\n\\---\n\n\\---\n\n_%H_\n\nTwo digit representation of the hour in 24-hour format\n\n_00_ through _23_\n\n_%I_\n\nTwo digit representation of the hour in 12-hour format\n\n_01_ through _12_\n\n_%l_ (lower-case 'L')\n\nHour in 12-hour format, with a space preceeding single digits\n\n_1_ through _12_\n\n_%M_\n\nTwo digit representation of the minute\n\n_00_ through _59_\n\n_%p_\n\nUPPER-CASE 'AM' or 'PM' based on the given time\n\nExample: _AM_ for 00:31, _PM_ for 22:23\n\n_%P_\n\nlower-case 'am' or 'pm' based on the given time\n\nExample: _am_ for 00:31, _pm_ for 22:23\n\n_%r_\n\nSame as \"%I:%M:%S %p\"\n\nExample: _09:34:17 PM_ for 21:34:17\n\n_%R_\n\nSame as \"%H:%M\"\n\nExample: _00:35_ for 12:35 AM, _16:44_ for 4:44 PM\n\n_%S_\n\nTwo digit representation of the second\n\n_00_ through _59_\n\n_%T_\n\nSame as \"%H:%M:%S\"\n\nExample: _21:34:17_ for 09:34:17 PM\n\n_%X_\n\nPreferred time representation based on locale, without the date\n\nExample: _03:59:16_ or _15:59:16_\n\n_%z_\n\nEither the time zone offset from UTC or the abbreviation (depends on operating system)\n\nExample: _\\-0500_ or _EST_ for Eastern Time\n\n_%Z_\n\nThe time zone offset/abbreviation option NOT given by %z (depends on operating system)\n\nExample: _\\-0500_ or _EST_ for Eastern Time\n\n_**Time and Date Stamps**_\n\n\\---\n\n\\---\n\n_%c_\n\nPreferred date and time stamp based on local\n\nExample: _Tue Feb 5 00:45:10 2009_ for February 4, 2009 at 12:45:10 AM\n\n_%D_\n\nSame as \"%m/%d/%y\"\n\nExample: _02/05/09_ for February 5, 2009\n\n_%F_\n\nSame as \"%Y-%m-%d\" (commonly used in database datestamps)\n\nExample: _2009-02-05_ for February 5, 2009\n\n_%s_\n\nUnix Epoch Time timestamp\n\nExample: _305815200_ for September 10, 1979 08:40:00 AM\n\n_%x_\n\nPreferred date representation based on locale, without the time\n\nExample: _02/05/09_ for February 5, 2009\n\n_**Miscellaneous**_\n\n\\---\n\n\\---\n\n_%n_\n\nA newline character (\"\\\\n\")\n\n\\---\n\n_%t_\n\nA Tab character (\"\\\\t\")\n\n\\---\n\n_%%_\n\nA literal percentage character (\"%\")\n\n\\---\n\n### gmt\n\nBy setting this parameter to '1', you can get the GMT equivalent of the date provided.\n\n### locale\n\nIf you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n    <cms:date k_page_date format='%B %d, %Y' locale='french' />\n    \n\n    <cms:date k_page_date format='%B %d, %Y' locale='italian' />\n    \n\nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n### charset\n\nSome locales do not provide their output in UTF8 character set. This causes strange ?? characters to appear in the output.  \nThe **date** tag can help converting the output to UTF8 if you can provide it with information about the charset used by the locale.\n\nFor example -\n\n    <cms:date k_page_date format='%B %d, %Y' locale='greek' charset='ISO-8859-7' />\n    \n\n    <cms:date k_page_date format='%B %d, %Y' locale='russian' charset='ISO-8859-5' />\n    \n\nThe following is a rough list of the charset used by different languages -\n\n**ISO-8859-1 - Latin 1**  \nWestern Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\n\n**ISO-8859-2 - Latin 2**  \nLatin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene.\n\n**ISO-8859-3 - Latin 3**  \nEsperanto, Galician, Maltese, and Turkish.\n\n**ISO-8859-4 - Latin 4**  \nScandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6.\n\n**ISO-8859-5 - Cyrillic**  \nBulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian.\n\n**ISO-8859-6 - Arabic**  \nNon-accented Arabic.\n\n**ISO-8859-7 - Modern Greek**  \nGreek.\n\n**ISO-8859-8 - Hebrew**  \nNon-accented Hebrew.\n\n**ISO-8859-9 - Latin 5**  \nSame as 8859-1 except for Turkish instead of Icelandic\n\n**ISO-8859-10 - Latin 6**  \nLatin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area.\n",
+                    "valueSet": "v"
+                },
+                {
+                    "name": "${gmt:gmt}='${2|0,1|}'",
                     "description": "By setting this parameter to '1', you can get the GMT equivalent of the date provided.\n\n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "locale",
-                    "description": "If you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' /> \n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' /> \n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n"
+                    "name": "${locale:locale='$1'}",
+                    "description": "If you use the locale-aware format characters mentioned above, this parameter can be set to the locale desired for formatting the provided date.\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='french' /> \n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='italian' /> \n ``` \nThis feature depends entirely on the indicated locale being available at your web server. If the locale is not available, the default 'english' locale is used.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "charset",
+                    "name": "${charset:charset}.='${1|ISO-8859-1,ISO-8859-2,ISO-8859-3,ISO-8859-4,ISO-8859-5,ISO-8859-6,ISO-8859-7,ISO-8859-8,ISO-8859-9,ISO-8859-10|}'",
                     "description": "Some locales do not provide their output in UTF8 character set. This causes strange ?? characters to appear in the output.  \n The **date** tag can help converting the output to UTF8 if you can provide it with information about the charset used by the locale.\n\nFor example -\n\n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='greek' charset='ISO-8859-7' /> \n ``` \n\n ```html \n<cms:date k_page_date format='%B %d, %Y' locale='russian' charset='ISO-8859-5' /> \n ``` \nThe following is a rough list of the charset used by different languages -\n\n**ISO-8859-1 - Latin 1**  \n Western Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\n\n**ISO-8859-2 - Latin 2**  \n Latin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene.\n\n**ISO-8859-3 - Latin 3**  \n Esperanto, Galician, Maltese, and Turkish.\n\n**ISO-8859-4 - Latin 4**  \n Scandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6.\n\n**ISO-8859-5 - Cyrillic**  \n Bulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian.\n\n**ISO-8859-6 - Arabic**  \n Non-accented Arabic.\n\n**ISO-8859-7 - Modern Greek**  \n Greek.\n\n**ISO-8859-8 - Hebrew**  \n Non-accented Hebrew.\n\n**ISO-8859-9 - Latin 5**  \n Same as 8859-1 except for Turkish instead of Icelandic\n\n**ISO-8859-10 - Latin 6**  \n Latin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [number_format](number_format.html)\n \n",
-                    "values": [
-                        {
-                            "name": "ISO-8859-1",
-                            "description": "- Latin 1\r\n        Western Europe and Americas: Afrikaans, Basque, Catalan, Danish, Dutch, English, Faeroese, Finnish, French, Galician, German, Icelandic, Irish, Italian, Norwegian, Portuguese, Spanish and Swedish.\r\n"
-                        },
-                        {
-                            "name": "ISO-8859-2",
-                            "description": " Latin 2\r\n        Latin-written Slavic and Central European languages: Czech, German, Hungarian, Polish, Romanian, Croatian, Slovak, Slovene."
-                        },
-                        {
-                            "name": "ISO-8859-3",
-                            "description": " Latin 3\r\n        Esperanto, Galician, Maltese, and Turkish."
-                        },
-                        {
-                            "name": "ISO-8859-4",
-                            "description": " Latin 4\r\n        Scandinavia/Baltic (mostly covered by 8859-1 also): Estonian, Latvian, and Lithuanian. It is an incomplete predecessor of Latin 6."
-                        },
-                        {
-                            "name": "ISO-8859-5",
-                            "description": "Cyrillic\r\n        Bulgarian, Byelorussian, Macedonian, Russian, Serbian and Ukrainian."
-                        },
-                        {
-                            "name": "ISO-8859-6",
-                            "description": "Arabic\r\n        Non-accented Arabic."
-                        },
-                        {
-                            "name": "ISO-8859-7",
-                            "description": "Modern Greek\r\n        Greek."
-                        },
-                        {
-                            "name": "ISO-8859-8",
-                            "description": "Hebrew\r\n        Non-accented Hebrew."
-                        },
-                        {
-                            "name": "ISO-8859-9",
-                            "description": "Latin 5\r\n        Same as 8859-1 except for Turkish instead of Icelandic"
-                        },
-                        {
-                            "name": "ISO-8859-10",
-                            "description": "Latin 6\r\n        Latin6, for Lappish/Nordic/Eskimo languages: Adds the last Inuit (Greenlandic) and Sami (Lappish) letters that were missing in Latin 4 to cover the entire Nordic area."
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -365,16 +308,9 @@
             "description": "```html \n <cms:days ><td ><cms:show k_day /></td></cms:days> \n```\n====\n\n\nThe **days** tag works only within the **weeks** tag and enumerates all the seven days of each week.\n\n\nPlease see [**Core Concepts - Events Calendar**](../concepts/events-calendar.html) for a working example of this tag.\n\n\nParameters\n----------\n\n\n\n\n* pad_with_zeroes\n\n\n\n### pad_with_zeroes\n\n\nIf set to '1' will pad all single digit days in variable *k_day* with a leading zero.\n\n\nVariables\n---------\n\n\n\n\n* k_date\n\n* k_day\n\n* k_month\n\n* k_year\n\n* k_day_of_week\n\n* k_position\n\n* k_count_entries\n\n* k_timeline_position\n\n\n\n### k_date\n\n\nDate of the day. e.g. 2010-10-31\n\n\n### k_day\n\n\nNumber representing the day - ranges from 1 to 31\n\n\n### k_month\n\n\nNumber representing the month - ranges from 1 - 12\n\n\n### k_year\n\n\nThe year. e.g. 2010\n\n\n### k_day_of_week\n\n\nNumber representing the week - ranges from 0 (Sun) to 6 (Sat)\n\n\n### k_position\n\n\nA calendar grid can contain days that belong to the month being shown as well as the previous and the next month. Depending on which month a day belongs to, its position is denoted by this parameter as one of these three values -\n\n\n\n\n* previous_month\n\n* current_month\n\n* next_month\n\n\n\n### k_count_entries\n\n\nThe count of pages published on this day.\n\n\n### k_timeline_position\n\n\nDenotes the position of the day in timelime (relative to today). Can be one of these three values -\n\n\n\n\n* past\n\n* present\n\n* future\n\n\n\nRelated Tags\n------------\n\n\n\n\n* [calendar](calendar.html)\n\n* [weeks](weeks.html)\n\n* [entries](entries.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "pad_with_zeroes",
+                    "name": "${pad_with_zeroes:pad_with_zeros}='${1|0,1|}'",
                     "description": "If set to '1' will pad all single digit days in variable *k_day* with a leading zero.\n\nVariables\n---------\n\n\n * k_date\n * k_day\n * k_month\n * k_year\n * k_day_of_week\n * k_position\n * k_count_entries\n * k_timeline_position\n \n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -383,28 +319,19 @@
             "description": "```html \n <cms:decr my_value '2' /> \n ```\n====\n\n\nThe **decr** tag accepts as its first parameter a variable and decreases the value contained within the variable by the value contained within the second optional parameter. If the second parameter is not provided, a value of 1 is assumed.\n\n\n\n ```html \n<cms:set my_value='11' />\n<cms:show my_value />\n\n ``` \nIn the snippet above, value of variable my_value is output as 11.\n\n\n\n ```html \n<cms:decr my_value '2' />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 9.\n\n\n\n ```html \n<cms:decr my_value />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 8.\n\n\nParameters\n----------\n\n\nExpects a maximum of two parameters.\n\n\nThe first parameter has to be a variable. The second parameter is optional and its value is used to decrease the value of the variable passed as the first parameter. A default value of 1 is assumed if the second parameter is not specified.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [div](div.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "decr-value1",
-                    "description": "The parameters may be literal strings, variables or output of other tags.",
-                    "values": [
-                        {
-                            "name": "var"
-                        },
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "name": "${couchVar:${1:variableName}} ",
+                    "description": "Value may be a Couch system variable Such as k_page_id or k_template_id or k_user_id etc.\n Eg. \n > <cms:decr **k_page_id** '1' />",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "decr-value2",
-                    "description": "The parameters may be literal strings, variables or output of other tags.",
-                    "values": [
-                        {
-                            "name": "var"
-                        },
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "name": "${userVar:${1:variableName}} ",
+                    "description": "Value may be a previously set variable name. Such as if you've used a code similar to \n```html\n <cms:set myvar='1' />\n ```  \n Eg.\n > <cms:decr **myvar** '1' />",
+                    "valueSet": "v"
+                },
+                {
+                    "name": "${number:'$1'} ",
+                    "description": "Value may be the number you wish to subtract to the other value.\n Eg.\n > <cms:decr myvar **'1'** />",
+                    "valueSet": "v"
                 }
             ]
         },
@@ -413,7 +340,7 @@
             "description": "```html \n <cms:delete_cookie 'my_test_cookie' /> \n ```\n==============\n\n\nThe **delete_cookie** tag can be used to delete any cookie created using the **set_cookie** tag.\n\n\n\n ```html \n<cms:delete_cookie 'my_test_cookie' />\n\n ``` \nThe snippet above will delete the cookie named 'my_test_cookie'.\n\n\nParameters\n----------\n\n\nThis tag accepts no parameters.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [set_cookie](set_cookie.html)\n\n* [get_cookie](get_cookie.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "cookieName"
+                    "name": "${cookieName:'$1'}"
                 }
             ]
         },
@@ -422,28 +349,19 @@
             "description": "```html \n <cms:div my_count '5' /> \n ```\n===\n\n\nThe **div** tag accepts two parameters and returns as its output the value obtained after dividing the first parameter by the second parameter.  \n\nThe parameters may be literal strings, variables or output of other tags.\n\n\n\n ```html \n<cms:div my_count '5' />\n\n ``` \nThe snippet divides by 5 whatever value is contained within *my_count* variable and outputs the resulting value.\n\n\nParameters\n----------\n\n\nThe tag expects two parameters as the operands for division.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [mod](mod.html)\n\n* [incr](incr.html)\n\n* [decr](decr.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "div-value1",
-                    "description": "The parameters may be literal strings, variables or output of other tags.",
-                    "values": [
-                        {
-                            "name": "var"
-                        },
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "name": "${couchVar:${1:variableName}} ",
+                    "description": "Value may be a Couch system variable Such as k_page_id or k_template_id or k_user_id etc.\n Eg. \n > <cms:div **k_page_id** '1' />",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "div-value2",
-                    "description": "The parameters may be literal strings, variables or output of other tags.",
-                    "values": [
-                        {
-                            "name": "var"
-                        },
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "name": "${userVar:${1:variableName}} ",
+                    "description": "Value may be a previously set variable name. Such as if you've used a code similar to \n```html\n <cms:set myvar='1' />\n ```  \n Eg.\n > <cms:div **myvar** '1' />",
+                    "valueSet": "v"
+                },
+                {
+                    "name": "${number:'$1'} ",
+                    "description": "Value may be the number you wish to divide from the other value.\n Eg.\n > <cms:div myvar **'1'** />",
+                    "valueSet": "v"
                 }
             ]
         },
@@ -452,112 +370,49 @@
             "description": "```html \n <cms:dropdownfolders masterpage='news.php' /> \n ```\n===============\n\n\nThe **dropdownfolders** tag can be used to create a quick-n-dirty HTML dropdown list of the folders belonging to a template.\n\n\n\n ```html \n<cms:dropdownfolders masterpage='news.php' />\n\n ``` \nParameters\n----------\n\n\nSupports the same parameter as the **folders** tag. In addition, takes one more parameter - *show_count*.\n\n\n\n\n* masterpage\n\n* root\n\n* childof\n\n* hierarchical\n\n* depth\n\n* orderby\n\n* order\n\n* exclude\n\n* extended_info\n\n* show_count\n\n\n\nPlease see the [**folders**](folders.html) documentation for an explanation of these parameters.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folder](folder.html)\n\n* [folders](folders.html)\n\n* [listfolders](listfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n* [breadcrumbs](breadcrumbs.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "masterpage",
+                    "name": "${masterpage:masterpage}=${1:k_template_name}",
                     "description": "This parameter can be used to specify the template the folders of which are to be enumerated. If skipped, the template this tag is being used from is used.",
-                    "values": [
-                        {
-                            "name": "k_template_name"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "root",
+                    "name": "${root:root}=${1:k_folder_name}",
                     "description": "Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. The folder specified as the root is returned along with all its children.",
-                    "values": [
-                        {
-                            "name": "folder"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "childof",
+                    "name": "${childof:childof}=${1:k_folder_name}",
                     "description": "Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. Only the children of the specified folder are returned.",
-                    "values": [
-                        {
-                            "name": "folder"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "hierarchical",
+                    "name": "${hierarchical:hierarchical}='${1|0,1|}'",
                     "description": "By setting this parameter the folders tag can be made to enumerate the folders in their hierarchical order. If skipped, the folders are enumerated in the alphabetical order of their names.",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "depth",
+                    "name": "${depth:depth}='$1'",
                     "description": "This parameter can be set to specify the maximum level in hierarchy (i.e. depth) that will be reached during enumeration. This can be used, for example, to list only the top folders in the tree by setting the depth to 1. A depth of 0 means unlimited depth.",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        },
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "orderby",
+                    "name": "${orderby:orderby}='${1|name,title,id,count,weight|}'",
                     "description": "This parameter can be set to order the enumerated folders according to the following- name, title, id, count or weight. If skipped, name is used as default.",
-                    "values": [
-                        {
-                            "name": "name"
-                        },
-                        {
-                            "name": "title"
-                        },
-                        {
-                            "name": "id"
-                        },
-                        {
-                            "name": "count"
-                        },
-                        {
-                            "name": "weight"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "order",
+                    "name": "${order:order}='${1|asc,desc|}'",
                     "description": "Can be set to specify whether the enumerated folders are ordered in the ascending order or in descending order. Valid values are asc and desc. Default is asc.",
-                    "values": [
-                        {
-                            "name": "asc"
-                        },
-                        {
-                            "name": "desc"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "exclude",
+                    "name": "${exclude:exclude}=${1:k_folder_name}",
                     "description": " Folders can be excluded from being enumerated by specifying them with this parameter. If an excluded folder has children, they are excluded too. If multiple folders are to be excluded, separate them with comma.",
-                    "values": [
-                        {
-                            "name": "folderName"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "show_count",
+                    "name": "${show_count:show_count}='${1|0,1|}'",
                     "description": "Show count of pages within folder.",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -574,34 +429,19 @@
             "description": "```html \n <cms:each msg sep='|' ><cms:show item /><br></cms:each> \n ```\n====\n\n\nThe **Each** tag, given a string containing values separated by a known separator, splits it up along the separator and returns each value.  \n\nFor example, assume we have a variable 'msg' -\n\n\n\n ```html \n<cms:set msg='hello|world|how|do|you|do' />\n\n ``` \nPassing variable 'msg' as parameter to **each** like this -\n\n\n\n ```html \n<cms:each msg sep='|' >\n <cms:show item /><br>\n</cms:each>\n\n ``` \nwill make available each of the '|' separated words as variable named 'item' (which is then being displayed using **show** tag).\n\n\n\n ```html \nhello\nworld\nhow\ndo\nyou\ndo\n\n ``` \nThe above example could have been written without specifying 'sep', because the default separator is '|'.\n\n\nOne real world scenario for using **each** is while handling submission of forms containing multiple checkboxes. If more than one checkbox is selected, the checkbox variable contains a '|' separated string with values for each selected checkbox.\n\n\nParameters\n----------\n\n\n\n\n* var\n\n* as\n\n* sep\n\n\n\n### var\n\n\nThe string to split. If passed as the first parameter, the name 'var' can be omitted and only the value passed. e.g.\n\n\n\n ```html \n<cms:each var=msg >..</cms:each>\n\n ``` \n\n ```html \n<cms:each msg >..</cms:each>\n\n ``` \nboth of the above are same.\n\n\n### as\n\n\nName of the variable as which each of the values obtained after splitting the string will be made available.  \n\nBy default, the variable is named 'item'.  \n\nIf you wish to use some other name, it can be specified thus -\n\n\n\n ```html \n<cms:each msg as='my_var' >\n <cms:show my_var/><br>\n</cms:each>\n\n ``` \n### sep\n\n\nThe separator along which the provided string is split.  \n\nBy default, the pipe character '|' is assumed as the separator.  \n\nIf any other character is being used in the string, it can be specified this way -\n\n\n\n ```html \n<cms:each msg sep='@' >..</cms:each>\n\n ``` \nVariables\n---------\n\n\n\n\n* item\n\n\n\n### item\n\n\nThis is the default variable that contains the value obtained.  \n\nIf any other variable is specified using the **as** parameter, as explained in parameters, then this variable will not be set.  \n\nThe specified variable will be set instead.\n\n\nRelated Tags\n------------\n\n\n\n\n* [repeat](repeat.html)\n\n* [zebra](zebra.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "var",
+                    "name": "${var:var}=${1:msg}",
                     "description": "The string to split. If passed as the first parameter, the name 'var' can be omitted and only the value passed. e.g.\n\n\n ```html \n<cms:each var=msg >..</cms:each> \n ``` \n\n ```html \n<cms:each msg >..</cms:each> \n ``` \nboth of the above are same.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "as",
+                    "name": "${as:as}='${1:item}'",
                     "description": "Name of the variable as which each of the values obtained after splitting the string will be made available.  \n By default, the variable is named 'item'.  \n If you wish to use some other name, it can be specified thus -\n\n\n ```html \n<cms:each msg as='my_var' > <cms:show my_var/><br> </cms:each> \n ``` \n",
-                    "values": [
-                        {
-                            "name": "var"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "sep",
+                    "name": "${sep:sep}='${1:@}'",
                     "description": "The separator along which the provided string is split.  \n By default, the pipe character '|' is assumed as the separator.  \n If any other character is being used in the string, it can be specified this way -\n\n\n ```html \n<cms:each msg sep='@' >..</cms:each> \n ``` \nVariables\n---------\n\n\n * item\n \n",
-                    "values": [
-                        {
-                            "name": "|"
-                        },
-                        {
-                            "name": "char"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -614,13 +454,9 @@
             "description": "```html \n <cms:embed 'file.html' /> \n ```\n=====\n\n\nThe **Embed** tag can be used to divide your templates into manageable chunks.  \n\nParts of the templates that are reused at several places can be placed in discrete files and the files then embedded via this tag.  \n\ne.g. most of the templates share the same header code. This can be cut and pasted into a file named 'header.inc' (the extension does not matter - it can be anything) and the file then saved into 'couch/snippets' folder.\n\n\nThe following code then can be placed where the original code was -\n\n\n\n ```html \n<cms:embed 'header.inc' />\n\n ``` \nThis will result in exactly the same output as with the original code in place.  \n\nThe advantage of using embedding is that if the code snippet is used in several templates, any future modifications will now need to be done only in a single file.\n\n\n\n**Embed** tag, when looking for the embedded file, searches along a path relative to the 'couch/snippets' folder. Thus in the example above, the 'header.inc' file should reside directly in 'snippets' folder for Couch to find it. Had the passed parameter been 'common/header.inc', Couch would have looked for the file within a sub-folder named 'common' within 'couch/snippets'. Similarly if the parameter passed was '../../common/header.inc', Couch would have gone up in the folder hierarchy twice (first time landing in the 'couch' folder and next time in the folder where your website resides) and then looked for the embedded file within a subfolder named 'common'.  \n\n  \n\n**UPDATE:** From version 1.1.1, the base path relative to which Couch searches for embedded files can be changed from the default 'couch/snippets' folder to any folder **relatve to your main site**. This can be done by setting the *12b. K_SNIPPETS_DIR* configuration item within your *config.php* file.  \n\n This is convenient when you choose to use a subfolder within your main site to store embedded snippets instead of storing them within 'couch/snippets' folder. For example if *K_SNIPPETS_DIR* is set to 'common', <cms:embed 'header.inc' /> will now cause Couch to look for 'header.inc' within the 'common' subfolder that resides in the root folder of your website.  \n\n  \n\n**IMP.** If you choose to place your snippets in any folder other than the default 'couch/snippets' folder or any of its subfolders, do take care to prevent the snippets from being directly downloadable. 'couch/snippets' folder is protected from this problem by a .htaccess file present within it. You can copy this file into your folder to disallow everybody from directly accessing your snippets.\n\n\n\n**IMP.** If the code snippet you choose to place in a separate embeddable file contains Couch tags (i.e. those that begin with *<cms:*), take care not to truncate any tag block. That is, always make sure that every opening tag also has the associated end tag included within the embedded snippet. Embedding partial tags will cause the parser to emit parse errors.\n\n\nTo illustrate the concept of embedding we use an ultra-trivial example here. In real life scenarios, the embedded snippets may be of any complexity. Suppose we have this piece of code somewhere in a template\n\n\n\n ```html \n<div class=\"right\">\n <b class=\"title\"><cms:show 'Hello World' /></b>\n</div>\n\n ``` \nThis does nothing except display 'Hello world'. We now cut and paste the bold part into a file named, say, 'greeting.inc' and save the file into 'couch/snippets' folder. The above code is modified thus -\n\n\n\n ```html \n<div class=\"right\">\n <cms:embed 'greeting.inc' />\n</div>\n\n ``` \nand upon executing the page we get the same output as before.\n\n\nEmbedded snippets can themselves contain other embedded snippets. Thus to stretch our, already contrived, example a little further, open the 'greeting.inc' file, remove the 'Hello world' part and save it into a separate file named 'message.inc'. Embed the new file within 'greeting.inc' thus -\n\n\n\n ```html \n<b class=\"title\"><cms:show \"<cms:embed 'message.inc' />\" /></b>\n\n ``` \nNotice the use of double quotes. Executing the template results in the same output as having the entire string right there within the template instead of embedding it in two separate files (original template embeds 'greeting.inc' which in turn embeds 'message.inc').\n\n\n**WARNING:** Make sure that none of the children embedded files embeds back a parent file. This will lead to recursion and an infinite loop.\n\n\n### Passing code directly\n\n\nInstead of using a physical file, **Embed** tag can be passed code directly to include (see parameters section below).  \n\nFor example, in the template code mentioned above, we can use\n\n\n\n ```html \n<div class=\"right\">\n <cms:set my_var=\"<b class='title'><cms:show 'Hello world' /></b>\" />\n <cms:embed code=my_var />\n</div>\n\n ``` \nPer se, this does not seem to be of much use, but this ability of **embed** tag to execute code contained within a variable can be a very powerful thing if that variable happens to be a custom field (i.e. an editable area defined by you within a template).  \n\nClearly we can now store snippets or even complete templates as editable regions that can be tweaked within the browser itself instead of manipulating a physical file and FTP'ing it back to the server.\n\n\nMake sure that the type of the editable region is *textarea* and that its *no_xss_check* parameter is set to '1' (this will prevent Couch from mangling up the < and > tags the way it usually does to stop XSS attacks).\n\n\nParameters\n----------\n\n\n\n\n* unnamed or code\n\n\n\nIf the first parameter is unnamed (i.e. only the value is passed) or it is anything other than 'code', it is considered to be a path to an embedded file. The path is always relative to the 'couch/snippets' folder. e.g.\n\n\n\n ```html \n<cms:embed 'message.inc' />\n\n ``` \nHowever if the parameter is named 'code', the value is considered to be a valid code snippet and is executed thus.  \n\nFor example -\n\n\n\n ```html \n<cms:embed code=\"<b class='title'><cms:show 'Hello world' /></b>\" />\n\n ``` \nor\n\n\n\n ```html \n<cms:set my_var=\"<b class='title'><cms:show 'Hello world' /></b>\" />\n<cms:embed code=my_var />\n\n ``` \nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\n'",
             "attributes": [
                 {
-                    "name": "file",
-                    "description": "String of file name to embed",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "name": "${file:'${1:header.inc}'}",
+                    "description": "String of file name located in snippets folder to embed",
+                    "valueSet": "v"
                 }
             ]
         },
@@ -629,25 +465,14 @@
             "description": "```html \n <cms:entries limit='2' skip_custom_fields='1'> \n ```\n=======\n\n\nThe **entries** tag is a special tag that works only within the **calendar** tag - specifically within the **days** tag present within the **calendar** tag.\n\n\nThis tag enumerates all the pages published on the day being enumerated by the **days** tag. The pages will belong to the template specified by the *masterpage* parameter of the calendar tag.\n\n\nPlease see [**Core Concepts - Events Calendar**](../concepts/events-calendar.html) for a working example of this tag in action.\n\n\nParameters\n----------\n\n\n\n\n* limit\n\n* skip_custom_fields\n\n\n\n### limit\n\n\nThis parameter limits the number of pages that this tag enumerates.\n\n\n### skip_custom_fields\n\n\nAs it enumerates the fetched pages, by default this tag makes available all the variables associated with every page - this includes the editable regions too.  \n\nIf you simply require to display the names and links of the pages, the values contained within the editable regions of the pages can be skipped from being fetched by setting this parameter. This will result in a performance boost.\n\n\nVariables\n---------\n\n\nAs this tag iterates through the pages, at each iteration it sets all the variables that one normally finds set when that page is accessed in a *page-view* (see [**Variables available in Views**](../concepts/variables-in-views.html)).\n\n\nRelated Tags\n------------\n\n\n\n\n* [calendar](calendar.html)\n\n* [weeks](weeks.html)\n\n* [days](days.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "limit",
+                    "name": "${limit:limit}='$1'",
                     "description": "This parameter limits the number of pages that this tag enumerates.\n\n",
-                    "values": [
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "skip_custom_fields",
+                    "name": "${skip_custom_fields:skip_custom_fields}='${1|0,1|}'",
                     "description": "As it enumerates the fetched pages, by default this tag makes available all the variables associated with every page - this includes the editable regions too.  \n If you simply require to display the names and links of the pages, the values contained within the editable regions of the pages can be skipped from being fetched by setting this parameter. This will result in a performance boost.\n\nVariables\n---------\n\nAs this tag iterates through the pages, at each iteration it sets all the variables that one normally finds set when that page is accessed in a *page-view* (see [**Variables available in Views**](../concepts/variables-in-views.html)).\n\nRelated Tags\n------------\n\n\n * [calendar](calendar.html)\n * [weeks](weeks.html)\n * [days](days.html)\n \n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -656,45 +481,24 @@
             "description": "```html \n <cms:excerpt count='100' truncate_chars='1'>...blah blah...</cms:excerpt> \n ```\n=======\n\n\nThe **excerpt** tag can be used to create an excerpt of any content that is enclosed within its opening and closing tags.  \n\nUnlike the **excerptHTML** tag, the **excerpt** tag strips off all HTML tags (except those specified by its *allow* parameter) from the excerpt it creates.\n\n\nParameters\n----------\n\n\n\n\n* count\n\n* allow\n\n* trail\n\n* truncate_chars\n\n\n\n### count\n\n\nThe maximum number of words/characters that the excerpt can contain. The default value is 50.  \n\nBy default, this parameter is applied to the number of words in the excerpt.  \n\nBy setting the 'truncate_chars' parameter (see below) to '1', it can be made to apply to the number of characters in the excerpt instead.\n\n\n### allow\n\n\nThe HTML elements you wish to preserve in the excerpt.  \n\nIf you wish to preserve multiple tags, separate the tagnames by using comma e.g.\n\n\n\n ```html \nallow='i, b'\n\n ``` \n### trail\n\n\nBy default the produced excerpt is appended with '...' (three ellipses). You can change this by using this parameter.\n\n\n### truncate_chars\n\n\nBy default, the 'count' paramater is considered to be the number of words the excerpt can contain.  \n\nBy setting the 'truncate_chars' to '1', the 'count' becomes the number of characters the excerpt can contain.\n\n\n\n ```html \n<cms:excerpt count='100' truncate_chars='1'>...blah blah...</cms:excerpt>\n\n ``` \nPlease note that if 'truncate_chars' is set to '1', the 'allow' parameter is ignored and all the HTML tags are stripped off the input.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [excerptHTML](excerpthtml.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "count",
+                    "name": "${count:count}='${1:50}'",
                     "description": "The maximum number of words/characters that the excerpt can contain. The default value is 50.  \n By default, this parameter is applied to the number of words in the excerpt.  \n By setting the 'truncate_chars' parameter (see below) to '1', it can be made to apply to the number of characters in the excerpt instead.\n\n",
-                    "values": [
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "allow",
+                    "name": "${allow:allow}='${1:i, b, span}'",
                     "description": "The HTML elements you wish to preserve in the excerpt.  \n If you wish to preserve multiple tags, separate the tagnames by using comma e.g.\n\n\n ```html \nallow='i, b' \n ``` \n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "HTML tags eg > allow='i, b, span'"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "trail",
+                    "name": "${trail:trail}='${1:...}'",
                     "description": "By default the produced excerpt is appended with '...' (three ellipses). You can change this by using this parameter.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Eg. > trail='...'"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "truncate_chars",
+                    "name": "${truncate_chars:truncate_chars}='${1|0,1|}'",
                     "description": "By default, the 'count' paramater is considered to be the number of words the excerpt can contain.  \n By setting the 'truncate_chars' to '1', the 'count' becomes the number of characters the excerpt can contain.\n\n\n ```html \n<cms:excerpt count='100' truncate_chars='1'>...blah blah...</cms:excerpt> \n ``` \nPlease note that if 'truncate_chars' is set to '1', the 'allow' parameter is ignored and all the HTML tags are stripped off the input.\n\nVariables\n---------\n\nThis tag does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [excerptHTML](excerpthtml.html)\n \n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -703,33 +507,19 @@
             "description": "```html \n <cms:excerptHTML count='130' ignore='img'> \n ```\n===========\n\n\nThe **excerptHTML** tag can be used to create an excerpt of any HTML content that is enclosed within its opening and closing tags.  \n\nUnlike the **excerpt** tag, excerptHTML preserves the HTML formatting of the truncated contents (except for the HTML tags specified in its *ignore* parameter).\n\n\nExamples -\n\n\n\n ```html \n<cms:excerptHTML><cms:show content /></cms:excerptHTML>\n\n ``` \n\n ```html \n<cms:excerptHTML count='130' ignore='img'>\n <cms:show content />\n</cms:excerptHTML>\n\n ``` \nThe snippets are outputting an excerpt of the value contained within the *content* variable.\n\n\nParameters\n----------\n\n\n\n\n* count\n\n* ignore\n\n* trail\n\n\n\n### count\n\n\nThe maximum number of words that the excerpt can contain. The default value is 50 words.\n\n\n### ignore\n\n\nThe HTML elements to weed out of the excerpt. For example, you might not want to have any images in the excerpt.  \n\nIf you wish to ignore multiple tags, separate the tagnames by using comma e.g.\n\n\n\n ```html \nignore='img, table'\n\n ``` \n### trail\n\n\nBy default the produced excerpt is appended with '...' (three ellipses). You can change this by using this parameter.\n\n\n\n ```html \n<cms:excerptHTML trail=\"&nbsp;(<a href=\"<cms:show k_page_link />\">read more..</a>)\"><cms:show blog_content /></cms:excerptHTML>\n\n ``` \nThe snippet above will append a '*read more..*' link leading to the page-view of the item being shown in excerpted form.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [excerpt](excerpt.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "count",
-                    "description": "The maximum number of words that the excerpt can contain. The default value is 50 words.\n\n",
-                    "values": [
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "name": "${count:count}='${1:50}'",
+                    "description": "The maximum number of words/characters that the excerpt can contain. The default value is 50.  \n By default, this parameter is applied to the number of words in the excerpt.  \n By setting the 'truncate_chars' parameter (see below) to '1', it can be made to apply to the number of characters in the excerpt instead.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "ignore",
+                    "name": "${ignore:ignore}='${1:table, span, img}'",
                     "description": "The HTML elements to weed out of the excerpt. For example, you might not want to have any images in the excerpt.  \n If you wish to ignore multiple tags, separate the tagnames by using comma e.g.\n\n\n ```html \nignore='img, table' \n ``` \n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Eg. > ignore='table, span, img'"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "trail",
+                    "name": "${trail:trail}='${1:...}'",
                     "description": "By default the produced excerpt is appended with '...' (three ellipses). You can change this by using this parameter.\n\n\n ```html \n<cms:excerptHTML trail=\"&nbsp;(<a href=\"<cms:show k_page_link />\">read more..</a>)\"><cms:show blog_content /></cms:excerptHTML> \n ``` \nThe snippet above will append a '*read more..*' link leading to the page-view of the item being shown in excerpted form.\n\nVariables\n---------\n\nThis tag does not set any variables of its own.",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Eg. > trail='...'"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -738,8 +528,9 @@
             "description": "```html \n <cms:exists 'contact.inc' /> \n ```\n======\n\n\nThe **Exists** tag can be used to confirm the presence of a file or a folder on the server.  \n\nIt returns '1' if the object file/folder exists. Otherwise it returns a '0'.  \n\nFor example -\n\n\n\n ```html \n<cms:exists \"contact.inc\" />\n\n ``` \nwill output either '1' or '0' depending on whether the file 'contact.inc' is present or not within the 'couch/snippets' folder.\n\n\n\n Exactly like the [**embed**](embed.html) tag, the **exists** tag considers the file/folder provided to be relative to the 'couch/snippets' folder.  \n\n For example  \n\n  \n\n\n ```html \n<cms:exists \"common/contact.inc\" />\n ``` \n\n will look for 'contact.inc' file within a folder named 'common' that resides within the 'couch/snippets' folder. Whereas  \n\n  \n\n\n ```html \n<cms:exists \"../../common/contact.inc\" />\n ``` \n\n will move up through the folder hierarchy (the first '../' will move into the 'couch' folder while the next '../' will move into the website folder within which 'couch' folder resides) and search for the file within a folder named 'common' residing in the main website folder.\n\n\n\nCombined with the [**If**](if.html) tag and [**Embed**](embed.html) tag, the **Exists** tag provides a very powerful method of choosing the right template to display while showing a particular page.  \n\nFor example, let us say we have a template 'index.php' that is clonable and several pages have been made out of it - e.g. 'about-us', 'services', 'contact-us' etc.. The template has defined one editable richtext area named 'my_content' and, as usual, every page has its own data in this area. The code within this template to display the data for each cloned page might go somewhat like this\n\n\n\n ```html \n<cms:if k_is_page >\n <cms:show my_content />\n</cms:if>\n\n ``` \nThis is perfect for all pages but for 'contact-us', we do not want to display 'my_content'. We wish to display a form (created by using [**Form**](form.html) tag). One way to do this would be to make 'contact-us' a separate template in itself. However a better method would be to check in the code snippet above whether the page being displayed is 'contact-us' or not and if it is, instead of displaying the usual 'my_content', display the form instead.  \n\nLet us say we have saved the code for the form in a snippet called 'contact-us.inc' within 'couch/snippets' folder. The modified code will be -\n\n\n\n ```html \n<cms:if k_is_page >\n <cms:if k_page_name=='contact-us' >\n <cms:embed 'contact-us.inc' />\n <cms:else />\n <cms:show my_content />\n </cms:if>\n</cms:if>\n\n ``` \nThis will do the trick.  \n\nHowever, suppose there is one other page, 'testimonials', where we wish to use the [**Pages**](pages.html) tag to iterate through and display excerpts from pages created through some other template (or any other logic). Once again, instead of creating a separate template, we decide to check for 'testimonials' page and execute some different code. We'll assume that the code for this page has been saved in a snippet named 'testimonials.inc' within snippets folder.  \n\nThe code above can be modified to fit in the new condition -\n\n\n\n ```html \n<cms:if k_is_page >\n <cms:if k_page_name=='contact-us' >\n <cms:embed 'contact-us.inc' />\n <cms:else />\n <cms:if k_page_name=='testimonials' >\n <cms:embed 'testimonials.inc' />\n <cms:else />\n <cms:show my_content />\n </cms:if>\n </cms:if>\n</cms:if>\n\n ``` \nThis works but it is now becoming painfully evident that this technique is crumbling under its own weight and the addition of few more pages will make it too complex to handle.\n\n\nEmploying **Exists** tag for the above task makes it a snap. Here is how -\n\n\n\n ```html \n<cms:if k_is_page >\n <cms:if \"<cms:exists \"<cms:show k_page_name/>.inc\" />\" >\n <cms:embed \"<cms:show k_page_name/>.inc\" />\n <cms:else />\n <cms:show my_content />\n </cms:if>\n</cms:if>\n\n ``` \nNotice how we are checking for the existence of a snippet that is named the same as the page being displayed (but with a '.inc' appended).  \n\nIf such a file exists, it gets embedded, else the usual logic is folllowed.  \n\nThe beauty of this method is that if you decide to add more pages that will require custom logic, you simply have to place the code in a snippet named the same as the page (and a '.inc' extension) and put the snippet in the 'couch/snippets' folder.  \n\nYou'll never need to modify the code given above.\n\n\nParameters\n----------\n\n\n\n\n* unnamed\n\n\n\nTakes one unnamed parameter (only the value is required).  \n\nIt is considered to be a path to a file or folder. The path is always relative to the 'couch/snippets' folder.  \n\nSee above for a discussion on relative path.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\n",
             "attributes": [
                 {
-                    "name": "string",
-                    "description": "File or folder name"
+                    "name": "${string:'$1'}",
+                    "description": "File or folder name",
+                    "valueSet": "v"
                 }
             ]
         },
@@ -748,14 +539,9 @@
             "description": "```html \n <cms:fieldset>content</cms:fieldset> \n ```\n========\n\n\nPlease see [**Core Concepts - Forms - Using Fieldset**](../concepts/forms.html#using-fieldset) for a complete discussion of this tag.\n\n\nParameters\n----------\n\n\n\n\n* label\n\n\n\n### label\n\n\nThe label to be applied to the fieldset.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables.\n\n\nRelated Tags\n------------\n\n\n\n\n* [form](form.html)\n\n* [input](input.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "label",
+                    "name": "${label:'$1'}",
                     "description": "The label to be applied to the fieldset.\n\nVariables\n---------\n\nThis tag does not set any variables.\n\nRelated Tags\n------------\n\n\n * [form](form.html)\n * [input](input.html)\n \n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Label applied to fieldset"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -764,41 +550,24 @@
             "description": "```html \n <cms:folder name='world' title='World News' /> \n```\n======\n\n\nThe **folder** tag is used to create virtual folders for a template. The **folder** tags support nesting within each other thus allowing the creation of an hierarchy of virtual folders.\n\n\nPlease see [**Core Concepts - Folders**](../concepts/using-folders.html) for a detailed explanation of this tag.\n\n\nParameters\n----------\n\n\n\n\n* name\n\n* title\n\n* desc\n\n* weight\n\n\n\n### name\n\n\nThe mandatory name of the folder. Has to be unique for the template.  \n\nOnly lowercase[a-z], numerals[0-9] hyphen and underscore permitted\n\n\n### title\n\n\nThe more user friendly displayable title. Can be duplicate unlike name.\n\n\n### desc\n\n\nDescription.\n\n\n### weight\n\n\nA folder can be given a number as its weight. This parameter then can be used to list the folders in any desired order while enumerating them using Couch **folders** tag. The bigger the number (the heavier the weight), the lower down a folder appears in the sort order. Default weight is 0. You can specify a negative number to make a folder appear higher up.\n\n\nVariables\n---------\n\n\nThis tag sets no parameters of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folders](folders.html)\n\n* [listfolders](listfolders.html)\n\n* [dropdownfolders](dropdownfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n* [breadcrumbs](breadcrumbs.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "name",
+                    "name": "${name:name}='$1' ",
                     "description": "The mandatory name of the folder. Has to be unique for the template.  \n Only lowercase[a-z], numerals[0-9] hyphen and underscore permitted\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Only lowercase[a-z], numerals[0-9] hyphen and underscore permitted"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "title",
+                    "name": "${title:title}='$1' ",
                     "description": "The more user friendly displayable title. Can be duplicate unlike name.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "desc",
+                    "name": "${desc:desc}='$1' ",
                     "description": "Description.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "weight",
+                    "name": "${weight:weight}='$1' ",
                     "description": "A folder can be given a number as its weight. This parameter then can be used to list the folders in any desired order while enumerating them using Couch **folders** tag. The bigger the number (the heavier the weight), the lower down a folder appears in the sort order. Default weight is 0. You can specify a negative number to make a folder appear higher up.\n\nVariables\n---------\n\nThis tag sets no parameters of its own.\n\nRelated Tags\n------------\n\n\n * [folders](folders.html)\n * [listfolders](listfolders.html)\n * [dropdownfolders](dropdownfolders.html)\n * [parentfolders](parentfolders.html)\n * [is_ancestor](is_ancestor.html)\n * [breadcrumbs](breadcrumbs.html)\n \n",
-                    "values": [
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -807,38 +576,22 @@
             "description": "```html \n <cms:folders masterpage='news.php'><cms:show k_folder_title /> <br></cms:folders> \n ```\n=======\n\n\nThe **folders** tag can be used to enumerate the virtual folders that have been defined for a template.\n\n\nPlease see [**Core Concepts - Folders**](../concepts/using-folders.html) for an in-depth discussion of this tag.\n\n\nParameters\n----------\n\n\n\n\n* masterpage\n\n* root\n\n* childof\n\n* hierarchical\n\n* depth\n\n* orderby\n\n* order\n\n* exclude\n\n* extended_info\n\n\n\n### masterpage\n\n\nThis parameter can be used to specify the template the folders of which are to be enumerated. If skipped, the template this tag is being used from is used.\n\n\n### root\n\n\nOnly a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. The folder specified as the root is returned along with all its children.\n\n\n### childof\n\n\nOnly a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. Only the children of the specified folder are returned.\n\n\n### hierarchical\n\n\nBy setting this parameter the **folders** tag can be made to enumerate the folders in their hierarchical order. If skipped, the folders are enumerated in the alphabetical order of their names.\n\n\n### depth\n\n\nThis parameter can be set to specify the maximum level in hierarchy (i.e. depth) that will be reached during enumeration. This can be used, for example, to list only the top folders in the tree by setting the depth to 1. A depth of 0 means unlimited depth.\n\n\n### orderby\n\n\nThis parameter can be set to order the enumerated folders according to the following- *name*, *title*, *id*, *count* or *weight*. If skipped, *name* is used as default.\n\n\n### order\n\n\nCan be set to specify whether the enumerated folders are ordered in the ascending order or in descending order. Valid values are *asc* and *desc*. Default is *asc*.\n\n\n### exclude\n\n\nFolders can be excluded from being enumerated by specifying them with this parameter. If an excluded folder has children, they are excluded too.  \n\nIf multiple folders are to be excluded, separate them with comma.\n\n\n### extended_info\n\n\nIf this parameter is set, additional variables get set to report the changes in hierarchy encountered by the **folders** tag, as it traverses through the folder tree. Please see the **Variables** section below.\n\n\nVariables\n---------\n\n\nThe following variables are set to provide information about each folder that gets enumerated\n\n\n\n\n* k_folder_id\n\n* k_folder_name\n\n* k_folder_title\n\n* k_folder_desc\n\n* k_folder_link\n\n* k_folder_pagecount\n\n* k_folder_totalpagecount\n\n* k_level\n\n\n\nIf the *hierarchical* parameter is set to '1', the following variables also get set to indicate the current position in the hierarchy as this tag enumerates the folders -\n\n\n\n\n* k_level_start\n\n* k_element_start\n\n* k_element_end\n\n* k_level_end\n\n\n\nYou can use these variables to easily create HTML ordered or unordered lists. Please see **Folders** in **Core Concepts**.\n\n\nRelated Tags\n------------\n\n\n\n\n* [folder](folder.html)\n\n* [listfolders](listfolders.html)\n\n* [dropdownfolders](dropdownfolders.html)\n\n* [parentfolders](parentfolders.html)\n\n* [is_ancestor](is_ancestor.html)\n\n* [breadcrumbs](breadcrumbs.html)\n\n* [pages](pages.html)\n\n* [archives](archives.html)\n\n* [templates](templates.html)\n\n* [comments](comments.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "masterpage",
-                    "description": "This parameter can be used to specify the template the folders of which are to be enumerated. If skipped, the template this tag is being used from is used.\n\n",
-                    "values": [
-                        {
-                            "name": "k_template_name"
-                        },
-                        {
-                            "name": "string",
-                            "description": "File name"
-                        }
-                    ]
+                    "name": "${masterpage:masterpage}=${1:k_template_name }${2:'$3'} ",
+                    "description": "Pick either k_template_name or fill in the second tab place, not both. This parameter can be used to specify the template the folders of which are to be enumerated. If skipped, the template this tag is being used from is used.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "root",
-                    "description": "Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. The folder specified as the root is returned along with all its children.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "name": "${root:root}=${1:k_template_name }${2:'$3'} ",
+                    "description": "Pick either k_template_name or fill in the second tab place, not both. Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. The folder specified as the root is returned along with all its children.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "childof",
-                    "description": "Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. Only the children of the specified folder are returned.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "name": "${childof:childof}=${1:k_template_name }${2:'$3'} ",
+                    "description": "Pick either k_template_name or fill in the second tab place, not both. Only a sub-section of the folders tree can be enumerated by specifying a folder as this parameter. Only the children of the specified folder are returned.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "hierarchical",
+                    "name": "${hierarchical:hierarchical}='${1|0,1|}' ",
                     "description": "By setting this parameter the **folders** tag can be made to enumerate the folders in their hierarchical order. If skipped, the folders are enumerated in the alphabetical order of their names.\n\n",
                     "values": [
                         {
@@ -850,69 +603,29 @@
                     ]
                 },
                 {
-                    "name": "depth",
+                    "name": "${depth:depth}='$1",
                     "description": "This parameter can be set to specify the maximum level in hierarchy (i.e. depth) that will be reached during enumeration. This can be used, for example, to list only the top folders in the tree by setting the depth to 1. A depth of 0 means unlimited depth.\n\n",
-                    "values": [
-                        {
-                            "name": "int",
-                            "description": "Folder depth"
-                        }
-                    ]
+                    "valueSet": "V"
                 },
                 {
-                    "name": "orderby",
+                    "name": "${orderby:orderby}='${1|name,title,id,weight,count|}' ",
                     "description": "This parameter can be set to order the enumerated folders according to the following- *name*, *title*, *id*, *count* or *weight*. If skipped, *name* is used as default.\n\n",
-                    "values": [
-                        {
-                            "name": "name"
-                        },
-                        {
-                            "name": "title"
-                        },
-                        {
-                            "name": "id"
-                        },
-                        {
-                            "name": "weight"
-                        },
-                        {
-                            "name": "count"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "order",
+                    "name": "${order:order}='${1|asc,desc|}' ",
                     "description": "Can be set to specify whether the enumerated folders are ordered in the ascending order or in descending order. Valid values are *asc* and *desc*. Default is *asc*.\n\n",
-                    "values": [
-                        {
-                            "name": "asc"
-                        },
-                        {
-                            "name": "desc"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "exclude",
+                    "name": "${exclude:exclude}='${1:folder_name}${2:, another_folder}'",
                     "description": "Folders can be excluded from being enumerated by specifying them with this parameter. If an excluded folder has children, they are excluded too.  \n If multiple folders are to be excluded, separate them with comma.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Comma seperated list of folders"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "extended_info",
+                    "name": "${extended_info:extended_info}='${1|0,1|}'",
                     "description": "If this parameter is set, additional variables get set to report the changes in hierarchy encountered by the **folders** tag, as it traverses through the folder tree. Please see the **Variables** section below.\n\nVariables\n---------\n\nThe following variables are set to provide information about each folder that gets enumerated\n\n\n * k_folder_id\n * k_folder_name\n * k_folder_title\n * k_folder_desc\n * k_folder_link\n * k_folder_pagecount\n * k_folder_totalpagecount\n * k_level\n \nIf the *hierarchical* parameter is set to '1', the following variables also get set to indicate the current position in the hierarchy as this tag enumerates the folders -\n\n\n * k_level_start\n * k_element_start\n * k_element_end\n * k_level_end\n \nYou can use these variables to easily create HTML ordered or unordered lists. Please see **Folders** in **Core Concepts**.\n\nRelated Tags\n------------\n\n\n * [folder](folder.html)\n * [listfolders](listfolders.html)\n * [dropdownfolders](dropdownfolders.html)\n * [parentfolders](parentfolders.html)\n * [is_ancestor](is_ancestor.html)\n * [breadcrumbs](breadcrumbs.html)\n * [pages](pages.html)\n * [archives](archives.html)\n * [templates](templates.html)\n * [comments](comments.html)\n \n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -921,59 +634,29 @@
             "description": "```html \n <cms:form method=\"post\">Name: <cms:input type=\"text\" size=\"10\" maxlength=\"40\" name=\"name\" /> <br /> Email: <cms:input type=\"text\" size=\"10\" name=\"email\" /> <br /> <cms:input name=\"submit\" type=\"submit\" value=\"Send\" /> </cms:form> \n ```\n====\n\n\nPlease see [**Core Concepts - Forms**](../concepts/forms.html) for an in-depth discussion about this tag.\n\n\nParameters\n----------\n\n\nApart from the parameters listed below, any parameters given to this tag will be passed on unchanged to the HTML <form> tag generated by this Couch tag. Thus, for example, if you wish to style inline the form, simply set the style parameter of this tag and the resulting HTML form will be passed on the style.\n\n\n\n\n* name\n\n* method\n\n* action\n\n* separator\n\n* anchor\n\n\n\n### name\n\n\nThe name of the form.\n\n\n### method\n\n\nMethod of form submision. Can be either *get* or *post*. If skipped, *get* is assumed.\n\n\n### action\n\n\nThe script handling the form submission. Normally you do not require to set this parameter because this task is handled by Couch.\n\n\n### separator\n\n\nIf the form fails to validate, the names of each failed fields, along with their error messages, are concatanated using a '|' pipe character to get a single string and this string is placed in a variable named *k_error*. You can change the default pipe separator to any other character by setting this parameter.\n\n\n### anchor\n\n\nTo understand this parameter, suppose a form is created somewhere at the bottom of a web page and requires the user to scroll down the page to reach it. Upon submission of this form, the page is reloaded and in doing so the the form seems to disappear because the refreshed page shows the top region and it will again need scrolling to reach the form. This will cause the user to miss any feedback (error or success messages) that might have been added to the form.  \n\nBy setting the *anchor* parameter to '1', Couch adds an HTML anchor ('#') to the form so that the reloaded page scrolls back to the top of the form, thus mitigating the mentioned problem.\n\n\nVariables\n---------\n\n\n\n\n* k_success\n\n* k_error\n\n\n\n### k_success\n\n\nIf the form successfully validates, the names and values of each fields are concatenated using a '\\n' newline character to get a single string and this string is placed in a this variable.\n\n\n### k_error\n\n\nIf the form fails to validate, the names of each failed fields along with their error messages are concatenated using a '|' pipe character to get a single string and this string is placed in this variable.\n\n\nIn addition to the two above mentioned variables, the values of the fields are also made available individually by setting discrete variables for each field. The names of the variables, however, differ between the success and error conditions.  \n\nSuppose a form has two fields named *name* and *password*. Upon successful validation of both fields, two variables named after the two fields will get set - *frm_name* and *frm_password*. Each will contain the value submitted through them.  \n\nHowever, if any of the fields fail to validate, variables representing only those failed fields will get set. Suppose the password field is the one that fails. In this case a variable named *k_error_password* will get set. This variable will contain the error message set for the validating condition.\n\n\nRelated Tags\n------------\n\n\n\n\n* [input](input.html)\n\n* [fieldset](fieldset.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "name",
+                    "name": "${name:name}='$1' ",
                     "description": "The name of the form.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "method",
+                    "name": "${method:method}='${1|get,post|}' ",
                     "description": "Method of form submision. Can be either *get* or *post*. If skipped, *get* is assumed.\n\n",
-                    "values": [
-                        {
-                            "name": "get"
-                        },
-                        {
-                            "name": "post"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "action",
+                    "name": "${action:action}='$1' ",
                     "description": "The script handling the form submission. Normally you do not require to set this parameter because this task is handled by Couch.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Script handling action"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "separator",
+                    "name": "${separator:seperator}='${1:|}' ",
                     "description": "If the form fails to validate, the names of each failed fields, along with their error messages, are concatanated using a '|' pipe character to get a single string and this string is placed in a variable named *k_error*. You can change the default pipe separator to any other character by setting this parameter.\n\n",
-                    "values": [
-                        {
-                            "name": "|"
-                        },
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "anchor",
+                    "name": "${anchor:anchor}='${1|0,1|}' ",
                     "description": "To understand this parameter, suppose a form is created somewhere at the bottom of a web page and requires the user to scroll down the page to reach it. Upon submission of this form, the page is reloaded and in doing so the the form seems to disappear because the refreshed page shows the top region and it will again need scrolling to reach the form. This will cause the user to miss any feedback (error or success messages) that might have been added to the form.  \n By setting the *anchor* parameter to '1', Couch adds an HTML anchor ('#') to the form so that the reloaded page scrolls back to the top of the form, thus mitigating the mentioned problem.\n\nVariables\n---------\n\n\n * k_success\n * k_error\n \n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -982,25 +665,14 @@
             "description": "```html \n <cms:get 'myvar' /> \n ```\n===\n\n\nThe **get** tag is used to output the value of the variable the name of which is supplied to it as its parameter.  \n\nFor example -\n\n\n\n ```html \n<cms:set my_var='10' />\n<cms:get 'my_var' />\n\n ``` \nIn the snippet given above, 'my_var' is the name of the variable the value of which is output by the **get** tag.  \n\nThe output of the snippet is '10'.\n\n\nCompare the **get** tag with the **show** tag that takes a value (not the name) as its parameter.\n\n\nIn the snippet given above, if we substitute the **get** tag with the **show** tag -\n\n\n\n ```html \n<cms:set my_var='10' />\n<cms:show 'my_var' />\n\n ``` \n- the output would be 'my_var' and not '10'.\n\n\nThe snippet has to be written in the following manner to make it show the value contained within variable *my_var* -\n\n\n\n ```html \n<cms:set my_var='10' />\n<cms:show my_var />\n\n ``` \nNotice how the absence of the quotes in the parameter which signifies that it is a variable. This time the output is '10'.\n\n\nConsider what would happen with the **get** tag if we forgot the quotes around the first parameter -\n\n\n\n ```html \n<cms:set my_var='10' />\n<cms:get my_var />\n\n ``` \nThe **get** tag will try and fetch the value of a variable named '10', which would be non-existent.\n\n\nThe **get** tag is useful in the cases where we have to fetch the values of variables the names of which are generated dynamically.\n\n\nParameters\n----------\n\n\n\n\n* var\n\n* local_only\n\n\n\n### var\n\n\nName of the variable the value of which is to be output.\n\n\n### local_only\n\n\nIf this parameter is set to '1', **get** will search for the variable only in the local scope.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [show](show.html)\n\n* [set](set.html)\n\n* [get_custom_field](get_custom_field.html)\n\n* [pages](pages.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "var",
+                    "name": "${var:'$1'} ",
                     "description": "Name of the variable the value of which is to be output.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "local_only",
+                    "name": "${local_only:local_only}='${1|0,1|}' ",
                     "description": "If this parameter is set to '1', **get** will search for the variable only in the local scope.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [show](show.html)\n * [set](set.html)\n * [get_custom_field](get_custom_field.html)\n * [pages](pages.html)\n \n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1009,13 +681,9 @@
             "description": "```html \n <cms:get_cookie 'my_test_cookie' /> \n ```\n===========\n\n\nThe **get_cookie** tag can be used to fetch value contained within any cookie set by the **set_cookie** tag.\n\n\n\n ```html \n<cms:get_cookie 'my_test_cookie' />\n\n ``` \nThe snippet above will retrieve the value set within the cookie named 'my_test_cookie'\n\n\nParameters\n----------\n\n\n\n\n* name\n\n\n\n### name\n\n\nThe name of the cookie the value of which is to be retrieved.\n\n\nVariables\n---------\n\n\nThis is a self closing tag and sets no variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [set_cookie](set_cookie.html)\n\n* [delete_cookie](delete_cookie.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "name",
+                    "name": "${name:'${1:cookie_name}' ",
                     "description": "The name of the cookie the value of which is to be retrieved.\n\nVariables\n---------\n\nThis is a self closing tag and sets no variables of its own.\n\nRelated Tags\n------------\n\n\n * [set_cookie](set_cookie.html)\n * [delete_cookie](delete_cookie.html)\n \n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1024,34 +692,19 @@
             "description": "```html \n <cms:get_custom_field 'site_name' masterpage='globals.php' /> \n ```\n==================\n\n\nThe **get_custom_field** tag can be used to fetch the value contained within any editable region defined within any template.\n\n\nIt is an alternative method to using the **pages** tag and is well suited for fetching values from single fields (as opposed to the **pages** tag that fetches values of all the editable regions in a page).\n\n\n\n ```html \n<cms:get_custom_field 'site_name' masterpage='globals.php' />\n\n ``` \nParameters\n----------\n\n\n\n\n* var\n\n* masterpage\n\n* page\n\n\n\n### var\n\n\nThe name of the editable region the value of which is to be fetched.\n\n\n### masterpage\n\n\nThe name of the template that defines the editable region. This parameter is mandatory.\n\n\n### page\n\n\nThe name of the page that contains the editable region.  \n\nFor non-clonable pages this parameter can be skipped.\n\n\n\n ```html \n<cms:get_custom_field var='content' masterpage='blog.php' page='my_test_page' />\n\n ``` \nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [show](show.html)\n\n* [get](get.html)\n\n* [set](set.html)\n\n* [pages](pages.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "var",
+                    "name": "${var:'${1:custom_field_name}'",
                     "description": "The name of the editable region the value of which is to be fetched.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "masterpage",
-                    "description": "The name of the template that defines the editable region. This parameter is mandatory.\n\n",
-                    "values": [
-                        {
-                            "name": "k_template_name"
-                        },
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "name": "${masterpage:masterpage}=${1:k_template_name }${2:'$3'} ",
+                    "description": "Either use k_template_name or fill in the second tab spot, not both. The name of the template that defines the editable region. This parameter is mandatory.\n\n",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "page",
+                    "name": "${page:page}='${1:page_name}' ",
                     "description": "The name of the page that contains the editable region.  \n For non-clonable pages this parameter can be skipped.\n\n\n ```html \n<cms:get_custom_field var='content' masterpage='blog.php' page='my_test_page' /> \n ``` \nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\nRelated Tags\n------------\n\n\n * [show](show.html)\n * [get](get.html)\n * [set](set.html)\n * [pages](pages.html)\n \n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1060,99 +713,54 @@
             "description": "```html \n <cms:google_map name='my_map' address='1600 Amphitheatre Parkway, Mountain View, CA' /> \n ```\n===========\n\n\nThe **google_map** tag can be used to easily create a Google map on a web page.\n\n\n\n ```html \n<cms:google_map\n name='my_map'\n address='1600 Amphitheatre Parkway, Mountain View, CA'\n/>\n\n ``` \n\n ```html \n<cms:google_map\n name='my_map'\n latitude='37.423021'\n longitude='-122.083739'\n/>\n\n ``` \nPlease see [**Core Concepts - Google Maps**](../concepts/google-maps.html) for a discussion on this tag.\n\n\nParameters\n----------\n\n\nIn addition to the parameters listed below, any arbitrary parameter given to this tag will be passed on unchanged to the DIV that holds the generated map.\n\n\n\n\n* name\n\n* id\n\n* address\n\n* longitude\n\n* latitude\n\n* zoom\n\n* message\n\n* width\n\n* height\n\n* style\n\n\n\n### name\n\n\nName of the map. This parameter is mandatory.\n\n\n### id\n\n\nIf skipped, is set to the *name*.\n\n\n### address\n\n\nA map can be generated by providing either an *address* of both *longitude* and *latitude*.\n\n\n### longitude\n\n\n### latitude\n\n\nCoordinates used to create the map.\n\n\n### zoom\n\n\nDefault is 14\n\n\n### message\n\n\nText shown in the marker baloon.\n\n\n### width\n\n\nWidth of the map in pixels. Default value is 400.\n\n\n### height\n\n\nHeight of the map in pixels. Default value is 300.\n\n\n### style\n\n\nRegular CSS styles.\n\n\nA full example -\n\n\n\n ```html \n<cms:google_map\n name='my_office'\n latitude='37.423021'\n longitude='-122.083739'\n zoom='14'\n message='We are located here'\n width='640'\n height='480'\n style='margin-bottom:10px;'\n/>\n\n ``` \nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
             "attributes": [
                 {
-                    "name": "name",
+                    "name": "${name:name}='${1:name}' ",
                     "description": "Name of the map. This parameter is mandatory.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Make up a name"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "id",
+                    "name": "${id:id}='${1:name}' ",
                     "description": "If skipped, is set to the *name*.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "address",
+                    "name": "${address:address}='${1:address}' ",
                     "description": "A map can be generated by providing either an *address* of both *longitude* and *latitude*.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Address"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "longitude",
+                    "name": "${longitude:longitude}='$1' ",
                     "description": "Coordinates used to create the map.\n\n",
-                    "values": [
-                        {
-                            "name": "dec"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "latitude",
+                    "name": "${latitude:latitude}='$1' ",
                     "description": "Coordinates used to create the map.\n\n",
-                    "values": [
-                        {
-                            "name": "dec"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "zoom",
+                    "name": "${zoom:zoom}='${1:14}' ",
                     "description": "Default is 14\n\n",
-                    "values": [
-                        {
-                            "name": "int"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "message",
+                    "name": "${message:message}='${1:string}' ",
                     "description": "Text shown in the marker baloon.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "width",
+                    "name": "${width:width}='$1' ",
                     "description": "Width of the map in pixels. Default value is 400.\n\n",
-                    "values": [
-                        {
-                            "name": "int",
-                            "description": "In pixels"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "height",
+                    "name": "${height:height}='$1' ",
                     "description": "Height of the map in pixels. Default value is 300.\n\n",
-                    "values": [
-                        {
-                            "name": "int",
-                            "description": "In pixels"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "style",
+                    "name": "${style:style}='$1' ",
                     "description": "Regular CSS styles.\n\nA full example -\n\n\n ```html \n<cms:google_map name='my_office' latitude='37.423021' longitude='-122.083739' zoom='14' message='We are located here' width='640' height='480' style='margin-bottom:10px;' /> \n ``` \nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "CSS"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1161,28 +769,14 @@
             "description": "```html \n <cms:gpc 'my_parameter' method='post' /> \n ```\n===\n\n\nThe **gpc** tag stands for **G**ET-**P**OST-**C**OOKIES and can be used to fetch values from variables contained in these.\n\n\n\n ```html \n<cms:gpc 'my_parameter' />\n\n ``` \n\n ```html \n<cms:gpc 'my_parameter' method='post' />\n\n ``` \nIf the method parameter is not specified, this tag will look into all the three sources.\n\n\n**M.IMP:** Never, never use variables from GET, POST or COOKIES by using raw PHP code. The **gpc** tag sanitizes all variables and helps in preventing XSS attacks, something that your code will be susceptible of if you choose to do it manually and do not sanitize the values.\n\n\nParameters\n----------\n\n\n\n\n* var\n\n* method\n\n\n\n### var\n\n\nName of the variable to fetch the value of.\n\n\n### method\n\n\nThis can be one of the following - *get*, *post*, *cookie*.  \n\nIf this parameter is not specified, all the three are searched.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
             "attributes": [
                 {
-                    "name": "var",
+                    "name": "${var:'$1'}",
                     "description": "Name of the variable to fetch the value of.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "method",
+                    "name": "${method:method}='${1|get,post,cookie|}' ",
                     "description": "This can be one of the following - *get*, *post*, *cookie*.  \n If this parameter is not specified, all the three are searched.\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n",
-                    "values": [
-                        {
-                            "name": "get"
-                        },
-                        {
-                            "name": "post"
-                        },
-                        {
-                            "name": "cookie"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1191,46 +785,24 @@
             "description": "```html \n <cms:gravatar email=\"johndoe@gmail.com\" size=\"60\" /> \n ```\n========\n\n\nGiven an email address, the **gravatar** tag outputs an HTML <img> tag (or link only). The source of this image is set to the Gravatar image registered for this email at *gravatar.com*. If the email is not registered, the default image is output.\n\n\n\n ```html \n<cms:gravatar email=\"johndoe@gmail.com\" size=\"60\" />\n\n ``` \nParameters\n----------\n\n\n\n\n* email\n\n* size\n\n* default\n\n* link_only\n\n\n\n### email\n\n\nThe email for the Gravatar.\n\n\n### size\n\n\nSpecifies the desired width and height of the Gravatar. Valid values are from 1 to 512 inclusive. If skipped, value of 48 is used.\n\n\n### default\n\n\nIf no Gravatar found for the email, by default the Gravatar of *unknown@gravatar.com* is used. You can specify some other image to be used instead by setting this parameter to the URL of the alternative image.\n\n\n### link_only\n\n\nIf set to '1', output the image link only (i.e. not the <img> tag).\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\n'",
             "attributes": [
                 {
-                    "name": "email",
+                    "name": "${email:email}='$1' ",
                     "description": "The email for the Gravatar.\n\n",
-                    "values": [
-                        {
-                            "name": "string",
-                            "description": "Email address"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "size",
+                    "name": "${size:size}='${1:1-512}' ",
                     "description": "Specifies the desired width and height of the Gravatar. Valid values are from 1 to 512 inclusive. If skipped, value of 48 is used.\n\n",
-                    "values": [
-                        {
-                            "name": "int",
-                            "description": "Between 1-512"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "default",
+                    "name": "${default:default}='${1:URL}' ",
                     "description": "If no Gravatar found for the email, by default the Gravatar of *unknown@gravatar.com* is used. You can specify some other image to be used instead by setting this parameter to the URL of the alternative image.\n\n",
-                    "values": [
-                        {
-                            "name": "src",
-                            "description": "Image URL"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "link_only",
+                    "name": "${link_only:link_only}='${1|0,1|}' ",
                     "description": "If set to '1', output the image link only (i.e. not the <img> tag).\n\nVariables\n---------\n\nThis tag is self-closing and does not set any variables of its own.\n\n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1244,7 +816,14 @@
         },
         {
             "name": "cms:if",
-            "description": "```html \n <cms:if myvar> <h3>myvar is present</h3></cms:if> \n ```\n==\n\n\nThe **If** tag is one of the most important tags. It can be used to make decisions based on the presence or absence of a certain condition (or conditions) and then execute or ignore statements enclosed within the opening and closing **If** tags.\n\n\n\n ```html \n<cms:if my_var >\n <h3> my_var is present </h3>\n</cms:if>\n\n ``` \nIn the snippet above, the heading will be outputted only if a variable named 'my_var' is present and has a value that is not '0'.\n\n\n**If** evaluates the condition(s) provided as parameter and executes all the statements enclosed within it **only** if the result of the evaluation is **neither '' (i.e. blank or no value) nor '0'**.\n\n\nIn the above snippet we were checking if the variable has any value at all. We can also check if a variable has a certain value or if that value is greater than or smaller than a certain value -\n\n\n### Checking if equal\n\n\n\n ```html \n<cms:if my_var = 'hello' >\n <h3> Hello </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the variable 'my_var' holds the string 'hello' and output 'Hello' only if it does.\n\n\nAs noted above, **If** goes ahead with executing statements enclosed within it only if the result of evaluating the condition is neither blank nor '0'. During the comparision above, if my_var is indeed equal to 'hello', the result of the evaluation is '1', otherwise the result is '0'.\n\n\nInstead of '=' we can also use 'eq' or '==' -\n\n\n\n ```html \n<cms:if my_var eq 'hello'> <h3>Hello</h3> </cms:if>\n\n ``` \n\n ```html \n<cms:if my_var == 'hello'> <h3>Hello</h3> </cms:if>\n\n ``` \nThe above are the same as using '='.\n\n\n### Checking if not equal\n\n\n\n ```html \n<cms:if my_var != 'hello' >\n <h3> Not Hello </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the variable 'my_var' does NOT hold the string 'hello' and output 'Not Hello' only if it is true.  \n\nInstead of '!=' we can instead use 'ne' -\n\n\n\n ```html \n<cms:if my_var ne 'hello'> <h3> Not Hello </h3> </cms:if>\n\n ``` \nThe above is the same as using '!='.\n\n\n### Checking if greater than\n\n\n\n ```html \n<cms:if my_var gt '100' >\n <h3> Value greater than 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is greater than 100.\n\n\n### Checking if greater than or equal\n\n\n\n ```html \n<cms:if my_var ge '100' >\n <h3> Value greater than or equal to 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is greater than or equal to 100.\n\n\n### Checking if lesser than\n\n\n\n ```html \n<cms:if my_var lt '100' >\n <h3> Value lesser than 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is lesser than 100.\n\n\n### Checking if lesser than or equal\n\n\n\n ```html \n<cms:if my_var le '100' >\n <h3> Value lesser than or equal to 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is lesser than or equal to 100.\n\n\n### Combining multiple conditions using && (AND), || (OR)\n\n\n### && (AND)\n\n\nIf multiple conditions are combined by using '&&', the **If** statement will execute only if **ALL** the conditions are true.\n\n\n\n ```html \n<cms:if (age gt '18') && (age lt '40')> .. </cms:if>\n\n ``` \nThe above will be true only if variable 'age' is greater than 18 and is lesser than 40. Thus if 'age' is 25, the above **If** statement will execute but if 'age' is 50, it will not because the second condition is false.\n\n\n### || (OR)\n\n\nIf multiple conditions are combined by using '||', the **If** statement will execute even if **any one** of the conditions is true.\n\n\n\n ```html \n<cms:if (age gt '18') || (age lt '40')> .. </cms:if>\n\n ``` \nThe above will be true if variable 'age' is greater than 18 or is lesser than 40. Thus if 'age' is 25, the above **If** statement will execute (both conditions true) but if 'age' is 50, it will still execute because the first condition is true. In fact the above statement will always execute. A better illustration would be\n\n\n\n ```html \n<cms:if (age lt '18') || (age gt '40')> .. </cms:if>\n\n ``` \nhere an age of 13 will cause the **If** to execute and so will an age of 50 but an age of 25 will not do so. As another example -\n\n\n\n ```html \n<cms:if (age gt '18') || (sex == 'M')> .. </cms:if>\n\n ``` \nThe statement above will execute if either age of the person is more than 18 or if his sex is male regardless of his age (I know, this is sexist).\n\n\n### Using && and || together\n\n\nBoth && as well as || can be used together in the same **if** tag\n\n\n\n ```html \n<cms:if (age lt '18') || (age gt '40') && (sex == 'M')> .. </cms:if>\n\n ``` \nIn the snippet above it seems we are trying to do something only if the sex of a person is male and his age is less than 18 or more than 40.  \n\nSuppose that the variable 'age' holds a value of '13' while variable 'sex' holds 'F. For example -\n\n\n\n ```html \n<cms:set age = '13' />\n<cms:set sex = 'F' />\n\n<cms:if (age lt '18') || (age gt '40') && (sex == 'M')>\n <h3>Welcome Gentleman!</h3>\n</cms:if>\n\n ``` \nYou might be surprised to see the Welcome message appearing although the sex is clearly not 'M'.  \n\nThis is because when || and && are used together, the && is given precedence over ||. Implicitly the condition that is being evaluated by **if** above is\n\n\n\n ```html \n<cms:if (age lt '18') || ((age gt '40') && (sex == 'M'))>\n\n ``` \nwhere being lesser than 18 is one condition and the **combined** result of being over 40 and also being a male is the second condition. The two conditions are separated by an || which evaluates to true even if one of the two conditions is true. It should be clear now that in the example above since the age was lesser than 18, the entire condition was evaluated as being true and the **If** block executed.\n\n\nThe right way of using both || and && together is to **always explicitly indicate the precedence**. Thus -\n\n\n\n ```html \n<cms:if ((age lt '18') || (age gt '40')) && (sex == 'M')>\n\n ``` \nwill make the code behave the way we had originally intended. The Welcome message will dissapear and will only reappear when we set 'sex' as 'M'. Notice how we enclosed the first two conditions that were supposed to be evaluated together within an extra pair of paranthesis.\n\n\nAlways explicitly indicate the evaluation precedence of the conditions by using brackets when you use && and || together.\n\n\nParameters\n----------\n\n\nSee discussion above.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [else](else.html)\n\n\n\n'"
+            "description": "```html \n <cms:if myvar> <h3>myvar is present</h3></cms:if> \n ```\n==\n\n\nThe **If** tag is one of the most important tags. It can be used to make decisions based on the presence or absence of a certain condition (or conditions) and then execute or ignore statements enclosed within the opening and closing **If** tags.\n\n\n\n ```html \n<cms:if my_var >\n <h3> my_var is present </h3>\n</cms:if>\n\n ``` \nIn the snippet above, the heading will be outputted only if a variable named 'my_var' is present and has a value that is not '0'.\n\n\n**If** evaluates the condition(s) provided as parameter and executes all the statements enclosed within it **only** if the result of the evaluation is **neither '' (i.e. blank or no value) nor '0'**.\n\n\nIn the above snippet we were checking if the variable has any value at all. We can also check if a variable has a certain value or if that value is greater than or smaller than a certain value -\n\n\n### Checking if equal\n\n\n\n ```html \n<cms:if my_var = 'hello' >\n <h3> Hello </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the variable 'my_var' holds the string 'hello' and output 'Hello' only if it does.\n\n\nAs noted above, **If** goes ahead with executing statements enclosed within it only if the result of evaluating the condition is neither blank nor '0'. During the comparision above, if my_var is indeed equal to 'hello', the result of the evaluation is '1', otherwise the result is '0'.\n\n\nInstead of '=' we can also use 'eq' or '==' -\n\n\n\n ```html \n<cms:if my_var eq 'hello'> <h3>Hello</h3> </cms:if>\n\n ``` \n\n ```html \n<cms:if my_var == 'hello'> <h3>Hello</h3> </cms:if>\n\n ``` \nThe above are the same as using '='.\n\n\n### Checking if not equal\n\n\n\n ```html \n<cms:if my_var != 'hello' >\n <h3> Not Hello </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the variable 'my_var' does NOT hold the string 'hello' and output 'Not Hello' only if it is true.  \n\nInstead of '!=' we can instead use 'ne' -\n\n\n\n ```html \n<cms:if my_var ne 'hello'> <h3> Not Hello </h3> </cms:if>\n\n ``` \nThe above is the same as using '!='.\n\n\n### Checking if greater than\n\n\n\n ```html \n<cms:if my_var gt '100' >\n <h3> Value greater than 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is greater than 100.\n\n\n### Checking if greater than or equal\n\n\n\n ```html \n<cms:if my_var ge '100' >\n <h3> Value greater than or equal to 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is greater than or equal to 100.\n\n\n### Checking if lesser than\n\n\n\n ```html \n<cms:if my_var lt '100' >\n <h3> Value lesser than 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is lesser than 100.\n\n\n### Checking if lesser than or equal\n\n\n\n ```html \n<cms:if my_var le '100' >\n <h3> Value lesser than or equal to 100 </h3>\n</cms:if>\n\n ``` \nIn the snippet above we are checking if the value in variable 'my_var' is lesser than or equal to 100.\n\n\n### Combining multiple conditions using && (AND), || (OR)\n\n\n### && (AND)\n\n\nIf multiple conditions are combined by using '&&', the **If** statement will execute only if **ALL** the conditions are true.\n\n\n\n ```html \n<cms:if (age gt '18') && (age lt '40')> .. </cms:if>\n\n ``` \nThe above will be true only if variable 'age' is greater than 18 and is lesser than 40. Thus if 'age' is 25, the above **If** statement will execute but if 'age' is 50, it will not because the second condition is false.\n\n\n### || (OR)\n\n\nIf multiple conditions are combined by using '||', the **If** statement will execute even if **any one** of the conditions is true.\n\n\n\n ```html \n<cms:if (age gt '18') || (age lt '40')> .. </cms:if>\n\n ``` \nThe above will be true if variable 'age' is greater than 18 or is lesser than 40. Thus if 'age' is 25, the above **If** statement will execute (both conditions true) but if 'age' is 50, it will still execute because the first condition is true. In fact the above statement will always execute. A better illustration would be\n\n\n\n ```html \n<cms:if (age lt '18') || (age gt '40')> .. </cms:if>\n\n ``` \nhere an age of 13 will cause the **If** to execute and so will an age of 50 but an age of 25 will not do so. As another example -\n\n\n\n ```html \n<cms:if (age gt '18') || (sex == 'M')> .. </cms:if>\n\n ``` \nThe statement above will execute if either age of the person is more than 18 or if his sex is male regardless of his age (I know, this is sexist).\n\n\n### Using && and || together\n\n\nBoth && as well as || can be used together in the same **if** tag\n\n\n\n ```html \n<cms:if (age lt '18') || (age gt '40') && (sex == 'M')> .. </cms:if>\n\n ``` \nIn the snippet above it seems we are trying to do something only if the sex of a person is male and his age is less than 18 or more than 40.  \n\nSuppose that the variable 'age' holds a value of '13' while variable 'sex' holds 'F. For example -\n\n\n\n ```html \n<cms:set age = '13' />\n<cms:set sex = 'F' />\n\n<cms:if (age lt '18') || (age gt '40') && (sex == 'M')>\n <h3>Welcome Gentleman!</h3>\n</cms:if>\n\n ``` \nYou might be surprised to see the Welcome message appearing although the sex is clearly not 'M'.  \n\nThis is because when || and && are used together, the && is given precedence over ||. Implicitly the condition that is being evaluated by **if** above is\n\n\n\n ```html \n<cms:if (age lt '18') || ((age gt '40') && (sex == 'M'))>\n\n ``` \nwhere being lesser than 18 is one condition and the **combined** result of being over 40 and also being a male is the second condition. The two conditions are separated by an || which evaluates to true even if one of the two conditions is true. It should be clear now that in the example above since the age was lesser than 18, the entire condition was evaluated as being true and the **If** block executed.\n\n\nThe right way of using both || and && together is to **always explicitly indicate the precedence**. Thus -\n\n\n\n ```html \n<cms:if ((age lt '18') || (age gt '40')) && (sex == 'M')>\n\n ``` \nwill make the code behave the way we had originally intended. The Welcome message will dissapear and will only reappear when we set 'sex' as 'M'. Notice how we enclosed the first two conditions that were supposed to be evaluated together within an extra pair of paranthesis.\n\n\nAlways explicitly indicate the evaluation precedence of the conditions by using brackets when you use && and || together.\n\n\nParameters\n----------\n\n\nSee discussion above.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [else](else.html)\n\n\n\n'",
+            "attributes": [
+                {
+                    "name": "${var:$1}",
+                    "description": "Variable or logic for if statement.",
+                    "valueSet": "v"
+                }
+            ]
         },
         {
             "name": "cms:ignore",
@@ -1255,17 +834,19 @@
             "description": "```html \n <cms:incr my_value '2' /> \n ```\n====\n\n\nThe **incr** tag accepts as its first parameter a variable and increases the value contained within the variable by the value contained within the second optional parameter. If the second parameter is not provided, a value of 1 is assumed.\n\n\n\n ```html \n<cms:set my_value='11' />\n<cms:show my_value />\n\n ``` \nIn the snippet above, value of variable my_value is outputted as 11.\n\n\n\n ```html \n<cms:incr my_value '2' />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 13.\n\n\n\n ```html \n<cms:incr my_value />\n<cms:show my_value />\n\n ``` \nThe value of variable my_value now becomes 14.\n\n\nParameters\n----------\n\n\nExpects a maximum of two parameters.\n\n\nThe first parameter has to be a variable. The second parameter is optional and its value is used to increase the value of the variable passed as the first parameter. A default value of 1 is assumed if the second parameter is not specified.\n\n\nVariables\n---------\n\n\nThis tag is self-closing and does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [add](add.html)\n\n* [sub](sub.html)\n\n* [mul](mul.html)\n\n* [div](div.html)\n\n* [mod](mod.html)\n\n* [decr](decr.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "var",
-                    "description": "The incr tag accepts as its first parameter a variable and increases the value contained within the variable by the value contained within the second optional parameter. If the second parameter is not provided, a value of 1 is assumed.\n\n  <cms:set my_value='11' />\n  <cms:show my_value />\n\nIn the snippet above, value of variable my_value is outputted as 11.\n\n  <cms:incr my_value '2' />\n  <cms:show my_value />\n\nThe value of variable my_value now becomes 13.\n\n  <cms:incr my_value />\n  <cms:show my_value />\n\nThe value of variable my_value now becomes 14.\n\nParameters: Expects a maximum of two parameters.\n\nThe first parameter has to be a variable. The second parameter is optional and its value is used to increase the value of the variable passed as the first parameter. A default value of 1 is assumed if the second parameter is not specified.",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "name": "${couchVar:${1:variableName}} ",
+                    "description": "Value may be a Couch system variable Such as k_page_id or k_template_id or k_user_id etc.\n Eg. \n > <cms:incr **k_page_id** '1' />",
+                    "valueSet": "v"
                 },
                 {
-                    "name": "int",
-                    "description": "To increase variable by this number"
+                    "name": "${userVar:${1:variableName}} ",
+                    "description": "Value may be a previously set variable name. Such as if you've used a code similar to \n```html\n <cms:set myvar='1' />\n ```  \n Eg.\n > <cms:incr **myvar** '1' />",
+                    "valueSet": "v"
+                },
+                {
+                    "name": "${number:'$1'} ",
+                    "description": "Value may be the number you wish to add to the other value.\n Eg.\n > <cms:incr myvar **'1'** />",
+                    "valueSet": "v"
                 }
             ]
         },
@@ -1274,122 +855,29 @@
             "description": "```html \n <cms:input type=\"submit\" name=\"submit\" value=\"Send\" /> \n ```\n=====\n\n\nPlease see [**Core Concepts - Form**](../concepts/forms.html) for an in-depth discussion about this tag.\n\n\nParameters\n----------\n\n\nApart from the parameters listed below, any parameters given to this tag will be passed on unchanged to the HTML tag generated by it.\n\n\n\n\n* name\n\n* type\n\n* id\n\n* required\n\n* validator\n\n* validator_msg\n\n* separator\n\n* val_separator\n\n* opt_values\n\n* opt_selected\n\n* width\n\n* height\n\n* style\n\n* format\n\n* reload_text\n\n\n\n### name\n\n\nName of the input. This parameter is mandatory.\n\n\n### type\n\n\nType of the input. Valid values are -\n\n\n\n\n* text\n\n* password\n\n* submit\n\n* hidden\n\n* textarea\n\n* radio\n\n* checkbox\n\n* dropdown\n\n* captcha\n\n\n\nPlease see [**Core Concepts - Form**](../concepts/forms.html) for details about these types.\n\n\n### id\n\n\nId of the input.\n\n\n### required\n\n\nSet this to '1' to make this field mandatory.\n\n\n### validator\n\n\nThe **input** tag shares this parameter with the **editable** tag. Please see the [**validators**](editable.html#validator) section of [***editable***](editable.html) tag for a list of all the validators that can be used.\n\n\n### validator_msg\n\n\nThe **input** tag shares this parameter with the **editable** tag. Please see the [**validators**](editable.html#validator) section of [***editable***](editable.html) tag for a description of this parameter.\n\n\n### separator\n\n\n### val_separator\n\n\n### opt_values\n\n\n### opt_selected\n\n\nThe *separator*, *val_separator*, *opt_values* and *opt_selected* parameters are valid for only *radio*, *checkbox* and *dropdown* input types.  \n\nThe **input** tag shares these parameters with the **editable** tag. Please see the parameters of [**radio**](editable/radio.html#parameters), [**checkbox**](editable/checkbox.html#parameters) and [**dropdown**](editable/dropdown.html#parameters) types of editable regions for details of these.\n\n\n### width\n\n\nWidth in pixels.\n\n\n### height\n\n\nHeight in pixels.\n\n\n### style\n\n\nInline CSS styling.\n\n\n### format\n\n\n### reload_text\n\n\nThe *format* and *reload_text* parameters pertain exclusively to input of *captcha* type. Please see [**Core Concepts - Form**](../concepts/forms.html) where the *captcha* type of input, along with its parameters, is described in detail.\n\n\nVariables\n---------\n\n\nThis tag does not set any variables of its own.\n\n\nRelated Tags\n------------\n\n\n\n\n* [form](form.html)\n\n* [fieldset](fieldset.html)\n\n\n\n'",
             "attributes": [
                 {
-                    "name": "name",
+                    "name": "${name:name}='$1' ",
                     "description": "Name of the input. This parameter is mandatory.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "type",
+                    "name": "${type:type}='${1|text,password,submit,hidden,textarea,radio,checkbox,dropdown,captcha|}' ",
                     "description": "Type of the input. Valid values are -\n\n\n * text\n * password\n * submit\n * hidden\n * textarea\n * radio\n * checkbox\n * dropdown\n * captcha\n \nPlease see [**Core Concepts - Form**](../concepts/forms.html) for details about these types.\n\n",
-                    "values": [
-                        {
-                            "name": "text"
-                        },
-                        {
-                            "name": "password"
-                        },
-                        {
-                            "name": "submit"
-                        },
-                        {
-                            "name": "hidden"
-                        },
-                        {
-                            "name": "textarea"
-                        },
-                        {
-                            "name": "radio"
-                        },
-                        {
-                            "name": "checkbox"
-                        },
-                        {
-                            "name": "dropdown"
-                        },
-                        {
-                            "name": "captcha"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "id",
+                    "name": "${id:id}='${1:name}' ",
                     "description": "Id of the input.\n\n",
-                    "values": [
-                        {
-                            "name": "string"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "required",
+                    "name": "${required:required}='${1|0,1|} '",
                     "description": "Set this to '1' to make this field mandatory.\n\n",
-                    "values": [
-                        {
-                            "name": "0"
-                        },
-                        {
-                            "name": "1"
-                        }
-                    ]
+                    "valueSet": "v"
                 },
                 {
-                    "name": "validator",
+                    "name": "${validator:validator}='${1|min_len,max_len,exact_len,alpha,alpha_num,integer,non_negative_integer,non_zero_integer,decimal,non_negative_decimal,non_zero_decimal,email,url,matches_field,regex|}${2:, }${3|min_len,max_len,exact_len,alpha,alpha_num,integer,non_negative_integer,non_zero_integer,decimal,non_negative_decimal,non_zero_decimal,email,url,matches_field,regex|}' ",
                     "description": "Couch has several built-in validators that can be used to enforce that the user only inputs valid data into an editable region -",
-                    "values": [
-                        {
-                            "name": "min_len"
-                        },
-                        {
-                            "name": "max_len"
-                        },
-                        {
-                            "name": "exact_len"
-                        },
-                        {
-                            "name": "alpha"
-                        },
-                        {
-                            "name": "alpha_num"
-                        },
-                        {
-                            "name": "integer"
-                        },
-                        {
-                            "name": "non_negative_integer"
-                        },
-                        {
-                            "name": "non_zero_integer"
-                        },
-                        {
-                            "name": "decimal"
-                        },
-                        {
-                            "name": "non_negative_decimal"
-                        },
-                        {
-                            "name": "non_zero_decimal"
-                        },
-                        {
-                            "name": "email"
-                        },
-                        {
-                            "name": "url"
-                        },
-                        {
-                            "name": "matches_field"
-                        },
-                        {
-                            "name": "regex"
-                        },
-                        {
-                            "name": "string",
-                            "description": "String containing multiple seperated by a '|' eg. > validator='alpha_num | min_len=6 | max_len=14'"
-                        }
-                    ]
+                   "valueSet": "v"
                 },
                 {
                     "name": "validator_msg",
